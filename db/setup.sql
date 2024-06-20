@@ -1,0 +1,5 @@
+DROP DATABASE IF EXISTS seatswap_test;
+DROP DATABASE IF EXISTS seatswap;
+
+CREATE DATABASE seatswap_test;
+CREATE DATABASE seatswap;
