@@ -1,0 +1,16 @@
+{
+  "GET /api": {
+    "description": "serves up a json representation of all the available endpoints of the api"
+  },
+  "GET /api/flights/:user_id": {
+    "description": "serves an array of all flights for a user id",
+    "queries": [],
+    "exampleResponse": {
+      "flights": [
+        { "id": 1, "flightNumber": "AA101", "departureAirport": "JFK", "arrivalAirport": "LAX", "departureTime": "2023-06-01T07:00:00Z", "arrivalTime": "2023-06-01T10:00:00Z", "airline": "American Airlines" },
+        { "id": 2, "flightNumber": "AA101", "departureAirport": "JFK", "arrivalAirport": "LAX", "departureTime": "2023-06-08T07:00:00Z", "arrivalTime": "2023-06-08T10:00:00Z", "airline": "American Airlines" }
+      
+      ]
+    }
+  }
+}
