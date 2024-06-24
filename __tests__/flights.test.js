@@ -14,54 +14,65 @@ describe('GET /api/flights/:user_id', () => {
       .expect(200)
       .then(({ body }) => {
         const { flights } = body;
-        console.log(flights);
-        const expected = {
-          id: expect.any(Number),
-        };
-        expect(flights).toHaveLength(2);
+        
         flights.forEach((flight) => {
-          expect(flight).toMatchObject(expected);
+          expect(flight).toMatchObject({
+            id: expect.any(Number),
+            flightnumber: expect.any(String),
+            departureairport: expect.any(String),
+            arrivalairport: expect.any(String),
+            departuretime: expect.any(String),
+            arrivaltime: expect.any(String),
+            airline: expect.any(String),
+            seats: expect.any(Array),
+            preferences: expect.objectContaining({
+              location: expect.any(String),
+              extraLegroom: expect.any(Boolean),
+              position: expect.any(String),
+              neighbouringRows: expect.any(Boolean),
+              sameRow: expect.any(Boolean),
+              sideBySide: expect.any(Boolean),
+            }),
+          });
+
+          flight.seats.forEach((seat) => {
+            expect(seat).toMatchObject({
+              number: expect.any(String),
+              location: expect.any(String),
+              extraLegroom: expect.any(Boolean),
+              position: expect.any(String),
+              id: expect.any(Number),
+              isEditing: expect.any(Boolean),
+            });
+          });
         });
       });
   });
-  xtest('400: Returns Bad request when given invalid teacher_id', () => {
-    return request(app)
-      .get('/api/assignments/test/1')
-      .expect(400)
-      .then(({ body }) => {
-        const { msg } = body;
 
-        expect(msg).toEqual('Bad request');
-      });
-  });
-  xtest('400: Returns Bad request when given invalid class_id', () => {
+  test('404: Responds with an error message for a non-existent user id', () => {
     return request(app)
-      .get('/api/assignments/101/test')
-      .expect(400)
-      .then(({ body }) => {
-        const { msg } = body;
-
-        expect(msg).toEqual('Bad request');
-      });
-  });
-  xtest('404: Returns Not found when given non-existent teacher_id', () => {
-    return request(app)
-      .get('/api/assignments/1000000/1')
+      .get('/api/flights/2147483647')
       .expect(404)
       .then(({ body }) => {
-        const { msg } = body;
-
-        expect(msg).toEqual('Not found');
+        expect(body.msg).toBe('User not found');
       });
   });
-  xtest('404: Returns Not found when given non-existent class_id', () => {
+
+  test('404: Responds with an error message for a user with no flights', () => {
     return request(app)
-      .get('/api/assignments/101/2000')
+      .get('/api/flights/35')
       .expect(404)
       .then(({ body }) => {
-        const { msg } = body;
+        expect(body.msg).toBe('No flights found for user');
+      });
+  });
 
-        expect(msg).toEqual('Not found');
+  test('400: Responds with a bad request error for an invalid user id', () => {
+    return request(app)
+      .get('/api/flights/invalid-id')
+      .expect(400)
+      .then(({ body }) => {
+        expect(body.msg).toBe('Bad request');
       });
   });
 });
