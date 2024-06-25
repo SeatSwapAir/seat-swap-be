@@ -1,9 +1,21 @@
-const { selectFlightsByUser } = require('../models/flights.models');
+const { deleteFlightByUserFlightId, selectFlightsByUserFlightId } = require('../models/flights.models');
 
-const getFlightsByUser = async (req, res, next) => {
-  const { user_id } = req.params;
+const removeFlightByUserFlightId = async (req, res, next) => {
+  const { user_flight_id } = req.params;
 
-  selectFlightsByUser(user_id)
+  deleteFlightByUserFlightId(user_flight_id)
+    .then((flights) => {
+      res.status(204).send({ flights });
+    })
+    .catch((error) => {
+      next(error);
+    });
+};
+
+const getFlightsByUserFlightId = async (req, res, next) => {
+  const { user_flight_id } = req.params;
+
+  selectFlightsByUserFlightId(user_flight_id)
     .then((flights) => {
       res.status(200).send({ flights });
     })
@@ -13,5 +25,8 @@ const getFlightsByUser = async (req, res, next) => {
 };
 
 module.exports = {
-  getFlightsByUser,
+  removeFlightByUserFlightId,
+  getFlightsByUserFlightId
 };
+
+
