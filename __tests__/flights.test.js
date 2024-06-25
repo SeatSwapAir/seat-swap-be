@@ -42,7 +42,6 @@ describe('GET /api/flights/:user_id', () => {
               extraLegroom: expect.any(Boolean),
               position: expect.any(String),
               id: expect.any(Number),
-              isEditing: expect.any(Boolean),
             });
           });
         });
