@@ -3,10 +3,9 @@ const db = require('../db/connection.js');
 const selectFlightsByUser = async (user_id) => {
   try {
     // Check if the user exists
-    const userResult = await db.query(
-      `SELECT * FROM "user" WHERE id = $1;`,
-      [user_id]
-    );
+    const userResult = await db.query(`SELECT * FROM "user" WHERE id = $1;`, [
+      user_id,
+    ]);
 
     if (userResult.rows.length === 0) {
       return Promise.reject({
@@ -64,10 +63,10 @@ const selectFlightsByUser = async (user_id) => {
 
     const flights = {};
 
-    userFlightResult.rows.forEach(row => {
+    userFlightResult.rows.forEach((row) => {
       if (!flights[row.flight_id]) {
         flights[row.flight_id] = {
-          id: row.flight_id,
+          id: row.user_flight_id,
           flightnumber: row.flightnumber,
           departureairport: row.departureairport,
           arrivalairport: row.arrivalairport,
@@ -82,7 +81,7 @@ const selectFlightsByUser = async (user_id) => {
             neighbouringRows: row.neighbouring_row_pref,
             sameRow: row.same_row_pref,
             sideBySide: row.side_by_side_pref,
-          }
+          },
         };
       }
 
@@ -99,7 +98,7 @@ const selectFlightsByUser = async (user_id) => {
 
     return Object.values(flights);
   } catch (err) {
-    console.error('Database query error:', err); 
+    console.error('Database query error:', err);
     throw err;
   }
 };
@@ -111,7 +110,10 @@ const deleteFlightByUserFlightId = async (user_flight_id) => {
       `SELECT * FROM "user_flight" WHERE id = $1;`,
       [user_flight_id]
     );
-    console.log("🚀 ~ deleteFlightByUserFlightId ~ userFlightResult:", userFlightResult.rows[0].user_id)
+    console.log(
+      '🚀 ~ deleteFlightByUserFlightId ~ userFlightResult:',
+      userFlightResult.rows[0].user_id
+    );
 
     if (userFlightResult.rows.length === 0) {
       return Promise.reject({
@@ -119,22 +121,21 @@ const deleteFlightByUserFlightId = async (user_flight_id) => {
         msg: 'User flight not found',
       });
     }
-    await db.query(
-      `DELETE FROM "seat" WHERE user_flight_id = $1;`,
-      [user_flight_id]);
+    await db.query(`DELETE FROM "seat" WHERE user_flight_id = $1;`, [
+      user_flight_id,
+    ]);
 
-    await db.query(
-      `DELETE FROM "user_flight" WHERE id = $1;`,
-      [user_flight_id]);
-
+    await db.query(`DELETE FROM "user_flight" WHERE id = $1;`, [
+      user_flight_id,
+    ]);
 
     return await selectFlightsByUser(userFlightResult.rows[0].user_id);
   } catch (err) {
-    console.error('Database query error:', err); 
+    console.error('Database query error:', err);
     throw err;
   }
 };
 module.exports = {
   selectFlightsByUser,
-  deleteFlightByUserFlightId
+  deleteFlightByUserFlightId,
 };
