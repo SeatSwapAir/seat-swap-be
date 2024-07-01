@@ -14,7 +14,6 @@ describe('GET /api/users/:user_id/flights', () => {
       .expect(200)
       .then(({ body }) => {
         const { flights } = body;
-        
         flights.forEach((flight) => {
           expect(flight).toMatchObject({
             id: expect.any(Number),
@@ -48,6 +47,148 @@ describe('GET /api/users/:user_id/flights', () => {
       });
   });
 
+  test('200: Responds with array of flight objects that exactly match those for a user id', () => {
+    const expected = [
+      {
+        id: 1,
+        flightnumber: 'AA101',
+        departureairport: 'JFK',
+        arrivalairport: 'LAX',
+        departuretime: '2023-06-01T06:00:00.000Z',
+        arrivaltime: '2023-06-01T09:00:00.000Z',
+        airline: 'American Airlines',
+        seats: [
+          {
+            extraLegroom: false,
+            id: 2,
+            location: 'front',
+            number: '14B',
+            position: 'window',
+          },
+        ],
+        preferences: {
+          location: 'front',
+          extraLegroom: true,
+          position: 'window',
+          neighbouringRows: true,
+          sameRow: false,
+          sideBySide: false,
+        },
+      },
+      {
+        id: 2,
+        flightnumber: 'AA101',
+        departureairport: 'JFK',
+        arrivalairport: 'LAX',
+        departuretime: '2023-06-08T06:00:00.000Z',
+        arrivaltime: '2023-06-08T09:00:00.000Z',
+        airline: 'American Airlines',
+        seats: [
+          {
+            extraLegroom: false,
+            id: 129,
+            location: 'front',
+            number: '14B',
+            position: 'window',
+          },
+        ],
+        preferences: {
+          location: 'front',
+          extraLegroom: true,
+          position: 'window',
+          neighbouringRows: true,
+          sameRow: true,
+          sideBySide: false,
+        },
+      },
+      {
+        id: 3,
+        flightnumber: 'DL202',
+        departureairport: 'ATL',
+        arrivalairport: 'ORD',
+        departuretime: '2023-06-02T08:30:00.000Z',
+        arrivaltime: '2023-06-02T10:30:00.000Z',
+        airline: 'Delta Airlines',
+        seats: [
+          {
+            extraLegroom: false,
+            id: 236,
+            location: 'front',
+            number: '14B',
+            position: 'window',
+          },
+        ],
+        preferences: {
+          location: 'front',
+          extraLegroom: false,
+          position: 'window',
+          neighbouringRows: true,
+          sameRow: false,
+          sideBySide: true,
+        },
+      },
+      {
+        id: 4,
+        flightnumber: 'DL202',
+        departureairport: 'ATL',
+        arrivalairport: 'ORD',
+        departuretime: '2023-06-09T08:30:00.000Z',
+        arrivaltime: '2023-06-09T10:30:00.000Z',
+        airline: 'Delta Airlines',
+        seats: [
+          {
+            extraLegroom: false,
+            id: 292,
+            location: 'front',
+            number: '14B',
+            position: 'window',
+          },
+        ],
+        preferences: {
+          location: 'front',
+          extraLegroom: true,
+          position: 'window',
+          neighbouringRows: false,
+          sameRow: false,
+          sideBySide: false,
+        },
+      },
+      {
+        id: 5,
+        flightnumber: 'UA303',
+        departureairport: 'SFO',
+        arrivalairport: 'DEN',
+        departuretime: '2023-06-03T11:00:00.000Z',
+        arrivaltime: '2023-06-03T13:30:00.000Z',
+        airline: 'United Airlines',
+        seats: [
+          {
+            extraLegroom: false,
+            id: 311,
+            location: 'front',
+            number: '14B',
+            position: 'window',
+          },
+        ],
+        preferences: {
+          location: 'front',
+          extraLegroom: true,
+          position: 'window',
+          neighbouringRows: true,
+          sameRow: true,
+          sideBySide: false,
+        },
+      },
+    ];
+    return request(app)
+      .get('/api/users/2/flights')
+      .expect(200)
+      .then(({ body }) => {
+        const { flights } = body;
+        expect(flights).toStrictEqual(expected);
+      });
+  });
+
   test('404: Responds with an error message for a non-existent user id', () => {
     return request(app)
       .get('/api/users/2147483647/flights')
@@ -78,9 +219,7 @@ describe('GET /api/users/:user_id/flights', () => {
 
 describe('DELETE /api/users/:user_id/flights/:flight_id', () => {
   test('204: Successfully deletes a flight by user_flight_id', () => {
-    return request(app)
-      .delete('/api/users/2/flights/1') 
-      .expect(204)
+    return request(app).delete('/api/users/2/flights/1').expect(204);
   });
 
   test('404: Responds with an error message for a non-existent flight_id', () => {
@@ -118,5 +257,4 @@ describe('DELETE /api/users/:user_id/flights/:flight_id', () => {
         expect(body.msg).toBe('Bad request');
       });
   });
-}); 
-
+});
