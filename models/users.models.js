@@ -2,7 +2,6 @@ const db = require('../db/connection.js');
 
 const selectFlightsByUser = async (user_id) => {
   try {
-    // Check if the user exists
     const userResult = await db.query(`SELECT * FROM "user" WHERE id = $1;`, [
       user_id,
     ]);
@@ -16,41 +15,40 @@ const selectFlightsByUser = async (user_id) => {
 
     const userFlightResult = await db.query(
       `SELECT 
-        uf.id AS user_flight_id,
-        f.id AS flight_id,
-        f.flightNumber,
-        f.departureAirport,
-        f.arrivalAirport,
-        f.departureTime,
-        f.arrivalTime,
-        f.airline,
-        uf.legroom_pref,
-        uf.window_pref,
-        uf.middle_pref,
-        uf.aisle_pref,
-        uf.front_pref,
-        uf.center_pref,
-        uf.back_pref,
-        uf.side_by_side_pref,
-        uf.neighbouring_row_pref,
-        uf.same_row_pref,
-        s.id AS seat_id,
-        s.number AS seat_number,
-        s.legroom AS seat_legroom,
-        sl.name AS seat_location_name,
-        sp.name AS seat_position_name
+        flight.id AS flight_id,
+        flight.flightNumber,
+        flight.departureAirport,
+        flight.arrivalAirport,
+        flight.departureTime,
+        flight.arrivalTime,
+        flight.airline,
+        seat.id AS seat_id,
+        seat.number AS seat_number,
+        seat.legroom AS seat_legroom,
+        seat_location.location_name AS seat_location_name,
+        seat_position.position_name AS seat_position_name,
+        journey_prefs.legroom_pref,
+        journey_prefs.window_pref,
+        journey_prefs.middle_pref,
+        journey_prefs.aisle_pref,
+        journey_prefs.front_pref,
+        journey_prefs.center_pref,
+        journey_prefs.back_pref,
+        journey_prefs.side_by_side_pref,
+        journey_prefs.neighbouring_row_pref,
+        journey_prefs.same_row_pref
       FROM 
-        user_flight uf
+        flight
       JOIN 
-        flight f ON uf.flight_id = f.id
+        journey_prefs ON journey_prefs.flight_id = flight.id
       LEFT JOIN 
-        seat s ON s.user_flight_id = uf.id
+        seat ON seat.flight_id = flight.id
       LEFT JOIN 
-        seat_location sl ON s.seat_location_id = sl.id
+        seat_location ON seat.seat_location_id = seat_location.id
       LEFT JOIN 
-        seat_position sp ON s.seat_position_id = sp.id
+        seat_position ON seat.seat_position_id = seat_position.id
       WHERE 
-        uf.user_id = $1;`,
+        journey_prefs.user_id = $1;`,
       [user_id]
     );
 
@@ -66,7 +64,7 @@ const selectFlightsByUser = async (user_id) => {
     userFlightResult.rows.forEach((row) => {
       if (!flights[row.flight_id]) {
         flights[row.flight_id] = {
-          id: row.user_flight_id,
+          id: row.flight_id,
           flightnumber: row.flightnumber,
           departureairport: row.departureairport,
           arrivalairport: row.arrivalairport,
@@ -98,44 +96,69 @@ const selectFlightsByUser = async (user_id) => {
 
     return Object.values(flights);
   } catch (err) {
-    console.error('Database query error:', err);
+    // console.error('Database query error:', err);
     throw err;
   }
 };
 
-const deleteFlightByUserFlightId = async (user_flight_id) => {
+const selectJourneyByUserIdAndFlightId = async (user_id, flight_id) => {
   try {
-    // Check if the user_flight exists
-    const userFlightResult = await db.query(
-      `SELECT * FROM "user_flight" WHERE id = $1;`,
-      [user_flight_id]
-    );
-    console.log(
-      '🚀 ~ deleteFlightByUserFlightId ~ userFlightResult:',
-      userFlightResult.rows[0].user_id
-    );
+    const userJourneyResult = await db.query(
+      `SELECT * FROM journey_prefs WHERE user_id = $1 AND flight_id = $2;`,
+      [user_id, flight_id]
+    );  
 
-    if (userFlightResult.rows.length === 0) {
+    if (userJourneyResult.rows.length === 0) {
       return Promise.reject({
         status: 404,
-        msg: 'User flight not found',
+        msg: 'User journey not found',
       });
     }
-    await db.query(`DELETE FROM "seat" WHERE user_flight_id = $1;`, [
-      user_flight_id,
-    ]);
 
-    await db.query(`DELETE FROM "user_flight" WHERE id = $1;`, [
-      user_flight_id,
-    ]);
-
-    return await selectFlightsByUser(userFlightResult.rows[0].user_id);
+    return userJourneyResult.rows[0];
   } catch (err) {
     console.error('Database query error:', err);
     throw err;
   }
 };
+
+const deleteFlightByUserIdAndFlightId = async (user_id, flight_id) => {
+  try {
+    const userJourneyResult = await db.query(
+      `SELECT * FROM journey_prefs WHERE user_id = $1 AND flight_id = $2;`,
+      [user_id, flight_id]
+    );
+
+    if (userJourneyResult.rows.length === 0) {
+      return Promise.reject({
+        status: 404,
+        msg: 'User journey not found',
+      });
+    }
+
+    const seatsDeleted = await db.query(`DELETE FROM "seat" WHERE user_id = $1 AND flight_id = $2;`, [
+      user_id,
+      flight_id,
+    ]);
+    
+    const seatsJourneyPrefsDeleted = await db.query(`DELETE FROM journey_prefs WHERE user_id = $1 AND flight_id = $2;`, [
+      user_id,
+      flight_id,
+    ]);
+
+    if (seatsDeleted.rowCount === 0 && seatsJourneyPrefsDeleted.rowCount === 0) {
+      return Promise.reject({
+        status: 404,
+        msg: 'Failed to delete journey or seats',
+      });
+    }
+    return "Deleted";
+  } catch (err) {
+    // console.error('Database query error:', err);
+    throw err;
+  }
+};
 module.exports = {
   selectFlightsByUser,
-  deleteFlightByUserFlightId,
+  deleteFlightByUserIdAndFlightId
 };
