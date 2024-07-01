@@ -48,7 +48,7 @@ const selectFlightsByUser = async (user_id) => {
       LEFT JOIN 
         seat_position ON seat.seat_position_id = seat_position.id
       WHERE 
-        journey_prefs.user_id = $1;`,
+        journey_prefs.user_id = $1 AND seat.user_id = $1;`,
       [user_id]
     );
 
@@ -106,7 +106,7 @@ const selectJourneyByUserIdAndFlightId = async (user_id, flight_id) => {
     const userJourneyResult = await db.query(
       `SELECT * FROM journey_prefs WHERE user_id = $1 AND flight_id = $2;`,
       [user_id, flight_id]
-    );  
+    );
 
     if (userJourneyResult.rows.length === 0) {
       return Promise.reject({
@@ -136,23 +136,26 @@ const deleteFlightByUserIdAndFlightId = async (user_id, flight_id) => {
       });
     }
 
-    const seatsDeleted = await db.query(`DELETE FROM "seat" WHERE user_id = $1 AND flight_id = $2;`, [
-      user_id,
-      flight_id,
-    ]);
-    
-    const seatsJourneyPrefsDeleted = await db.query(`DELETE FROM journey_prefs WHERE user_id = $1 AND flight_id = $2;`, [
-      user_id,
-      flight_id,
-    ]);
+    const seatsDeleted = await db.query(
+      `DELETE FROM "seat" WHERE user_id = $1 AND flight_id = $2;`,
+      [user_id, flight_id]
+    );
 
-    if (seatsDeleted.rowCount === 0 && seatsJourneyPrefsDeleted.rowCount === 0) {
+    const seatsJourneyPrefsDeleted = await db.query(
+      `DELETE FROM journey_prefs WHERE user_id = $1 AND flight_id = $2;`,
+      [user_id, flight_id]
+    );
+
+    if (
+      seatsDeleted.rowCount === 0 &&
+      seatsJourneyPrefsDeleted.rowCount === 0
+    ) {
       return Promise.reject({
         status: 404,
         msg: 'Failed to delete journey or seats',
       });
     }
-    return "Deleted";
+    return 'Deleted';
   } catch (err) {
     // console.error('Database query error:', err);
     throw err;
@@ -160,5 +163,5 @@ const deleteFlightByUserIdAndFlightId = async (user_id, flight_id) => {
 };
 module.exports = {
   selectFlightsByUser,
-  deleteFlightByUserIdAndFlightId
+  deleteFlightByUserIdAndFlightId,
 };
