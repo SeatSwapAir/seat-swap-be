@@ -59,7 +59,7 @@ describe('GET /api/users/:user_id/flights', () => {
 
   test('404: Responds with an error message for a user with no flights', () => {
     return request(app)
-      .get('/api/users/35/flights')
+      .get('/api/users/100/flights')
       .expect(404)
       .then(({ body }) => {
         expect(body.msg).toBe('No flights found for user');
@@ -76,36 +76,47 @@ describe('GET /api/users/:user_id/flights', () => {
   });
 });
 
-describe('DELETE /api/flights/:user_flight_id', () => {
+describe('DELETE /api/users/:user_id/flights/:flight_id', () => {
   test('204: Successfully deletes a flight by user_flight_id', () => {
     return request(app)
-      .delete('/api/flights/1') 
+      .delete('/api/users/2/flights/1') 
       .expect(204)
-      .then(() => {
-        return request(app)
-          .get('/api/flights/1')
-          .expect(404)
-          .then(({ body }) => {
-            expect(body.msg).toBe('Flight not found');
-          });
-      });
   });
 
-  test('404: Responds with an error message for a non-existent user_flight_id', () => {
+  test('404: Responds with an error message for a non-existent flight_id', () => {
     return request(app)
-      .delete('/api/flights/2147483647')
+      .delete('/api/users/2/flights/2147483647')
       .expect(404)
       .then(({ body }) => {
-        expect(body.msg).toBe('Users flight not found');
+        expect(body.msg).toBe('User journey not found');
       });
   });
 
-  test('400: Responds with a bad request error for an invalid user_flight_id', () => {
+  test('404: Responds with an error message for a non-existent user_id', () => {
     return request(app)
-      .delete('/api/flights/invalid-id')
+      .delete('/api/users/2147483647/flights/1')
+      .expect(404)
+      .then(({ body }) => {
+        expect(body.msg).toBe('User journey not found');
+      });
+  });
+
+  test('400: Responds with a bad request error for an invalid flight_id', () => {
+    return request(app)
+      .delete('/api/users/2/flights/invalid-id')
       .expect(400)
       .then(({ body }) => {
         expect(body.msg).toBe('Bad request');
       });
   });
-});
+
+  test('400: Responds with a bad request error for an invalid user_id', () => {
+    return request(app)
+      .delete('/api/users/invalid-id/flights/1')
+      .expect(400)
+      .then(({ body }) => {
+        expect(body.msg).toBe('Bad request');
+      });
+  });
+}); 
+

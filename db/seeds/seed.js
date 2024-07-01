@@ -1,17 +1,24 @@
 const format = require("pg-format");
 const db = require("../connection");
 
-const seed = async ({ userData, preferencesData, flightsData, seatData, user_flightData, seat_locationData, seat_positionData }) => {
+const seed = async ({
+  userData,
+  defaultPrefsData,
+  flightData,
+  seatData,
+  journeyPrefsData,
+  seatLocationData,
+  seatPositionData,
+}) => {
   try {
-    await db.query('DROP TABLE IF EXISTS preferences CASCADE;');
-    await db.query('DROP TABLE IF EXISTS user_flight CASCADE;');
-    await db.query('DROP TABLE IF EXISTS flight CASCADE;');
     await db.query('DROP TABLE IF EXISTS review CASCADE;');
     await db.query('DROP TABLE IF EXISTS swap CASCADE;');
     await db.query('DROP TABLE IF EXISTS seat CASCADE;');
     await db.query('DROP TABLE IF EXISTS seat_location CASCADE;');
     await db.query('DROP TABLE IF EXISTS seat_position CASCADE;');
-    await db.query('DROP TABLE IF EXISTS flight_preferences CASCADE;');
+    await db.query('DROP TABLE IF EXISTS journey_prefs CASCADE;');
+    await db.query('DROP TABLE IF EXISTS flight CASCADE;');
+    await db.query('DROP TABLE IF EXISTS default_prefs CASCADE;');
     await db.query('DROP TABLE IF EXISTS "user" CASCADE;');
     
     await db.query(`
@@ -27,7 +34,7 @@ const seed = async ({ userData, preferencesData, flightsData, seatData, user_fli
     `);
 
     await db.query(`
-      CREATE TABLE preferences (
+      CREATE TABLE default_prefs (
         id SERIAL PRIMARY KEY,
         user_id INTEGER REFERENCES "user"(id),
         legroom_pref BOOLEAN,
@@ -56,7 +63,7 @@ const seed = async ({ userData, preferencesData, flightsData, seatData, user_fli
     `);
 
     await db.query(`
-      CREATE TABLE user_flight (
+      CREATE TABLE journey_prefs (
         id SERIAL PRIMARY KEY,
         user_id INTEGER REFERENCES "user"(id),
         flight_id INTEGER REFERENCES flight(id),
@@ -76,21 +83,22 @@ const seed = async ({ userData, preferencesData, flightsData, seatData, user_fli
     await db.query(`
       CREATE TABLE seat_position (
         id SERIAL PRIMARY KEY,
-        name VARCHAR(255) UNIQUE NOT NULL
+        position_name VARCHAR(255) UNIQUE NOT NULL
       );
     `);
 
     await db.query(`
       CREATE TABLE seat_location (
         id SERIAL PRIMARY KEY,
-        name VARCHAR(255) UNIQUE NOT NULL
+        location_name VARCHAR(255) UNIQUE NOT NULL
       );
     `);
 
     await db.query(`
       CREATE TABLE seat (
         id SERIAL PRIMARY KEY,
-        user_flight_id INTEGER,
+        flight_id INTEGER REFERENCES flight(id),
+        user_id INTEGER REFERENCES "user"(id),
         number VARCHAR(255),
         legroom BOOLEAN DEFAULT FALSE,
         seat_position_id INTEGER REFERENCES seat_position(id),
@@ -111,23 +119,23 @@ const seed = async ({ userData, preferencesData, flightsData, seatData, user_fli
         id SERIAL PRIMARY KEY,
         rating INTEGER,
         comment TEXT,
-        reviewer_id INTEGER,
-        reviewed_id INTEGER,
-        swap_id INTEGER,
+        reviewer_id INTEGER REFERENCES "user"(id),
+        reviewed_id INTEGER REFERENCES "user"(id),
+        swap_id INTEGER REFERENCES swap(id),
         review_happened BOOLEAN DEFAULT FALSE,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
       );
     `);
 
     const insertSeatLocationQueryStr = format(
-      'INSERT INTO seat_location (name) VALUES %L RETURNING *;',
-      seat_locationData.map(({ name }) => [name])
+      'INSERT INTO seat_location (location_name) VALUES %L RETURNING *;',
+      seatLocationData.map(({ location_name }) => [location_name])
     );
     await db.query(insertSeatLocationQueryStr);
 
     const insertSeatPositionQueryStr = format(
-      'INSERT INTO seat_position (name) VALUES %L RETURNING *;',
-      seat_positionData.map(({ name }) => [name])
+      'INSERT INTO seat_position (position_name) VALUES %L RETURNING *;',
+      seatPositionData.map(({ position_name }) => [position_name])
     );
     await db.query(insertSeatPositionQueryStr);
 
@@ -146,9 +154,9 @@ const seed = async ({ userData, preferencesData, flightsData, seatData, user_fli
     );
     await db.query(insertUserQueryStr);
 
-    const insertPreferencesQueryStr = format(
-      "INSERT INTO preferences (user_id, legroom_pref, window_pref, middle_pref, aisle_pref, front_pref, center_pref, back_pref, side_by_side_pref, neighbouring_row_pref, same_row_pref) VALUES %L RETURNING *;",
-      preferencesData.map(
+    const insertDefaultPrefsQueryStr = format(
+      "INSERT INTO default_prefs (user_id, legroom_pref, window_pref, middle_pref, aisle_pref, front_pref, center_pref, back_pref, side_by_side_pref, neighbouring_row_pref, same_row_pref) VALUES %L RETURNING *;",
+      defaultPrefsData.map(
         ({ user_id, legroom_pref, window_pref, middle_pref, aisle_pref, front_pref, center_pref, back_pref, side_by_side_pref, neighbouring_row_pref, same_row_pref }) => [
           user_id,
           legroom_pref,
@@ -164,11 +172,11 @@ const seed = async ({ userData, preferencesData, flightsData, seatData, user_fli
         ]
       )
     );
-    await db.query(insertPreferencesQueryStr);
+    await db.query(insertDefaultPrefsQueryStr);
 
     const insertFlightQueryStr = format(
       "INSERT INTO flight (flightNumber, departureAirport, arrivalAirport, departureTime, arrivalTime, airline) VALUES %L RETURNING *;",
-      flightsData.map(
+      flightData.map(
         ({ flightNumber, departureAirport, arrivalAirport, departureTime, arrivalTime, airline }) => [
           flightNumber,
           departureAirport,
@@ -182,10 +190,11 @@ const seed = async ({ userData, preferencesData, flightsData, seatData, user_fli
     await db.query(insertFlightQueryStr);
 
     const insertSeatQueryStr = format(
-      "INSERT INTO seat (user_flight_id, number, legroom, seat_location_id, seat_position_id) VALUES %L RETURNING *;",
+      "INSERT INTO seat (flight_id, user_id, number, legroom, seat_location_id, seat_position_id) VALUES %L RETURNING *;",
       seatData.map(
-        ({ user_flight_id, number, legroom, seat_location_id, seat_position_id }) => [
-          user_flight_id,
+        ({ flight_id, user_id, number, legroom, seat_location_id, seat_position_id }) => [
+          flight_id,
+          user_id,
           number,
           legroom,
           seat_location_id,
@@ -195,9 +204,9 @@ const seed = async ({ userData, preferencesData, flightsData, seatData, user_fli
     );
     await db.query(insertSeatQueryStr);
 
-    const insertUserFlightQueryStr = format(
-      "INSERT INTO user_flight (user_id, flight_id, legroom_pref, window_pref, middle_pref, aisle_pref, front_pref, center_pref, back_pref, side_by_side_pref, neighbouring_row_pref, same_row_pref) VALUES %L RETURNING *;",
-      user_flightData.map(
+    const insertJourneyPrefsQueryStr = format(
+      "INSERT INTO journey_prefs (user_id, flight_id, legroom_pref, window_pref, middle_pref, aisle_pref, front_pref, center_pref, back_pref, side_by_side_pref, neighbouring_row_pref, same_row_pref) VALUES %L RETURNING *;",
+      journeyPrefsData.map(
         ({ user_id, flight_id, legroom_pref, window_pref, middle_pref, aisle_pref, front_pref, center_pref, back_pref, side_by_side_pref, neighbouring_row_pref, same_row_pref }) => [
           user_id,
           flight_id,
@@ -214,7 +223,7 @@ const seed = async ({ userData, preferencesData, flightsData, seatData, user_fli
         ]
       )
     );
-    await db.query(insertUserFlightQueryStr);
+    await db.query(insertJourneyPrefsQueryStr);
   } catch (error) {
     console.error("Error creating tables:", error);
     throw error;
