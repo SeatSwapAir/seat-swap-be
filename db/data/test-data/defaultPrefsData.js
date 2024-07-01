@@ -100,11 +100,3 @@ module.exports = [
   { id: 99, user_id: 99, legroom_pref: false, window_pref: false, middle_pref: true, aisle_pref: true, front_pref: false, center_pref: true, back_pref: false, side_by_side_pref: true, neighbouring_row_pref: false, same_row_pref: true },
   { id: 100, user_id: 100, legroom_pref: true, window_pref: true, middle_pref: false, aisle_pref: false, front_pref: false, center_pref: false, back_pref: true, side_by_side_pref: true, neighbouring_row_pref: true, same_row_pref: false }
 ];
-
-
-
-
-
-
-
-
