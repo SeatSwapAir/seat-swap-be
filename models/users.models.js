@@ -1,4 +1,5 @@
 const db = require('../db/connection.js');
+const pgformat = require('pg-format');
 
 const selectFlightsByUser = async (user_id) => {
   try {
@@ -96,7 +97,6 @@ const selectFlightsByUser = async (user_id) => {
 
     return Object.values(flights);
   } catch (err) {
-    // console.error('Database query error:', err);
     throw err;
   }
 };
@@ -161,7 +161,198 @@ const deleteFlightByUserIdAndFlightId = async (user_id, flight_id) => {
     throw err;
   }
 };
+
+const updateFlightByUserIdAndFlightId = async (user_id, flight_id, journey) => {
+  const {
+    flightnumber,
+    departureairport,
+    arrivalairport,
+    departuretime,
+    arrivaltime,
+    airline,
+    seats,
+    preferences,
+  } = journey;
+  try {
+    const seatNumbers = seats.map((seat) => seat.number);
+
+    const findDuplicates = seatNumbers.filter(
+      (seat, index) => seatNumbers.indexOf(seat) !== index
+    );
+    if (findDuplicates.length > 0) {
+      return Promise.reject({
+        status: 400,
+        msg: 'You cannot enter the same seat twice. Remove duplicate.',
+      });
+    }
+
+    const doesUserExist = await db.query(`SELECT * FROM "user" WHERE id = $1`, [
+      user_id,
+    ]);
+
+    if (doesUserExist.rowCount === 0) {
+      return Promise.reject({
+        status: 404,
+        msg: 'User not found',
+      });
+    }
+
+    const doesFlightExist = await db.query(
+      `SELECT * FROM "flight" WHERE id = $1`,
+      [flight_id]
+    );
+
+    if (doesFlightExist.rowCount === 0) {
+      return Promise.reject({
+        status: 404,
+        msg: 'Flight not found',
+      });
+    }
+    const sql = pgformat(
+      `SELECT * FROM "seat" WHERE user_id != %s AND flight_id = %s AND number IN (%L)`,
+      user_id,
+      flight_id,
+      seatNumbers
+    );
+    const isSeatTaken = await db.query(sql);
+
+    if (isSeatTaken.rowCount !== 0) {
+      return Promise.reject({
+        status: 400,
+        msg: 'Seat(s) already taken by another passenger',
+      });
+    }
+
+    await db.query(`DELETE FROM "seat" WHERE user_id = $1 AND flight_id= $2`, [
+      user_id,
+      flight_id,
+    ]);
+    function getPositionId(positionName) {
+      if (positionName === 'window') return 1;
+      if (positionName === 'middle') return 2;
+      if (positionName === 'aisle') return 3;
+    }
+    function getLocationId(locationName) {
+      if (locationName === 'front') return 1;
+      if (locationName === 'center') return 2;
+      if (locationName === 'back') return 3;
+    }
+    const seatsForQuery = seats.map((seat) => {
+      return {
+        user_id: Number(user_id),
+        flight_id: Number(flight_id),
+        number: seat.number,
+        legroom: seat.extraLegroom,
+        seat_position_id: getPositionId(seat.position),
+        seat_location_id: getLocationId(seat.location),
+      };
+    });
+    const insertSeatQueryStr = pgformat(
+      `INSERT INTO seat (flight_id, user_id, number, legroom, seat_location_id, seat_position_id) VALUES %L 
+      RETURNING *;`,
+      seatsForQuery.map(
+        ({
+          flight_id,
+          user_id,
+          number,
+          legroom,
+          seat_location_id,
+          seat_position_id,
+        }) => [
+          flight_id,
+          user_id,
+          number,
+          legroom,
+          seat_location_id,
+          seat_position_id,
+        ]
+      )
+    );
+
+    const newSeats = await db.query(insertSeatQueryStr);
+    function getPositionName(positionId) {
+      if (positionId === 1) return 'window';
+      if (positionId === 2) return 'middle';
+      if (positionId === 3) return 'aisle';
+    }
+    function getLocationName(locationId) {
+      if (locationId === 1) return 'front';
+      if (locationId === 2) return 'center';
+      if (locationId === 3) return 'back';
+    }
+    const seatsFormatted = newSeats.rows.map((seat) => {
+      return {
+        id: seat.id,
+        number: seat.number,
+        extraLegroom: seat.legroom,
+        location: getLocationName(seat.seat_location_id),
+        position: getPositionName(seat.seat_position_id),
+      };
+    });
+    const {
+      legroom_pref,
+      window_pref,
+      middle_pref,
+      aisle_pref,
+      front_pref,
+      center_pref,
+      back_pref,
+      side_by_side_pref,
+      neighbouring_row_pref,
+      same_row_pref,
+    } = preferences;
+
+    const updatePrefsQueryStr = pgformat(
+      `UPDATE journey_prefs SET 
+      legroom_pref = %L,
+      window_pref = %L,
+      middle_pref = %L,
+      aisle_pref = %L,
+      front_pref = %L,
+      center_pref = %L,
+      back_pref = %L,
+      side_by_side_pref = %L,
+      neighbouring_row_pref = %L,
+      same_row_pref = %L
+  WHERE 
+      user_id = %L AND 
+      flight_id = %L 
+  RETURNING *;
+`,
+      legroom_pref,
+      window_pref,
+      middle_pref,
+      aisle_pref,
+      front_pref,
+      center_pref,
+      back_pref,
+      side_by_side_pref,
+      neighbouring_row_pref,
+      same_row_pref,
+      user_id,
+      flight_id
+    );
+
+    const newPrefs = await db.query(updatePrefsQueryStr);
+    const journey = {
+      id: Number(flight_id),
+      flightnumber: flightnumber,
+      departureairport: departureairport,
+      arrivalairport: arrivalairport,
+      departuretime: departuretime,
+      arrivaltime: arrivaltime,
+      airline: airline,
+      seats: seatsFormatted,
+      preferences: newPrefs.rows[0],
+    };
+    return journey;
+  } catch (err) {
+    // console.error('Database query error:', err);
+    throw err;
+  }
+};
 module.exports = {
   selectFlightsByUser,
   deleteFlightByUserIdAndFlightId,
+  updateFlightByUserIdAndFlightId,
 };

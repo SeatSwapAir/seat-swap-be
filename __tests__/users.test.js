@@ -62,7 +62,7 @@ describe('GET /api/users/:user_id/flights', () => {
             extraLegroom: false,
             id: 2,
             location: 'front',
-            number: '14B',
+            number: '8F',
             position: 'window',
           },
         ],
@@ -88,7 +88,7 @@ describe('GET /api/users/:user_id/flights', () => {
             extraLegroom: false,
             id: 129,
             location: 'front',
-            number: '14B',
+            number: '11A',
             position: 'window',
           },
         ],
@@ -255,6 +255,164 @@ describe('DELETE /api/users/:user_id/flights/:flight_id', () => {
       .expect(400)
       .then(({ body }) => {
         expect(body.msg).toBe('Bad request');
+      });
+  });
+});
+
+describe('PATCH /api/users/:user_id/flights/:flight_id', () => {
+  const payload = {
+    id: 1,
+    flightnumber: 'AA101',
+    departureairport: 'JFK',
+    arrivalairport: 'LAX',
+    departuretime: '2023-06-01T06:00:00.000Z',
+    arrivaltime: '2023-06-01T09:00:00.000Z',
+    airline: 'American Airlines',
+    seats: [
+      {
+        id: 80,
+        number: '12F',
+        extraLegroom: false,
+        location: 'back',
+        position: 'aisle',
+      },
+      {
+        id: 81,
+        number: '20E',
+        extraLegroom: false,
+        location: 'back',
+        position: 'aisle',
+      },
+      {
+        id: 82,
+        number: '13D',
+        extraLegroom: true,
+        location: 'front',
+        position: 'window',
+      },
+    ],
+    preferences: {
+      legroom_pref: false,
+      window_pref: true,
+      middle_pref: true,
+      aisle_pref: false,
+      front_pref: true,
+      center_pref: true,
+      back_pref: false,
+      side_by_side_pref: false,
+      neighbouring_row_pref: true,
+      same_row_pref: false,
+    },
+  };
+  test('200: Updates the user seats and preferences and responds with the updated flight object', () => {
+    const result = {
+      id: 1,
+      flightnumber: 'AA101',
+      departureairport: 'JFK',
+      arrivalairport: 'LAX',
+      departuretime: '2023-06-01T06:00:00.000Z',
+      arrivaltime: '2023-06-01T09:00:00.000Z',
+      airline: 'American Airlines',
+      seats: [
+        {
+          id: expect.any(Number),
+          number: '12F',
+          extraLegroom: false,
+          location: 'back',
+          position: 'aisle',
+        },
+        {
+          id: expect.any(Number),
+          number: '20E',
+          extraLegroom: false,
+          location: 'back',
+          position: 'aisle',
+        },
+        {
+          id: expect.any(Number),
+          number: '13D',
+          extraLegroom: true,
+          location: 'front',
+          position: 'window',
+        },
+      ],
+      preferences: {
+        legroom_pref: false,
+        window_pref: true,
+        middle_pref: true,
+        aisle_pref: false,
+        front_pref: true,
+        center_pref: true,
+        back_pref: false,
+        side_by_side_pref: false,
+        neighbouring_row_pref: true,
+        same_row_pref: false,
+      },
+    };
+    return request(app)
+      .patch('/api/users/77/flights/1')
+      .send(payload)
+      .expect(200)
+      .then(({ body }) => {
+        expect(body).toMatchObject(result);
+      });
+  });
+
+  test('400: Responds with a bad request error for an invalid user id', () => {
+    return request(app)
+      .patch('/api/users/invalid_id/flights/1')
+      .send(payload)
+      .expect(400)
+      .then(({ body }) => {
+        expect(body.msg).toBe('Bad request');
+      });
+  });
+
+  test('400: Responds with a bad request error for an invalid flight id', () => {
+    return request(app)
+      .patch('/api/users/77/flights/invalid_id')
+      .send(payload)
+      .expect(400)
+      .then(({ body }) => {
+        expect(body.msg).toBe('Bad request');
+      });
+  });
+
+  test('404: Responds with an error message for a non-existent user id', () => {
+    return request(app)
+      .patch('/api/users/2147483647/flights/1')
+      .send(payload)
+      .expect(404)
+      .then(({ body }) => {
+        expect(body.msg).toBe('User not found');
+      });
+  });
+
+  test('404: Responds with an error message for a non-existent flight id', () => {
+    return request(app)
+      .patch('/api/users/77/flights/2147483647')
+      .send(payload)
+      .expect(404)
+      .then(({ body }) => {
+        expect(body.msg).toBe('Flight not found');
+      });
+  });
+
+  test('404: Responds with an error message for a non-existent flight id', () => {
+    const extraSeat = {
+      id: 327,
+      number: '24B',
+      extraLegroom: true,
+      location: 'back',
+      position: 'aisle',
+    };
+    const newPayload = { ...payload, seats: [...payload.seats, extraSeat] };
+    return request(app)
+      .patch('/api/users/77/flights/1')
+      .send(newPayload)
+      .expect(400)
+      .then(({ body }) => {
+        expect(body.msg).toBe('Seat(s) already taken by another passenger');
       });
   });
 });

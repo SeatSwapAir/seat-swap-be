@@ -1,5 +1,8 @@
-const { selectFlightsByUser, 
-  deleteFlightByUserIdAndFlightId } = require('../models/users.models');
+const {
+  selectFlightsByUser,
+  deleteFlightByUserIdAndFlightId,
+  updateFlightByUserIdAndFlightId,
+} = require('../models/users.models');
 
 const getFlightsByUser = async (req, res, next) => {
   const { user_id } = req.params;
@@ -25,8 +28,20 @@ const removeJourneyByUserIdAndFlightId = async (req, res, next) => {
     });
 };
 
+const patchJourneyByUserIdAndFlightId = async (req, res, next) => {
+  const { user_id, flight_id } = req.params;
+
+  updateFlightByUserIdAndFlightId(user_id, flight_id, req.body)
+    .then((body) => {
+      res.status(200).send(body);
+    })
+    .catch((error) => {
+      next(error);
+    });
+};
+
 module.exports = {
   getFlightsByUser,
   removeJourneyByUserIdAndFlightId,
+  patchJourneyByUserIdAndFlightId,
 };
-
