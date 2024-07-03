@@ -61,7 +61,7 @@ const selectFlightsByUser = async (user_id) => {
     }
 
     const flights = {};
-
+ 
     userFlightResult.rows.forEach((row) => {
       if (!flights[row.flight_id]) {
         flights[row.flight_id] = {
@@ -74,9 +74,13 @@ const selectFlightsByUser = async (user_id) => {
           airline: row.airline,
           seats: [],
           preferences: {
-            location: row.seat_location_name,
             extraLegroom: row.legroom_pref,
-            position: row.seat_position_name,
+            window_pref: row.window_pref,
+            middle_pref: row.middle_pref,
+            aisle_pref: row.aisle_pref,
+            front_pref: row.front_pref,
+            center_pref: row.center_pref,
+            back_pref: row.back_pref,
             neighbouringRows: row.neighbouring_row_pref,
             sameRow: row.same_row_pref,
             sideBySide: row.side_by_side_pref,
