@@ -74,16 +74,16 @@ const selectFlightsByUser = async (user_id) => {
           airline: row.airline,
           seats: [],
           preferences: {
-            extraLegroom: row.legroom_pref,
+            legroom_pref: row.legroom_pref,
             window_pref: row.window_pref,
             middle_pref: row.middle_pref,
             aisle_pref: row.aisle_pref,
             front_pref: row.front_pref,
             center_pref: row.center_pref,
             back_pref: row.back_pref,
-            neighbouringRows: row.neighbouring_row_pref,
-            sameRow: row.same_row_pref,
-            sideBySide: row.side_by_side_pref,
+            neighbouring_row_pref: row.neighbouring_row_pref,
+            same_row_pref: row.same_row_pref,
+            side_by_side_pref: row.side_by_side_pref,
           },
         };
       }
