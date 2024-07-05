@@ -2,6 +2,8 @@ const express = require('express');
 const cors = require('cors');
 const app = express();
 
+require('dotenv').config({ path: '.env.amadeus' });
+
 app.use(cors());
 app.use(express.json());
 
@@ -11,6 +13,10 @@ const {
   patchJourneyByUserIdAndFlightId,
 } = require('./controllers/users.controllers.js');
 
+const {
+  getFlightByNumberAndDate,
+} = require('./controllers/flights.controllers');
+
 app.get('/api/users/:user_id/flights', getFlightsByUser);
 app.delete(
   '/api/users/:user_id/flights/:flight_id',
@@ -19,6 +25,11 @@ app.delete(
 app.patch(
   '/api/users/:user_id/flights/:flight_id',
   patchJourneyByUserIdAndFlightId
+);
+
+app.get(
+  '/api/flights/:flightNumber/date/:departureTime',
+  getFlightByNumberAndDate
 );
 
 //handle custom errors

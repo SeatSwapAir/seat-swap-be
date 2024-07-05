@@ -1,0 +1,77 @@
+const { app } = require('../app');
+const request = require('supertest');
+const db = require('../db/connection');
+const seed = require('../db/seeds/seed');
+const data = require('../db/data/test-data/index.js');
+
+beforeEach(() => seed(data));
+afterAll(() => db.end());
+
+describe('GET /api/flights/:flightNumber/date/:departureTime', () => {
+  test('200: Responds with a with a flightId if it exists in local DB for a given flightNumber and departureTime', () => {
+    return request(app)
+      .get('/api/flights/AA101/date/2023-06-01T07:00:00Z')
+      .expect(200)
+      .then(({ body }) => {
+        expect(body).toMatchObject({
+          id: 1,
+          flightnumber: 'AA101',
+          departureairport: 'JFK',
+          arrivalairport: 'LAX',
+          departuretime: '2023-06-01T07:00:00Z',
+          arrivaltime: '2023-06-01T10:00:00Z',
+          airline: 'American Airlines',
+        });
+      });
+  });
+  test('200: Responds with a flightId if it does not exist in local DB but has created flight with Amadeus API response', () => {
+    return request(app)
+      .get('/api/flights/FR2714/date/2024-08-16T05:00:00Z')
+      .expect(200)
+      .then(({ body }) => {
+        expect(body).toMatchObject({
+          id: 6,
+          flightnumber: 'FR2714',
+          departureairport: 'ALC',
+          arrivalairport: 'LGW',
+          departuretime: '2024-08-16T06:50+02:00',
+          arrivaltime: '2024-08-16T08:30+01:00',
+          airline: 'RYANAIR',
+        });
+      });
+  });
+  test('404: Responds with an error message for a flight number that Amadeus cannot find', () => {
+    return request(app)
+      .get('/api/flights/Z0799/date/2024-07-19T07:00:00Z')
+      .expect(404)
+      .then(({ body }) => {
+        expect(body.msg).toBe('Flight not found');
+      });
+  });
+  test('400: Responds with an error message for a flight with a date from the past', () => {
+    return request(app)
+      .get('/api/flights/Z0701/date/2023-07-19T07:00:00Z')
+      .expect(400)
+      .then(({ body }) => {
+        expect(body.msg).toBe(
+          'Past date entered, please enture current/future date'
+        );
+      });
+  });
+  test('400: Responds with an error message for an invalid flight number', () => {
+    return request(app)
+      .get('/api/flights/HUSDFD/date/2024-07-19T07:00:00Z')
+      .expect(400)
+      .then(({ body }) => {
+        expect(body.msg).toBe('Invalid flight number');
+      });
+  });
+  test('400: Responds with an error message for an invalid date', () => {
+    return request(app)
+      .get('/api/flights/FR2714/date/SDFSDFG')
+      .expect(400)
+      .then(({ body }) => {
+        expect(body.msg).toBe('Invalid date');
+      });
+  });
+});
