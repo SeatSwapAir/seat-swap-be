@@ -1,5 +1,5 @@
-const format = require("pg-format");
-const db = require("../connection");
+const format = require('pg-format');
+const db = require('../connection');
 
 const seed = async ({
   userData,
@@ -20,7 +20,7 @@ const seed = async ({
     await db.query('DROP TABLE IF EXISTS flight CASCADE;');
     await db.query('DROP TABLE IF EXISTS default_prefs CASCADE;');
     await db.query('DROP TABLE IF EXISTS "user" CASCADE;');
-    
+
     await db.query(`
       CREATE TABLE "user" (
         id SERIAL PRIMARY KEY,
@@ -49,15 +49,15 @@ const seed = async ({
         same_row_pref BOOLEAN
       );
     `);
-    
+
     await db.query(`
       CREATE TABLE flight (
         id SERIAL PRIMARY KEY,
         flightNumber VARCHAR(255),
         departureAirport VARCHAR(255),
         arrivalAirport VARCHAR(255),
-        departureTime TIMESTAMP,
-        arrivalTime TIMESTAMP,
+        departureTime VARCHAR(255),
+        arrivalTime VARCHAR(255),
         airline VARCHAR(255)
       );
     `);
@@ -155,9 +155,21 @@ const seed = async ({
     await db.query(insertUserQueryStr);
 
     const insertDefaultPrefsQueryStr = format(
-      "INSERT INTO default_prefs (user_id, legroom_pref, window_pref, middle_pref, aisle_pref, front_pref, center_pref, back_pref, side_by_side_pref, neighbouring_row_pref, same_row_pref) VALUES %L RETURNING *;",
+      'INSERT INTO default_prefs (user_id, legroom_pref, window_pref, middle_pref, aisle_pref, front_pref, center_pref, back_pref, side_by_side_pref, neighbouring_row_pref, same_row_pref) VALUES %L RETURNING *;',
       defaultPrefsData.map(
-        ({ user_id, legroom_pref, window_pref, middle_pref, aisle_pref, front_pref, center_pref, back_pref, side_by_side_pref, neighbouring_row_pref, same_row_pref }) => [
+        ({
+          user_id,
+          legroom_pref,
+          window_pref,
+          middle_pref,
+          aisle_pref,
+          front_pref,
+          center_pref,
+          back_pref,
+          side_by_side_pref,
+          neighbouring_row_pref,
+          same_row_pref,
+        }) => [
           user_id,
           legroom_pref,
           window_pref,
@@ -175,9 +187,16 @@ const seed = async ({
     await db.query(insertDefaultPrefsQueryStr);
 
     const insertFlightQueryStr = format(
-      "INSERT INTO flight (flightNumber, departureAirport, arrivalAirport, departureTime, arrivalTime, airline) VALUES %L RETURNING *;",
+      'INSERT INTO flight (flightNumber, departureAirport, arrivalAirport, departureTime, arrivalTime, airline) VALUES %L RETURNING *;',
       flightData.map(
-        ({ flightNumber, departureAirport, arrivalAirport, departureTime, arrivalTime, airline }) => [
+        ({
+          flightNumber,
+          departureAirport,
+          arrivalAirport,
+          departureTime,
+          arrivalTime,
+          airline,
+        }) => [
           flightNumber,
           departureAirport,
           arrivalAirport,
@@ -190,9 +209,16 @@ const seed = async ({
     await db.query(insertFlightQueryStr);
 
     const insertSeatQueryStr = format(
-      "INSERT INTO seat (flight_id, user_id, number, legroom, seat_location_id, seat_position_id) VALUES %L RETURNING *;",
+      'INSERT INTO seat (flight_id, user_id, number, legroom, seat_location_id, seat_position_id) VALUES %L RETURNING *;',
       seatData.map(
-        ({ flight_id, user_id, number, legroom, seat_location_id, seat_position_id }) => [
+        ({
+          flight_id,
+          user_id,
+          number,
+          legroom,
+          seat_location_id,
+          seat_position_id,
+        }) => [
           flight_id,
           user_id,
           number,
@@ -205,9 +231,22 @@ const seed = async ({
     await db.query(insertSeatQueryStr);
 
     const insertJourneyPrefsQueryStr = format(
-      "INSERT INTO journey_prefs (user_id, flight_id, legroom_pref, window_pref, middle_pref, aisle_pref, front_pref, center_pref, back_pref, side_by_side_pref, neighbouring_row_pref, same_row_pref) VALUES %L RETURNING *;",
+      'INSERT INTO journey_prefs (user_id, flight_id, legroom_pref, window_pref, middle_pref, aisle_pref, front_pref, center_pref, back_pref, side_by_side_pref, neighbouring_row_pref, same_row_pref) VALUES %L RETURNING *;',
       journeyPrefsData.map(
-        ({ user_id, flight_id, legroom_pref, window_pref, middle_pref, aisle_pref, front_pref, center_pref, back_pref, side_by_side_pref, neighbouring_row_pref, same_row_pref }) => [
+        ({
+          user_id,
+          flight_id,
+          legroom_pref,
+          window_pref,
+          middle_pref,
+          aisle_pref,
+          front_pref,
+          center_pref,
+          back_pref,
+          side_by_side_pref,
+          neighbouring_row_pref,
+          same_row_pref,
+        }) => [
           user_id,
           flight_id,
           legroom_pref,
@@ -225,7 +264,7 @@ const seed = async ({
     );
     await db.query(insertJourneyPrefsQueryStr);
   } catch (error) {
-    console.error("Error creating tables:", error);
+    console.error('Error creating tables:', error);
     throw error;
   }
 };

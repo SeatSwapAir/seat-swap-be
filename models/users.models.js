@@ -61,7 +61,7 @@ const selectFlightsByUser = async (user_id) => {
     }
 
     const flights = {};
- 
+
     userFlightResult.rows.forEach((row) => {
       if (!flights[row.flight_id]) {
         flights[row.flight_id] = {
@@ -355,6 +355,7 @@ const updateFlightByUserIdAndFlightId = async (user_id, flight_id, journey) => {
     throw err;
   }
 };
+
 module.exports = {
   selectFlightsByUser,
   deleteFlightByUserIdAndFlightId,
