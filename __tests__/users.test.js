@@ -7,7 +7,7 @@ const data = require('../db/data/test-data/index.js');
 beforeEach(() => seed(data));
 afterAll(() => db.end());
 
-xdescribe('GET /api/users/:user_id/flights', () => {
+describe('GET /api/users/:user_id/flights', () => {
   test('200: Responds with array of flight objects for a user id', () => {
     return request(app)
       .get('/api/users/2/flights')
@@ -58,8 +58,8 @@ xdescribe('GET /api/users/:user_id/flights', () => {
         flightnumber: 'AA101',
         departureairport: 'JFK',
         arrivalairport: 'LAX',
-        departuretime: '2023-06-01T06:00:00.000Z',
-        arrivaltime: '2023-06-01T09:00:00.000Z',
+        departuretime: '2023-06-01T07:00:00Z',
+        arrivaltime: '2023-06-01T10:00:00Z',
         airline: 'American Airlines',
         seats: [
           {
@@ -88,8 +88,8 @@ xdescribe('GET /api/users/:user_id/flights', () => {
         flightnumber: 'AA101',
         departureairport: 'JFK',
         arrivalairport: 'LAX',
-        departuretime: '2023-06-08T06:00:00.000Z',
-        arrivaltime: '2023-06-08T09:00:00.000Z',
+        departuretime: '2023-06-08T07:00:00Z',
+        arrivaltime: '2023-06-08T10:00:00Z',
         airline: 'American Airlines',
         seats: [
           {
@@ -118,8 +118,8 @@ xdescribe('GET /api/users/:user_id/flights', () => {
         flightnumber: 'DL202',
         departureairport: 'ATL',
         arrivalairport: 'ORD',
-        departuretime: '2023-06-02T08:30:00.000Z',
-        arrivaltime: '2023-06-02T10:30:00.000Z',
+        departuretime: '2023-06-02T09:30:00Z',
+        arrivaltime: '2023-06-02T11:30:00Z',
         airline: 'Delta Airlines',
         seats: [
           {
@@ -148,8 +148,8 @@ xdescribe('GET /api/users/:user_id/flights', () => {
         flightnumber: 'DL202',
         departureairport: 'ATL',
         arrivalairport: 'ORD',
-        departuretime: '2023-06-09T08:30:00.000Z',
-        arrivaltime: '2023-06-09T10:30:00.000Z',
+        departuretime: '2023-06-09T09:30:00Z',
+        arrivaltime: '2023-06-09T11:30:00Z',
         airline: 'Delta Airlines',
         seats: [
           {
@@ -178,8 +178,8 @@ xdescribe('GET /api/users/:user_id/flights', () => {
         flightnumber: 'UA303',
         departureairport: 'SFO',
         arrivalairport: 'DEN',
-        departuretime: '2023-06-03T11:00:00.000Z',
-        arrivaltime: '2023-06-03T13:30:00.000Z',
+        departuretime: '2023-06-03T12:00:00Z',
+        arrivaltime: '2023-06-03T14:30:00Z',
         airline: 'United Airlines',
         seats: [
           {
@@ -241,7 +241,7 @@ xdescribe('GET /api/users/:user_id/flights', () => {
   });
 });
 
-xdescribe('DELETE /api/users/:user_id/flights/:flight_id', () => {
+describe('DELETE /api/users/:user_id/flights/:flight_id', () => {
   test('204: Successfully deletes a flight by user_flight_id', () => {
     return request(app).delete('/api/users/2/flights/1').expect(204);
   });
@@ -283,7 +283,7 @@ xdescribe('DELETE /api/users/:user_id/flights/:flight_id', () => {
   });
 });
 
-xdescribe('PATCH /api/users/:user_id/flights/:flight_id', () => {
+describe('PATCH /api/users/:user_id/flights/:flight_id', () => {
   const payload = {
     id: 1,
     flightnumber: 'AA101',
@@ -440,36 +440,3 @@ xdescribe('PATCH /api/users/:user_id/flights/:flight_id', () => {
       });
   });
 });
-
-// describe('POST /api/flights', () => {
-//   test('200: Returns with a flightId if it exists in local DB for a given number, carrier code, and dep date', () => {
-//     return request(app)
-//       .post('/api/flights')
-//       .send({
-//         number: '101',
-//         carrier: 'AA',
-//         departuredate: '2023-06-01T07:00:00Z',
-//       })
-//       .expect(200)
-//       .then(({ body }) => {
-//         expect(body).toBe('1');
-//       });
-//   });
-// });
-
-// describe("POST /api/users/email", () => {
-//   test("should return 201 and the inserted user", () => {
-//     return request(app)
-//       .post("/api/users/email")
-//       .send({ email: "new.user@example.com" })
-//       .expect(201)
-//       .then((res) => {
-//         const { user } = res.body;
-//         expect(user).toEqual(
-//           expect.objectContaining({
-//             id: expect.any(Number),
-//             email: "new.user@example.com",
-//           })
-//         );
-//       });
-//   });

@@ -49,10 +49,23 @@ const getFlightDetails = async (flightNumber, departureTime) => {
       }
     );
     const data = await response.json();
-    // console.log('🚀 ~ getFlightDetails:', data.data[0].scheduledDepartureDate);
-
+    if (data.data?.length === 0) {
+      return Promise.reject({
+        status: 404,
+        msg: 'Flight not found',
+      });
+    }
+    if (
+      data.errors &&
+      data.errors[0].detail ===
+        "Query parameter 'scheduledDepartureDate' should not be past date"
+    ) {
+      return Promise.reject({
+        status: 400,
+        msg: 'Past date entered, please enture current/future date',
+      });
+    }
     const { flightDesignator, flightPoints } = data.data[0];
-    // console.log(flightPoints[0].iataCode);
     const { carrierCode, flightNumber } = flightDesignator;
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
@@ -67,32 +80,7 @@ const getFlightDetails = async (flightNumber, departureTime) => {
       flightPoints[1].arrival.timings[0].value,
       airline,
     ];
-    // console.log('🚀 ~ getFlightDetails ~ flightData:', flightData);
     return flightData;
-    // if (!airline) throw new Error('Failed to retrieve airline name');
-
-    //   return {
-    //     id: uuidv4(),
-    //     flightNumber:
-    //       response.data.data[0].flightDesignator.carrierCode +
-    //       response.data.data[0].flightDesignator.flightNumber,
-    //     departureAirport: response.data.data[0].flightPoints[0].iataCode,
-    //     arrivalAirport: response.data.data[0].flightPoints[1].iataCode,
-    //     departureTime:
-    //       response.data.data[0].flightPoints[0].departure.timings[0].value,
-    //     arrivalTime:
-    //       response.data.data[0].flightPoints[1].arrival.timings[0].value,
-    //     airline: airline,
-    //     seats: [],
-    //     preferences: {
-    //       location: '',
-    //       extraLegroom: false,
-    //       position: '',
-    //       neighbouringRows: false,
-    //       sameRow: true,
-    //       sideBySide: false,
-    //     },
-    //   };
   } catch (error) {
     console.log('error', error);
   }
