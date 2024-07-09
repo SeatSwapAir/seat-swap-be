@@ -2,11 +2,7 @@ const db = require('../db/connection.js');
 const pgformat = require('pg-format');
 const dayjs = require('dayjs');
 
-const {
-  getToken,
-  getFlightDetails,
-  getAirlineName,
-} = require('../models/amadeus.models');
+const { getFlightDetails } = require('../models/amadeus.models');
 
 const selectFlightByNumberCarrierDate = async (flightNumber, departureTime) => {
   function validateFlightNumber(flightNumber) {
@@ -28,9 +24,10 @@ const selectFlightByNumberCarrierDate = async (flightNumber, departureTime) => {
   }
   try {
     const flightInfo = await db.query(
-      `SELECT * FROM flight WHERE flightNumber= $1 AND departureTime= $2;`,
+      `SELECT * FROM flight WHERE flightNumber = $1 AND DATE(departureTime) = $2;`,
       [flightNumber, departureTime]
     );
+    // console.log("🚀 ~ selectFlightByNumberCarrierDate ~ flightInfo:", flightInfo.rows)
 
     if (flightInfo.rowCount === 0) {
       const flightData = await getFlightDetails(flightNumber, departureTime);
