@@ -11,6 +11,7 @@ const {
   getFlightsByUser,
   removeJourneyByUserIdAndFlightId,
   patchJourneyByUserIdAndFlightId,
+  postJourneyByUserIdAndFlightId
 } = require('./controllers/users.controllers.js');
 
 const {
@@ -31,6 +32,8 @@ app.get(
   '/api/flights/:flightNumber/date/:departureTime',
   getFlightByNumberAndDate
 );
+
+app.post('/api/users/:user_id/flights/:flight_id', postJourneyByUserIdAndFlightId);
 
 //handle custom errors
 app.use((err, req, res, next) => {
