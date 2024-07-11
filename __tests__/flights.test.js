@@ -31,7 +31,7 @@ describe('GET /api/flights/:flightNumber/date/:departureTime', () => {
       .expect(200)
       .then(({ body }) => {
         expect(body).toMatchObject({
-          id: 7,
+          id: 9,
           flightnumber: 'FR2714',
           departureairport: 'ALC',
           arrivalairport: 'LGW',

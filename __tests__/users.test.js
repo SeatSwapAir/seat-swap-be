@@ -203,6 +203,43 @@ describe('GET /api/users/:user_id/flights', () => {
           side_by_side_pref: false,
         },
       },
+      {
+        id: 8,
+        flightnumber: 'FR9336',
+        departureairport: 'BRS',
+        arrivalairport: 'GRO',
+        departuretime: '2024-08-25T21:40+01:00',
+        arrivaltime: '2024-08-26T00:40+02:00',
+        airline: 'RYANAIR',
+        seats: [
+          {
+            extraLegroom: false,
+            id: 424,
+            location: 'center',
+            number: '18E',
+            position: 'middle',
+          },
+          {
+            extraLegroom: false,
+            id: 483,
+            location: 'back',
+            number: '28D',
+            position: 'aisle',
+          }
+        ],
+        preferences: {
+          legroom_pref: false,
+          window_pref: false,
+          middle_pref: false,
+          aisle_pref: false,
+          front_pref: false,
+          center_pref: false,
+          back_pref: false,
+          neighbouring_row_pref: false,
+          same_row_pref: false,
+          side_by_side_pref: false,
+        },
+      },
     ];
     return request(app)
       .get('/api/users/2/flights')
@@ -224,7 +261,7 @@ describe('GET /api/users/:user_id/flights', () => {
 
   test('404: Responds with an error message for a user with no flights', () => {
     return request(app)
-      .get('/api/users/100/flights')
+      .get('/api/users/146/flights')
       .expect(404)
       .then(({ body }) => {
         expect(body.msg).toBe('No flights found for user');
@@ -524,7 +561,7 @@ describe('POST /api/users/:user_id/flights/:flight_id', () => {
         expect(body).toMatchObject(result);
       });
   });
-  test('400: Responds with a bad request error for an invalid user id', () => {
+    test('400: Responds with a bad request error for an invalid user id', () => {
     return request(app)
       .patch('/api/users/invalid_id/flights/1')
       .send(payload)
