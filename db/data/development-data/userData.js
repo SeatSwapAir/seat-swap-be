@@ -1303,5 +1303,13 @@ module.exports = [
     phone: '567-890-1238',
     password: 'password145',
     created_at: '2023-05-25T12:00:00Z',
+  },{
+    id: 146,
+    email: 'yourneys.yourneys@example.com',
+    firstname: 'no',
+    lastname: 'yourneys',
+    phone: '567-1238',
+    password: 'password145',
+    created_at: '2023-05-25T12:00:00Z',
   },
 ];
