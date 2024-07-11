@@ -9,6 +9,7 @@ const seed = async ({
   journeyPrefsData,
   seatLocationData,
   seatPositionData,
+  airlineData,
 }) => {
   try {
     await db.query('DROP TABLE IF EXISTS review CASCADE;');
@@ -20,6 +21,7 @@ const seed = async ({
     await db.query('DROP TABLE IF EXISTS flight CASCADE;');
     await db.query('DROP TABLE IF EXISTS default_prefs CASCADE;');
     await db.query('DROP TABLE IF EXISTS "user" CASCADE;');
+    await db.query('DROP TABLE IF EXISTS airline CASCADE;');
 
     await db.query(`
       CREATE TABLE "user" (
@@ -127,16 +129,29 @@ const seed = async ({
       );
     `);
 
+    await db.query(`
+    CREATE TABLE airline (
+      id SERIAL PRIMARY KEY,
+      iata VARCHAR(255),
+      icao VARCHAR(255),
+      airline VARCHAR(255),
+      callsign VARCHAR(255),
+      country VARCHAR(255)
+    );
+    `);
+
     const insertSeatLocationQueryStr = format(
       'INSERT INTO seat_location (location_name) VALUES %L RETURNING *;',
       seatLocationData.map(({ location_name }) => [location_name])
     );
+
     await db.query(insertSeatLocationQueryStr);
 
     const insertSeatPositionQueryStr = format(
       'INSERT INTO seat_position (position_name) VALUES %L RETURNING *;',
       seatPositionData.map(({ position_name }) => [position_name])
     );
+
     await db.query(insertSeatPositionQueryStr);
 
     const insertUserQueryStr = format(
@@ -152,6 +167,7 @@ const seed = async ({
         ]
       )
     );
+
     await db.query(insertUserQueryStr);
 
     const insertDefaultPrefsQueryStr = format(
@@ -184,6 +200,7 @@ const seed = async ({
         ]
       )
     );
+
     await db.query(insertDefaultPrefsQueryStr);
 
     const insertFlightQueryStr = format(
@@ -206,6 +223,7 @@ const seed = async ({
         ]
       )
     );
+
     await db.query(insertFlightQueryStr);
 
     const insertSeatQueryStr = format(
@@ -228,6 +246,7 @@ const seed = async ({
         ]
       )
     );
+
     await db.query(insertSeatQueryStr);
 
     const insertJourneyPrefsQueryStr = format(
@@ -262,7 +281,21 @@ const seed = async ({
         ]
       )
     );
+
     await db.query(insertJourneyPrefsQueryStr);
+
+    const insertAirlineQueryStr = format(
+      'INSERT INTO airline (iata, icao, airline, callsign, country) VALUES %L RETURNING *;',
+      airlineData.map(({ iata, icao, airline, callsign, country }) => [
+        iata,
+        icao,
+        airline,
+        callsign,
+        country,
+      ])
+    );
+
+    await db.query(insertAirlineQueryStr);
   } catch (error) {
     console.error('Error creating tables:', error);
     throw error;
