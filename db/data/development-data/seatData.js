@@ -7,9 +7,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "23",
+      "seat_row": 23,
       "letter": "F",
-      "column": 6
+      "seat_column": 6
   },
   {
       "id": "2",
@@ -19,9 +19,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "8",
+      "seat_row": 8,
       "letter": "F",
-      "column": 6
+      "seat_column": 6
   },
   {
       "id": "3",
@@ -31,9 +31,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "3",
       "seat_location_id": "1",
-      "row": "15",
+      "seat_row": 15,
       "letter": "A",
-      "column": 1
+      "seat_column": 1
   },
   {
       "id": "4",
@@ -43,9 +43,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "3",
       "seat_location_id": "1",
-      "row": "2",
+      "seat_row": 2,
       "letter": "A",
-      "column": 1
+      "seat_column": 1
   },
   {
       "id": "5",
@@ -55,9 +55,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "19",
+      "seat_row": 19,
       "letter": "A",
-      "column": 1
+      "seat_column": 1
   },
   {
       "id": "6",
@@ -67,9 +67,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "19",
+      "seat_row": 19,
       "letter": "D",
-      "column": 4
+      "seat_column": 4
   },
   {
       "id": "7",
@@ -79,9 +79,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "16",
+      "seat_row": 16,
       "letter": "B",
-      "column": 2
+      "seat_column": 2
   },
   {
       "id": "8",
@@ -91,9 +91,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "12",
+      "seat_row": 12,
       "letter": "D",
-      "column": 4
+      "seat_column": 4
   },
   {
       "id": "9",
@@ -103,9 +103,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "8",
+      "seat_row": 8,
       "letter": "B",
-      "column": 2
+      "seat_column": 2
   },
   {
       "id": "10",
@@ -115,9 +115,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "26",
+      "seat_row": 26,
       "letter": "B",
-      "column": 2
+      "seat_column": 2
   },
   {
       "id": "11",
@@ -127,9 +127,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "14",
+      "seat_row": 14,
       "letter": "D",
-      "column": 4
+      "seat_column": 4
   },
   {
       "id": "12",
@@ -139,9 +139,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "6",
+      "seat_row": 6,
       "letter": "A",
-      "column": 1
+      "seat_column": 1
   },
   {
       "id": "13",
@@ -151,9 +151,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "14",
+      "seat_row": 14,
       "letter": "E",
-      "column": 5
+      "seat_column": 5
   },
   {
       "id": "14",
@@ -163,9 +163,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "2",
+      "seat_row": 2,
       "letter": "D",
-      "column": 4
+      "seat_column": 4
   },
   {
       "id": "15",
@@ -175,9 +175,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "24",
+      "seat_row": 24,
       "letter": "A",
-      "column": 1
+      "seat_column": 1
   },
   {
       "id": "16",
@@ -187,9 +187,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "3",
+      "seat_row": 3,
       "letter": "A",
-      "column": 1
+      "seat_column": 1
   },
   {
       "id": "17",
@@ -199,9 +199,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "2",
+      "seat_row": 2,
       "letter": "B",
-      "column": 2
+      "seat_column": 2
   },
   {
       "id": "18",
@@ -211,9 +211,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "26",
+      "seat_row": 26,
       "letter": "C",
-      "column": 3
+      "seat_column": 3
   },
   {
       "id": "19",
@@ -223,9 +223,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "17",
+      "seat_row": 17,
       "letter": "C",
-      "column": 3
+      "seat_column": 3
   },
   {
       "id": "20",
@@ -235,9 +235,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "5",
+      "seat_row": 5,
       "letter": "E",
-      "column": 5
+      "seat_column": 5
   },
   {
       "id": "21",
@@ -247,9 +247,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "21",
+      "seat_row": 21,
       "letter": "B",
-      "column": 2
+      "seat_column": 2
   },
   {
       "id": "22",
@@ -259,9 +259,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "21",
+      "seat_row": 21,
       "letter": "A",
-      "column": 1
+      "seat_column": 1
   },
   {
       "id": "23",
@@ -271,9 +271,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "3",
       "seat_location_id": "1",
-      "row": "28",
+      "seat_row": 28,
       "letter": "F",
-      "column": 6
+      "seat_column": 6
   },
   {
       "id": "24",
@@ -283,9 +283,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "3",
       "seat_location_id": "1",
-      "row": "7",
+      "seat_row": 7,
       "letter": "E",
-      "column": 5
+      "seat_column": 5
   },
   {
       "id": "25",
@@ -295,9 +295,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "7",
+      "seat_row": 7,
       "letter": "C",
-      "column": 3
+      "seat_column": 3
   },
   {
       "id": "26",
@@ -307,9 +307,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "12",
+      "seat_row": 12,
       "letter": "E",
-      "column": 5
+      "seat_column": 5
   },
   {
       "id": "27",
@@ -319,9 +319,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "25",
+      "seat_row": 25,
       "letter": "A",
-      "column": 1
+      "seat_column": 1
   },
   {
       "id": "28",
@@ -331,9 +331,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "28",
+      "seat_row": 28,
       "letter": "E",
-      "column": 5
+      "seat_column": 5
   },
   {
       "id": "29",
@@ -343,9 +343,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "5",
+      "seat_row": 5,
       "letter": "F",
-      "column": 6
+      "seat_column": 6
   },
   {
       "id": "30",
@@ -355,9 +355,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "4",
+      "seat_row": 4,
       "letter": "D",
-      "column": 4
+      "seat_column": 4
   },
   {
       "id": "31",
@@ -367,9 +367,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "29",
+      "seat_row": 29,
       "letter": "D",
-      "column": 4
+      "seat_column": 4
   },
   {
       "id": "32",
@@ -379,9 +379,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "21",
+      "seat_row": 21,
       "letter": "E",
-      "column": 5
+      "seat_column": 5
   },
   {
       "id": "33",
@@ -391,9 +391,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "24",
+      "seat_row": 24,
       "letter": "E",
-      "column": 5
+      "seat_column": 5
   },
   {
       "id": "34",
@@ -403,9 +403,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "24",
+      "seat_row": 24,
       "letter": "D",
-      "column": 4
+      "seat_column": 4
   },
   {
       "id": "35",
@@ -415,9 +415,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "17",
+      "seat_row": 17,
       "letter": "D",
-      "column": 4
+      "seat_column": 4
   },
   {
       "id": "36",
@@ -427,9 +427,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "2",
+      "seat_row": 2,
       "letter": "E",
-      "column": 5
+      "seat_column": 5
   },
   {
       "id": "37",
@@ -439,9 +439,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "10",
+      "seat_row": 10,
       "letter": "F",
-      "column": 6
+      "seat_column": 6
   },
   {
       "id": "38",
@@ -451,9 +451,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "12",
+      "seat_row": 12,
       "letter": "B",
-      "column": 2
+      "seat_column": 2
   },
   {
       "id": "39",
@@ -463,9 +463,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "19",
+      "seat_row": 19,
       "letter": "F",
-      "column": 6
+      "seat_column": 6
   },
   {
       "id": "40",
@@ -475,9 +475,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "9",
+      "seat_row": 9,
       "letter": "B",
-      "column": 2
+      "seat_column": 2
   },
   {
       "id": "41",
@@ -487,9 +487,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "25",
+      "seat_row": 25,
       "letter": "C",
-      "column": 3
+      "seat_column": 3
   },
   {
       "id": "42",
@@ -499,9 +499,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "6",
+      "seat_row": 6,
       "letter": "B",
-      "column": 2
+      "seat_column": 2
   },
   {
       "id": "43",
@@ -511,9 +511,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "3",
       "seat_location_id": "1",
-      "row": "6",
+      "seat_row": 6,
       "letter": "D",
-      "column": 4
+      "seat_column": 4
   },
   {
       "id": "44",
@@ -523,9 +523,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "3",
       "seat_location_id": "1",
-      "row": "15",
+      "seat_row": 15,
       "letter": "C",
-      "column": 3
+      "seat_column": 3
   },
   {
       "id": "45",
@@ -535,9 +535,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "24",
+      "seat_row": 24,
       "letter": "C",
-      "column": 3
+      "seat_column": 3
   },
   {
       "id": "46",
@@ -547,9 +547,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "9",
+      "seat_row": 9,
       "letter": "D",
-      "column": 4
+      "seat_column": 4
   },
   {
       "id": "47",
@@ -559,9 +559,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "18",
+      "seat_row": 18,
       "letter": "F",
-      "column": 6
+      "seat_column": 6
   },
   {
       "id": "48",
@@ -571,9 +571,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "21",
+      "seat_row": 21,
       "letter": "F",
-      "column": 6
+      "seat_column": 6
   },
   {
       "id": "49",
@@ -583,9 +583,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "28",
+      "seat_row": 28,
       "letter": "A",
-      "column": 1
+      "seat_column": 1
   },
   {
       "id": "50",
@@ -595,9 +595,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "8",
+      "seat_row": 8,
       "letter": "C",
-      "column": 3
+      "seat_column": 3
   },
   {
       "id": "51",
@@ -607,9 +607,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "1",
-      "row": "17",
+      "seat_row": 17,
       "letter": "A",
-      "column": 1
+      "seat_column": 1
   },
   {
       "id": "52",
@@ -619,9 +619,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "2",
-      "row": "27",
+      "seat_row": 27,
       "letter": "B",
-      "column": 2
+      "seat_column": 2
   },
   {
       "id": "53",
@@ -631,9 +631,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "1",
-      "row": "6",
+      "seat_row": 6,
       "letter": "E",
-      "column": 5
+      "seat_column": 5
   },
   {
       "id": "54",
@@ -643,9 +643,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "2",
-      "row": "1",
+      "seat_row": 1,
       "letter": "B",
-      "column": 2
+      "seat_column": 2
   },
   {
       "id": "55",
@@ -655,9 +655,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "1",
-      "row": "25",
+      "seat_row": 25,
       "letter": "D",
-      "column": 4
+      "seat_column": 4
   },
   {
       "id": "56",
@@ -667,9 +667,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "2",
-      "row": "16",
+      "seat_row": 16,
       "letter": "A",
-      "column": 1
+      "seat_column": 1
   },
   {
       "id": "57",
@@ -679,9 +679,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "1",
-      "row": "26",
+      "seat_row": 26,
       "letter": "F",
-      "column": 6
+      "seat_column": 6
   },
   {
       "id": "58",
@@ -691,9 +691,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "2",
-      "row": "13",
+      "seat_row": 13,
       "letter": "F",
-      "column": 6
+      "seat_column": 6
   },
   {
       "id": "59",
@@ -703,9 +703,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "1",
-      "row": "16",
+      "seat_row": 16,
       "letter": "C",
-      "column": 3
+      "seat_column": 3
   },
   {
       "id": "60",
@@ -715,9 +715,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "2",
-      "row": "10",
+      "seat_row": 10,
       "letter": "B",
-      "column": 2
+      "seat_column": 2
   },
   {
       "id": "61",
@@ -727,9 +727,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "1",
-      "row": "27",
+      "seat_row": 27,
       "letter": "D",
-      "column": 4
+      "seat_column": 4
   },
   {
       "id": "62",
@@ -739,9 +739,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "2",
-      "row": "10",
+      "seat_row": 10,
       "letter": "E",
-      "column": 5
+      "seat_column": 5
   },
   {
       "id": "63",
@@ -751,9 +751,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "1",
-      "row": "11",
+      "seat_row": 11,
       "letter": "E",
-      "column": 5
+      "seat_column": 5
   },
   {
       "id": "64",
@@ -763,9 +763,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "2",
-      "row": "21",
+      "seat_row": 21,
       "letter": "C",
-      "column": 3
+      "seat_column": 3
   },
   {
       "id": "65",
@@ -775,9 +775,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "1",
-      "row": "7",
+      "seat_row": 7,
       "letter": "F",
-      "column": 6
+      "seat_column": 6
   },
   {
       "id": "66",
@@ -787,9 +787,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "2",
-      "row": "20",
+      "seat_row": 20,
       "letter": "F",
-      "column": 6
+      "seat_column": 6
   },
   {
       "id": "67",
@@ -799,9 +799,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "1",
-      "row": "15",
+      "seat_row": 15,
       "letter": "F",
-      "column": 6
+      "seat_column": 6
   },
   {
       "id": "68",
@@ -811,9 +811,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "2",
-      "row": "18",
+      "seat_row": 18,
       "letter": "B",
-      "column": 2
+      "seat_column": 2
   },
   {
       "id": "69",
@@ -823,9 +823,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "1",
-      "row": "15",
+      "seat_row": 15,
       "letter": "D",
-      "column": 4
+      "seat_column": 4
   },
   {
       "id": "70",
@@ -835,9 +835,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "2",
-      "row": "18",
+      "seat_row": 18,
       "letter": "A",
-      "column": 1
+      "seat_column": 1
   },
   {
       "id": "71",
@@ -847,9 +847,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "1",
-      "row": "13",
+      "seat_row": 13,
       "letter": "B",
-      "column": 2
+      "seat_column": 2
   },
   {
       "id": "72",
@@ -859,9 +859,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "2",
-      "row": "9",
+      "seat_row": 9,
       "letter": "C",
-      "column": 3
+      "seat_column": 3
   },
   {
       "id": "73",
@@ -871,9 +871,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "1",
-      "row": "20",
+      "seat_row": 20,
       "letter": "A",
-      "column": 1
+      "seat_column": 1
   },
   {
       "id": "74",
@@ -883,9 +883,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "2",
-      "row": "28",
+      "seat_row": 28,
       "letter": "C",
-      "column": 3
+      "seat_column": 3
   },
   {
       "id": "75",
@@ -895,9 +895,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "1",
-      "row": "14",
+      "seat_row": 14,
       "letter": "C",
-      "column": 3
+      "seat_column": 3
   },
   {
       "id": "76",
@@ -907,9 +907,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "2",
-      "row": "20",
+      "seat_row": 20,
       "letter": "C",
-      "column": 3
+      "seat_column": 3
   },
   {
       "id": "77",
@@ -919,9 +919,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "14",
+      "seat_row": 14,
       "letter": "B",
-      "column": 2
+      "seat_column": 2
   },
   {
       "id": "78",
@@ -931,9 +931,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "2",
-      "row": "24",
+      "seat_row": 24,
       "letter": "F",
-      "column": 6
+      "seat_column": 6
   },
   {
       "id": "79",
@@ -943,9 +943,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "3",
       "seat_location_id": "3",
-      "row": "29",
+      "seat_row": 29,
       "letter": "F",
-      "column": 6
+      "seat_column": 6
   },
   {
       "id": "80",
@@ -955,9 +955,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "12",
+      "seat_row": 12,
       "letter": "F",
-      "column": 6
+      "seat_column": 6
   },
   {
       "id": "81",
@@ -967,9 +967,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "2",
-      "row": "20",
+      "seat_row": 20,
       "letter": "E",
-      "column": 5
+      "seat_column": 5
   },
   {
       "id": "82",
@@ -979,9 +979,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "3",
       "seat_location_id": "3",
-      "row": "13",
+      "seat_row": 13,
       "letter": "D",
-      "column": 4
+      "seat_column": 4
   },
   {
       "id": "83",
@@ -991,9 +991,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "4",
+      "seat_row": 4,
       "letter": "E",
-      "column": 5
+      "seat_column": 5
   },
   {
       "id": "84",
@@ -1003,9 +1003,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "2",
-      "row": "10",
+      "seat_row": 10,
       "letter": "D",
-      "column": 4
+      "seat_column": 4
   },
   {
       "id": "85",
@@ -1015,9 +1015,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "3",
       "seat_location_id": "3",
-      "row": "9",
+      "seat_row": 9,
       "letter": "E",
-      "column": 5
+      "seat_column": 5
   },
   {
       "id": "86",
@@ -1027,9 +1027,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "7",
+      "seat_row": 7,
       "letter": "D",
-      "column": 4
+      "seat_column": 4
   },
   {
       "id": "87",
@@ -1039,9 +1039,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "2",
-      "row": "29",
+      "seat_row": 29,
       "letter": "E",
-      "column": 5
+      "seat_column": 5
   },
   {
       "id": "88",
@@ -1051,9 +1051,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "3",
       "seat_location_id": "3",
-      "row": "14",
+      "seat_row": 14,
       "letter": "F",
-      "column": 6
+      "seat_column": 6
   },
   {
       "id": "89",
@@ -1063,9 +1063,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "22",
+      "seat_row": 22,
       "letter": "E",
-      "column": 5
+      "seat_column": 5
   },
   {
       "id": "90",
@@ -1075,9 +1075,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "2",
-      "row": "1",
+      "seat_row": 1,
       "letter": "F",
-      "column": 6
+      "seat_column": 6
   },
   {
       "id": "91",
@@ -1087,9 +1087,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "3",
       "seat_location_id": "3",
-      "row": "23",
+      "seat_row": 23,
       "letter": "E",
-      "column": 5
+      "seat_column": 5
   },
   {
       "id": "92",
@@ -1099,9 +1099,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "16",
+      "seat_row": 16,
       "letter": "E",
-      "column": 5
+      "seat_column": 5
   },
   {
       "id": "93",
@@ -1111,9 +1111,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "1",
-      "row": "17",
+      "seat_row": 17,
       "letter": "F",
-      "column": 6
+      "seat_column": 6
   },
   {
       "id": "94",
@@ -1123,9 +1123,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "2",
-      "row": "25",
+      "seat_row": 25,
       "letter": "B",
-      "column": 2
+      "seat_column": 2
   },
   {
       "id": "95",
@@ -1135,9 +1135,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "3",
-      "row": "21",
+      "seat_row": 21,
       "letter": "D",
-      "column": 4
+      "seat_column": 4
   },
   {
       "id": "96",
@@ -1147,9 +1147,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "9",
+      "seat_row": 9,
       "letter": "F",
-      "column": 6
+      "seat_column": 6
   },
   {
       "id": "97",
@@ -1159,9 +1159,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "1",
-      "row": "5",
+      "seat_row": 5,
       "letter": "A",
-      "column": 1
+      "seat_column": 1
   },
   {
       "id": "98",
@@ -1171,9 +1171,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "2",
-      "row": "16",
+      "seat_row": 16,
       "letter": "D",
-      "column": 4
+      "seat_column": 4
   },
   {
       "id": "99",
@@ -1183,9 +1183,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "3",
-      "row": "13",
+      "seat_row": 13,
       "letter": "E",
-      "column": 5
+      "seat_column": 5
   },
   {
       "id": "100",
@@ -1195,9 +1195,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "23",
+      "seat_row": 23,
       "letter": "D",
-      "column": 4
+      "seat_column": 4
   },
   {
       "id": "101",
@@ -1207,9 +1207,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "1",
-      "row": "30",
+      "seat_row": 30,
       "letter": "C",
-      "column": 3
+      "seat_column": 3
   },
   {
       "id": "102",
@@ -1219,9 +1219,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "2",
-      "row": "20",
+      "seat_row": 20,
       "letter": "B",
-      "column": 2
+      "seat_column": 2
   },
   {
       "id": "103",
@@ -1231,9 +1231,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "3",
-      "row": "24",
+      "seat_row": 24,
       "letter": "B",
-      "column": 2
+      "seat_column": 2
   },
   {
       "id": "104",
@@ -1243,9 +1243,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "5",
+      "seat_row": 5,
       "letter": "D",
-      "column": 4
+      "seat_column": 4
   },
   {
       "id": "105",
@@ -1255,9 +1255,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "1",
-      "row": "6",
+      "seat_row": 6,
       "letter": "F",
-      "column": 6
+      "seat_column": 6
   },
   {
       "id": "106",
@@ -1267,9 +1267,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "2",
-      "row": "30",
+      "seat_row": 30,
       "letter": "B",
-      "column": 2
+      "seat_column": 2
   },
   {
       "id": "107",
@@ -1279,9 +1279,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "3",
-      "row": "30",
+      "seat_row": 30,
       "letter": "D",
-      "column": 4
+      "seat_column": 4
   },
   {
       "id": "108",
@@ -1291,9 +1291,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "27",
+      "seat_row": 27,
       "letter": "C",
-      "column": 3
+      "seat_column": 3
   },
   {
       "id": "109",
@@ -1303,9 +1303,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "1",
-      "row": "19",
+      "seat_row": 19,
       "letter": "C",
-      "column": 3
+      "seat_column": 3
   },
   {
       "id": "110",
@@ -1315,9 +1315,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "2",
-      "row": "29",
+      "seat_row": 29,
       "letter": "A",
-      "column": 1
+      "seat_column": 1
   },
   {
       "id": "111",
@@ -1327,9 +1327,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "3",
-      "row": "10",
+      "seat_row": 10,
       "letter": "C",
-      "column": 3
+      "seat_column": 3
   },
   {
       "id": "112",
@@ -1339,9 +1339,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "12",
+      "seat_row": 12,
       "letter": "A",
-      "column": 1
+      "seat_column": 1
   },
   {
       "id": "113",
@@ -1351,9 +1351,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "1",
-      "row": "26",
+      "seat_row": 26,
       "letter": "A",
-      "column": 1
+      "seat_column": 1
   },
   {
       "id": "114",
@@ -1363,9 +1363,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "2",
-      "row": "15",
+      "seat_row": 15,
       "letter": "E",
-      "column": 5
+      "seat_column": 5
   },
   {
       "id": "115",
@@ -1375,9 +1375,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "3",
-      "row": "22",
+      "seat_row": 22,
       "letter": "A",
-      "column": 1
+      "seat_column": 1
   },
   {
       "id": "116",
@@ -1387,9 +1387,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "26",
+      "seat_row": 26,
       "letter": "D",
-      "column": 4
+      "seat_column": 4
   },
   {
       "id": "117",
@@ -1399,9 +1399,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "1",
-      "row": "3",
+      "seat_row": 3,
       "letter": "B",
-      "column": 2
+      "seat_column": 2
   },
   {
       "id": "118",
@@ -1411,9 +1411,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "2",
-      "row": "5",
+      "seat_row": 5,
       "letter": "B",
-      "column": 2
+      "seat_column": 2
   },
   {
       "id": "119",
@@ -1423,9 +1423,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "3",
-      "row": "7",
+      "seat_row": 7,
       "letter": "A",
-      "column": 1
+      "seat_column": 1
   },
   {
       "id": "120",
@@ -1435,9 +1435,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "15",
+      "seat_row": 15,
       "letter": "B",
-      "column": 2
+      "seat_column": 2
   },
   {
       "id": "121",
@@ -1447,9 +1447,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "1",
-      "row": "22",
+      "seat_row": 22,
       "letter": "D",
-      "column": 4
+      "seat_column": 4
   },
   {
       "id": "122",
@@ -1459,9 +1459,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "2",
-      "row": "29",
+      "seat_row": 29,
       "letter": "C",
-      "column": 3
+      "seat_column": 3
   },
   {
       "id": "123",
@@ -1471,9 +1471,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "3",
-      "row": "27",
+      "seat_row": 27,
       "letter": "E",
-      "column": 5
+      "seat_column": 5
   },
   {
       "id": "124",
@@ -1483,9 +1483,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "23",
+      "seat_row": 23,
       "letter": "C",
-      "column": 3
+      "seat_column": 3
   },
   {
       "id": "125",
@@ -1495,9 +1495,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "1",
-      "row": "2",
+      "seat_row": 2,
       "letter": "F",
-      "column": 6
+      "seat_column": 6
   },
   {
       "id": "126",
@@ -1507,9 +1507,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "2",
-      "row": "11",
+      "seat_row": 11,
       "letter": "F",
-      "column": 6
+      "seat_column": 6
   },
   {
       "id": "127",
@@ -1519,9 +1519,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "3",
-      "row": "27",
+      "seat_row": 27,
       "letter": "A",
-      "column": 1
+      "seat_column": 1
   },
   {
       "id": "1",
@@ -1531,9 +1531,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "23",
+      "seat_row": 23,
       "letter": "F",
-      "column": 6
+      "seat_column": 6
   },
   {
       "id": "2",
@@ -1543,9 +1543,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "8",
+      "seat_row": 8,
       "letter": "F",
-      "column": 6
+      "seat_column": 6
   },
   {
       "id": "3",
@@ -1555,9 +1555,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "3",
       "seat_location_id": "1",
-      "row": "15",
+      "seat_row": 15,
       "letter": "A",
-      "column": 1
+      "seat_column": 1
   },
   {
       "id": "4",
@@ -1567,9 +1567,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "3",
       "seat_location_id": "1",
-      "row": "2",
+      "seat_row": 2,
       "letter": "A",
-      "column": 1
+      "seat_column": 1
   },
   {
       "id": "5",
@@ -1579,9 +1579,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "19",
+      "seat_row": 19,
       "letter": "A",
-      "column": 1
+      "seat_column": 1
   },
   {
       "id": "6",
@@ -1591,9 +1591,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "19",
+      "seat_row": 19,
       "letter": "D",
-      "column": 4
+      "seat_column": 4
   },
   {
       "id": "7",
@@ -1603,9 +1603,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "16",
+      "seat_row": 16,
       "letter": "B",
-      "column": 2
+      "seat_column": 2
   },
   {
       "id": "8",
@@ -1615,9 +1615,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "12",
+      "seat_row": 12,
       "letter": "D",
-      "column": 4
+      "seat_column": 4
   },
   {
       "id": "9",
@@ -1627,9 +1627,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "8",
+      "seat_row": 8,
       "letter": "B",
-      "column": 2
+      "seat_column": 2
   },
   {
       "id": "10",
@@ -1639,9 +1639,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "26",
+      "seat_row": 26,
       "letter": "B",
-      "column": 2
+      "seat_column": 2
   },
   {
       "id": "11",
@@ -1651,9 +1651,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "14",
+      "seat_row": 14,
       "letter": "D",
-      "column": 4
+      "seat_column": 4
   },
   {
       "id": "12",
@@ -1663,9 +1663,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "6",
+      "seat_row": 6,
       "letter": "A",
-      "column": 1
+      "seat_column": 1
   },
   {
       "id": "13",
@@ -1675,9 +1675,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "14",
+      "seat_row": 14,
       "letter": "E",
-      "column": 5
+      "seat_column": 5
   },
   {
       "id": "14",
@@ -1687,9 +1687,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "2",
+      "seat_row": 2,
       "letter": "D",
-      "column": 4
+      "seat_column": 4
   },
   {
       "id": "15",
@@ -1699,9 +1699,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "24",
+      "seat_row": 24,
       "letter": "A",
-      "column": 1
+      "seat_column": 1
   },
   {
       "id": "16",
@@ -1711,9 +1711,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "3",
+      "seat_row": 3,
       "letter": "A",
-      "column": 1
+      "seat_column": 1
   },
   {
       "id": "17",
@@ -1723,9 +1723,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "2",
+      "seat_row": 2,
       "letter": "B",
-      "column": 2
+      "seat_column": 2
   },
   {
       "id": "18",
@@ -1735,9 +1735,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "26",
+      "seat_row": 26,
       "letter": "C",
-      "column": 3
+      "seat_column": 3
   },
   {
       "id": "19",
@@ -1747,9 +1747,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "17",
+      "seat_row": 17,
       "letter": "C",
-      "column": 3
+      "seat_column": 3
   },
   {
       "id": "20",
@@ -1759,9 +1759,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "5",
+      "seat_row": 5,
       "letter": "E",
-      "column": 5
+      "seat_column": 5
   },
   {
       "id": "21",
@@ -1771,9 +1771,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "21",
+      "seat_row": 21,
       "letter": "B",
-      "column": 2
+      "seat_column": 2
   },
   {
       "id": "22",
@@ -1783,9 +1783,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "21",
+      "seat_row": 21,
       "letter": "A",
-      "column": 1
+      "seat_column": 1
   },
   {
       "id": "23",
@@ -1795,9 +1795,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "3",
       "seat_location_id": "1",
-      "row": "28",
+      "seat_row": 28,
       "letter": "F",
-      "column": 6
+      "seat_column": 6
   },
   {
       "id": "24",
@@ -1807,9 +1807,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "3",
       "seat_location_id": "1",
-      "row": "7",
+      "seat_row": 7,
       "letter": "E",
-      "column": 5
+      "seat_column": 5
   },
   {
       "id": "25",
@@ -1819,9 +1819,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "7",
+      "seat_row": 7,
       "letter": "C",
-      "column": 3
+      "seat_column": 3
   },
   {
       "id": "26",
@@ -1831,9 +1831,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "2",
       "seat_location_id": "1",
-      "row": "12",
+      "seat_row": 12,
       "letter": "E",
-      "column": 5
+      "seat_column": 5
   },
   {
       "id": "27",
@@ -1843,9 +1843,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "2",
       "seat_location_id": "2",
-      "row": "25",
+      "seat_row": 25,
       "letter": "A",
-      "column": 1
+      "seat_column": 1
   },
   {
       "id": "28",
@@ -1855,9 +1855,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "1",
-      "row": "28",
+      "seat_row": 28,
       "letter": "E",
-      "column": 5
+      "seat_column": 5
   },
   {
       "id": "29",
@@ -1867,9 +1867,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "2",
-      "row": "5",
+      "seat_row": 5,
       "letter": "F",
-      "column": 6
+      "seat_column": 6
   },
   {
       "id": "30",
@@ -1879,9 +1879,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "1",
-      "row": "4",
+      "seat_row": 4,
       "letter": "D",
-      "column": 4
+      "seat_column": 4
   },
   {
       "id": "31",
@@ -1891,9 +1891,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "2",
-      "row": "29",
+      "seat_row": 29,
       "letter": "D",
-      "column": 4
+      "seat_column": 4
   },
   {
       "id": "32",
@@ -1903,9 +1903,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "1",
-      "row": "21",
+      "seat_row": 21,
       "letter": "E",
-      "column": 5
+      "seat_column": 5
   },
   {
       "id": "33",
@@ -1915,9 +1915,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "2",
-      "row": "24",
+      "seat_row": 24,
       "letter": "E",
-      "column": 5
+      "seat_column": 5
   },
   {
       "id": "34",
@@ -1927,9 +1927,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "1",
-      "row": "24",
+      "seat_row": 24,
       "letter": "D",
-      "column": 4
+      "seat_column": 4
   },
   {
       "id": "35",
@@ -1939,9 +1939,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "2",
-      "row": "17",
+      "seat_row": 17,
       "letter": "D",
-      "column": 4
+      "seat_column": 4
   },
   {
       "id": "36",
@@ -1951,9 +1951,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "1",
-      "row": "2",
+      "seat_row": 2,
       "letter": "E",
-      "column": 5
+      "seat_column": 5
   },
   {
       "id": "37",
@@ -1963,9 +1963,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "2",
-      "row": "10",
+      "seat_row": 10,
       "letter": "F",
-      "column": 6
+      "seat_column": 6
   },
   {
       "id": "38",
@@ -1975,9 +1975,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "1",
-      "row": "12",
+      "seat_row": 12,
       "letter": "B",
-      "column": 2
+      "seat_column": 2
   },
   {
       "id": "39",
@@ -1987,9 +1987,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "2",
-      "row": "19",
+      "seat_row": 19,
       "letter": "F",
-      "column": 6
+      "seat_column": 6
   },
   {
       "id": "40",
@@ -1999,9 +1999,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "9",
+      "seat_row": 9,
       "letter": "B",
-      "column": 2
+      "seat_column": 2
   },
   {
       "id": "41",
@@ -2011,9 +2011,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "2",
-      "row": "25",
+      "seat_row": 25,
       "letter": "C",
-      "column": 3
+      "seat_column": 3
   },
   {
       "id": "42",
@@ -2023,9 +2023,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "3",
       "seat_location_id": "3",
-      "row": "6",
+      "seat_row": 6,
       "letter": "B",
-      "column": 2
+      "seat_column": 2
   },
   {
       "id": "43",
@@ -2035,9 +2035,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "6",
+      "seat_row": 6,
       "letter": "D",
-      "column": 4
+      "seat_column": 4
   },
   {
       "id": "44",
@@ -2047,9 +2047,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "2",
-      "row": "15",
+      "seat_row": 15,
       "letter": "C",
-      "column": 3
+      "seat_column": 3
   },
   {
       "id": "45",
@@ -2059,9 +2059,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "3",
       "seat_location_id": "3",
-      "row": "24",
+      "seat_row": 24,
       "letter": "C",
-      "column": 3
+      "seat_column": 3
   },
   {
       "id": "46",
@@ -2071,9 +2071,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "9",
+      "seat_row": 9,
       "letter": "D",
-      "column": 4
+      "seat_column": 4
   },
   {
       "id": "47",
@@ -2083,9 +2083,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "2",
-      "row": "18",
+      "seat_row": 18,
       "letter": "F",
-      "column": 6
+      "seat_column": 6
   },
   {
       "id": "48",
@@ -2095,9 +2095,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "3",
       "seat_location_id": "3",
-      "row": "21",
+      "seat_row": 21,
       "letter": "F",
-      "column": 6
+      "seat_column": 6
   },
   {
       "id": "49",
@@ -2107,9 +2107,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "28",
+      "seat_row": 28,
       "letter": "A",
-      "column": 1
+      "seat_column": 1
   },
   {
       "id": "50",
@@ -2119,9 +2119,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "2",
-      "row": "8",
+      "seat_row": 8,
       "letter": "C",
-      "column": 3
+      "seat_column": 3
   },
   {
       "id": "51",
@@ -2131,9 +2131,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "3",
       "seat_location_id": "3",
-      "row": "17",
+      "seat_row": 17,
       "letter": "A",
-      "column": 1
+      "seat_column": 1
   },
   {
       "id": "52",
@@ -2143,9 +2143,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "27",
+      "seat_row": 27,
       "letter": "B",
-      "column": 2
+      "seat_column": 2
   },
   {
       "id": "53",
@@ -2155,9 +2155,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "1",
-      "row": "6",
+      "seat_row": 6,
       "letter": "E",
-      "column": 5
+      "seat_column": 5
   },
   {
       "id": "54",
@@ -2167,9 +2167,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "2",
-      "row": "1",
+      "seat_row": 1,
       "letter": "B",
-      "column": 2
+      "seat_column": 2
   },
   {
       "id": "55",
@@ -2179,9 +2179,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "3",
-      "row": "25",
+      "seat_row": 25,
       "letter": "D",
-      "column": 4
+      "seat_column": 4
   },
   {
       "id": "56",
@@ -2191,9 +2191,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "16",
+      "seat_row": 16,
       "letter": "A",
-      "column": 1
+      "seat_column": 1
   },
   {
       "id": "57",
@@ -2203,9 +2203,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "1",
-      "row": "26",
+      "seat_row": 26,
       "letter": "F",
-      "column": 6
+      "seat_column": 6
   },
   {
       "id": "58",
@@ -2215,9 +2215,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "2",
-      "row": "13",
+      "seat_row": 13,
       "letter": "F",
-      "column": 6
+      "seat_column": 6
   },
   {
       "id": "59",
@@ -2227,9 +2227,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "3",
-      "row": "16",
+      "seat_row": 16,
       "letter": "C",
-      "column": 3
+      "seat_column": 3
   },
   {
       "id": "60",
@@ -2239,9 +2239,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "10",
+      "seat_row": 10,
       "letter": "B",
-      "column": 2
+      "seat_column": 2
   },
   {
       "id": "61",
@@ -2251,9 +2251,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "1",
-      "row": "27",
+      "seat_row": 27,
       "letter": "D",
-      "column": 4
+      "seat_column": 4
   },
   {
       "id": "62",
@@ -2263,9 +2263,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "2",
-      "row": "10",
+      "seat_row": 10,
       "letter": "E",
-      "column": 5
+      "seat_column": 5
   },
   {
       "id": "63",
@@ -2275,9 +2275,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "3",
-      "row": "11",
+      "seat_row": 11,
       "letter": "E",
-      "column": 5
+      "seat_column": 5
   },
   {
       "id": "64",
@@ -2287,9 +2287,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "21",
+      "seat_row": 21,
       "letter": "C",
-      "column": 3
+      "seat_column": 3
   },
   {
       "id": "65",
@@ -2299,9 +2299,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "1",
-      "row": "7",
+      "seat_row": 7,
       "letter": "F",
-      "column": 6
+      "seat_column": 6
   },
   {
       "id": "66",
@@ -2311,9 +2311,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "2",
-      "row": "20",
+      "seat_row": 20,
       "letter": "F",
-      "column": 6
+      "seat_column": 6
   },
   {
       "id": "67",
@@ -2323,9 +2323,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "3",
-      "row": "15",
+      "seat_row": 15,
       "letter": "F",
-      "column": 6
+      "seat_column": 6
   },
   {
       "id": "68",
@@ -2335,9 +2335,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "18",
+      "seat_row": 18,
       "letter": "B",
-      "column": 2
+      "seat_column": 2
   },
   {
       "id": "69",
@@ -2347,9 +2347,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "1",
-      "row": "15",
+      "seat_row": 15,
       "letter": "D",
-      "column": 4
+      "seat_column": 4
   },
   {
       "id": "70",
@@ -2359,9 +2359,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "2",
-      "row": "18",
+      "seat_row": 18,
       "letter": "A",
-      "column": 1
+      "seat_column": 1
   },
   {
       "id": "71",
@@ -2371,9 +2371,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "3",
-      "row": "13",
+      "seat_row": 13,
       "letter": "B",
-      "column": 2
+      "seat_column": 2
   },
   {
       "id": "72",
@@ -2383,9 +2383,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "9",
+      "seat_row": 9,
       "letter": "C",
-      "column": 3
+      "seat_column": 3
   },
   {
       "id": "73",
@@ -2395,9 +2395,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "1",
-      "row": "20",
+      "seat_row": 20,
       "letter": "A",
-      "column": 1
+      "seat_column": 1
   },
   {
       "id": "74",
@@ -2407,9 +2407,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "2",
-      "row": "28",
+      "seat_row": 28,
       "letter": "C",
-      "column": 3
+      "seat_column": 3
   },
   {
       "id": "75",
@@ -2419,9 +2419,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "3",
-      "row": "14",
+      "seat_row": 14,
       "letter": "C",
-      "column": 3
+      "seat_column": 3
   },
   {
       "id": "76",
@@ -2431,9 +2431,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "20",
+      "seat_row": 20,
       "letter": "C",
-      "column": 3
+      "seat_column": 3
   },
   {
       "id": "77",
@@ -2443,9 +2443,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "1",
-      "row": "14",
+      "seat_row": 14,
       "letter": "B",
-      "column": 2
+      "seat_column": 2
   },
   {
       "id": "78",
@@ -2455,9 +2455,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "2",
-      "row": "24",
+      "seat_row": 24,
       "letter": "F",
-      "column": 6
+      "seat_column": 6
   },
   {
       "id": "79",
@@ -2467,9 +2467,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "3",
-      "row": "29",
+      "seat_row": 29,
       "letter": "F",
-      "column": 6
+      "seat_column": 6
   },
   {
       "id": "80",
@@ -2479,9 +2479,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "12",
+      "seat_row": 12,
       "letter": "F",
-      "column": 6
+      "seat_column": 6
   },
   {
       "id": "81",
@@ -2491,9 +2491,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "1",
-      "row": "20",
+      "seat_row": 20,
       "letter": "E",
-      "column": 5
+      "seat_column": 5
   },
   {
       "id": "82",
@@ -2503,9 +2503,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "2",
-      "row": "13",
+      "seat_row": 13,
       "letter": "D",
-      "column": 4
+      "seat_column": 4
   },
   {
       "id": "83",
@@ -2515,9 +2515,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "3",
-      "row": "4",
+      "seat_row": 4,
       "letter": "E",
-      "column": 5
+      "seat_column": 5
   },
   {
       "id": "84",
@@ -2527,9 +2527,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "10",
+      "seat_row": 10,
       "letter": "D",
-      "column": 4
+      "seat_column": 4
   },
   {
       "id": "85",
@@ -2539,9 +2539,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "1",
-      "row": "9",
+      "seat_row": 9,
       "letter": "E",
-      "column": 5
+      "seat_column": 5
   },
   {
       "id": "86",
@@ -2551,9 +2551,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "2",
-      "row": "7",
+      "seat_row": 7,
       "letter": "D",
-      "column": 4
+      "seat_column": 4
   },
   {
       "id": "87",
@@ -2563,9 +2563,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "3",
-      "row": "29",
+      "seat_row": 29,
       "letter": "E",
-      "column": 5
+      "seat_column": 5
   },
   {
       "id": "88",
@@ -2575,9 +2575,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "14",
+      "seat_row": 14,
       "letter": "F",
-      "column": 6
+      "seat_column": 6
   },
   {
       "id": "89",
@@ -2587,9 +2587,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "1",
-      "row": "22",
+      "seat_row": 22,
       "letter": "E",
-      "column": 5
+      "seat_column": 5
   },
   {
       "id": "90",
@@ -2599,9 +2599,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "2",
-      "row": "1",
+      "seat_row": 1,
       "letter": "F",
-      "column": 6
+      "seat_column": 6
   },
   {
       "id": "91",
@@ -2611,9 +2611,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "3",
-      "row": "23",
+      "seat_row": 23,
       "letter": "E",
-      "column": 5
+      "seat_column": 5
   },
   {
       "id": "92",
@@ -2623,9 +2623,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "16",
+      "seat_row": 16,
       "letter": "E",
-      "column": 5
+      "seat_column": 5
   },
   {
       "id": "93",
@@ -2635,9 +2635,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "1",
-      "row": "17",
+      "seat_row": 17,
       "letter": "F",
-      "column": 6
+      "seat_column": 6
   },
   {
       "id": "94",
@@ -2647,9 +2647,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "2",
-      "row": "25",
+      "seat_row": 25,
       "letter": "B",
-      "column": 2
+      "seat_column": 2
   },
   {
       "id": "95",
@@ -2659,9 +2659,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "3",
-      "row": "21",
+      "seat_row": 21,
       "letter": "D",
-      "column": 4
+      "seat_column": 4
   },
   {
       "id": "96",
@@ -2671,9 +2671,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "9",
+      "seat_row": 9,
       "letter": "F",
-      "column": 6
+      "seat_column": 6
   },
   {
       "id": "97",
@@ -2683,9 +2683,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "1",
-      "row": "5",
+      "seat_row": 5,
       "letter": "A",
-      "column": 1
+      "seat_column": 1
   },
   {
       "id": "98",
@@ -2695,9 +2695,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "2",
-      "row": "16",
+      "seat_row": 16,
       "letter": "D",
-      "column": 4
+      "seat_column": 4
   },
   {
       "id": "99",
@@ -2707,9 +2707,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "3",
-      "row": "13",
+      "seat_row": 13,
       "letter": "E",
-      "column": 5
+      "seat_column": 5
   },
   {
       "id": "100",
@@ -2719,9 +2719,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "23",
+      "seat_row": 23,
       "letter": "D",
-      "column": 4
+      "seat_column": 4
   },
   {
       "id": "101",
@@ -2731,9 +2731,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "1",
-      "row": "30",
+      "seat_row": 30,
       "letter": "C",
-      "column": 3
+      "seat_column": 3
   },
   {
       "id": "102",
@@ -2743,9 +2743,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "2",
-      "row": "20",
+      "seat_row": 20,
       "letter": "B",
-      "column": 2
+      "seat_column": 2
   },
   {
       "id": "103",
@@ -2755,9 +2755,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "3",
-      "row": "24",
+      "seat_row": 24,
       "letter": "B",
-      "column": 2
+      "seat_column": 2
   },
   {
       "id": "104",
@@ -2767,9 +2767,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "5",
+      "seat_row": 5,
       "letter": "D",
-      "column": 4
+      "seat_column": 4
   },
   {
       "id": "105",
@@ -2779,9 +2779,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "1",
-      "row": "6",
+      "seat_row": 6,
       "letter": "F",
-      "column": 6
+      "seat_column": 6
   },
   {
       "id": "106",
@@ -2791,9 +2791,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "2",
-      "row": "30",
+      "seat_row": 30,
       "letter": "B",
-      "column": 2
+      "seat_column": 2
   },
   {
       "id": "107",
@@ -2803,9 +2803,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "3",
-      "row": "30",
+      "seat_row": 30,
       "letter": "D",
-      "column": 4
+      "seat_column": 4
   },
   {
       "id": "1",
@@ -2815,9 +2815,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "23",
+      "seat_row": 23,
       "letter": "F",
-      "column": 6
+      "seat_column": 6
   },
   {
       "id": "2",
@@ -2827,9 +2827,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "8",
+      "seat_row": 8,
       "letter": "F",
-      "column": 6
+      "seat_column": 6
   },
   {
       "id": "3",
@@ -2839,9 +2839,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "3",
       "seat_location_id": "1",
-      "row": "15",
+      "seat_row": 15,
       "letter": "A",
-      "column": 1
+      "seat_column": 1
   },
   {
       "id": "4",
@@ -2851,9 +2851,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "3",
       "seat_location_id": "1",
-      "row": "2",
+      "seat_row": 2,
       "letter": "A",
-      "column": 1
+      "seat_column": 1
   },
   {
       "id": "5",
@@ -2863,9 +2863,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "19",
+      "seat_row": 19,
       "letter": "A",
-      "column": 1
+      "seat_column": 1
   },
   {
       "id": "6",
@@ -2875,9 +2875,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "19",
+      "seat_row": 19,
       "letter": "D",
-      "column": 4
+      "seat_column": 4
   },
   {
       "id": "7",
@@ -2887,9 +2887,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "16",
+      "seat_row": 16,
       "letter": "B",
-      "column": 2
+      "seat_column": 2
   },
   {
       "id": "8",
@@ -2899,9 +2899,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "12",
+      "seat_row": 12,
       "letter": "D",
-      "column": 4
+      "seat_column": 4
   },
   {
       "id": "9",
@@ -2911,9 +2911,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "8",
+      "seat_row": 8,
       "letter": "B",
-      "column": 2
+      "seat_column": 2
   },
   {
       "id": "10",
@@ -2923,9 +2923,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "26",
+      "seat_row": 26,
       "letter": "B",
-      "column": 2
+      "seat_column": 2
   },
   {
       "id": "11",
@@ -2935,9 +2935,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "14",
+      "seat_row": 14,
       "letter": "D",
-      "column": 4
+      "seat_column": 4
   },
   {
       "id": "12",
@@ -2947,9 +2947,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "6",
+      "seat_row": 6,
       "letter": "A",
-      "column": 1
+      "seat_column": 1
   },
   {
       "id": "13",
@@ -2959,9 +2959,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "1",
-      "row": "14",
+      "seat_row": 14,
       "letter": "E",
-      "column": 5
+      "seat_column": 5
   },
   {
       "id": "14",
@@ -2971,9 +2971,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "2",
-      "row": "2",
+      "seat_row": 2,
       "letter": "D",
-      "column": 4
+      "seat_column": 4
   },
   {
       "id": "15",
@@ -2983,9 +2983,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "1",
-      "row": "24",
+      "seat_row": 24,
       "letter": "A",
-      "column": 1
+      "seat_column": 1
   },
   {
       "id": "16",
@@ -2995,9 +2995,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "2",
-      "row": "3",
+      "seat_row": 3,
       "letter": "A",
-      "column": 1
+      "seat_column": 1
   },
   {
       "id": "17",
@@ -3007,9 +3007,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "1",
-      "row": "2",
+      "seat_row": 2,
       "letter": "B",
-      "column": 2
+      "seat_column": 2
   },
   {
       "id": "18",
@@ -3019,9 +3019,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "2",
-      "row": "26",
+      "seat_row": 26,
       "letter": "C",
-      "column": 3
+      "seat_column": 3
   },
   {
       "id": "19",
@@ -3031,9 +3031,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "17",
+      "seat_row": 17,
       "letter": "C",
-      "column": 3
+      "seat_column": 3
   },
   {
       "id": "20",
@@ -3043,9 +3043,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "2",
-      "row": "5",
+      "seat_row": 5,
       "letter": "E",
-      "column": 5
+      "seat_column": 5
   },
   {
       "id": "21",
@@ -3055,9 +3055,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "3",
       "seat_location_id": "3",
-      "row": "21",
+      "seat_row": 21,
       "letter": "B",
-      "column": 2
+      "seat_column": 2
   },
   {
       "id": "22",
@@ -3067,9 +3067,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "21",
+      "seat_row": 21,
       "letter": "A",
-      "column": 1
+      "seat_column": 1
   },
   {
       "id": "23",
@@ -3079,9 +3079,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "2",
-      "row": "28",
+      "seat_row": 28,
       "letter": "F",
-      "column": 6
+      "seat_column": 6
   },
   {
       "id": "24",
@@ -3091,9 +3091,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "3",
       "seat_location_id": "3",
-      "row": "7",
+      "seat_row": 7,
       "letter": "E",
-      "column": 5
+      "seat_column": 5
   },
   {
       "id": "25",
@@ -3103,9 +3103,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "7",
+      "seat_row": 7,
       "letter": "C",
-      "column": 3
+      "seat_column": 3
   },
   {
       "id": "26",
@@ -3115,9 +3115,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "1",
-      "row": "12",
+      "seat_row": 12,
       "letter": "E",
-      "column": 5
+      "seat_column": 5
   },
   {
       "id": "27",
@@ -3127,9 +3127,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "2",
-      "row": "25",
+      "seat_row": 25,
       "letter": "A",
-      "column": 1
+      "seat_column": 1
   },
   {
       "id": "28",
@@ -3139,9 +3139,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "3",
-      "row": "28",
+      "seat_row": 28,
       "letter": "E",
-      "column": 5
+      "seat_column": 5
   },
   {
       "id": "29",
@@ -3151,9 +3151,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "5",
+      "seat_row": 5,
       "letter": "F",
-      "column": 6
+      "seat_column": 6
   },
   {
       "id": "30",
@@ -3163,9 +3163,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "1",
-      "row": "4",
+      "seat_row": 4,
       "letter": "D",
-      "column": 4
+      "seat_column": 4
   },
   {
       "id": "31",
@@ -3175,9 +3175,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "2",
-      "row": "29",
+      "seat_row": 29,
       "letter": "D",
-      "column": 4
+      "seat_column": 4
   },
   {
       "id": "32",
@@ -3187,9 +3187,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "3",
-      "row": "21",
+      "seat_row": 21,
       "letter": "E",
-      "column": 5
+      "seat_column": 5
   },
   {
       "id": "33",
@@ -3199,9 +3199,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "24",
+      "seat_row": 24,
       "letter": "E",
-      "column": 5
+      "seat_column": 5
   },
   {
       "id": "34",
@@ -3211,9 +3211,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "1",
-      "row": "24",
+      "seat_row": 24,
       "letter": "D",
-      "column": 4
+      "seat_column": 4
   },
   {
       "id": "35",
@@ -3223,9 +3223,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "2",
-      "row": "17",
+      "seat_row": 17,
       "letter": "D",
-      "column": 4
+      "seat_column": 4
   },
   {
       "id": "36",
@@ -3235,9 +3235,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "3",
-      "row": "2",
+      "seat_row": 2,
       "letter": "E",
-      "column": 5
+      "seat_column": 5
   },
   {
       "id": "37",
@@ -3247,9 +3247,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "10",
+      "seat_row": 10,
       "letter": "F",
-      "column": 6
+      "seat_column": 6
   },
   {
       "id": "38",
@@ -3259,9 +3259,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "1",
-      "row": "12",
+      "seat_row": 12,
       "letter": "B",
-      "column": 2
+      "seat_column": 2
   },
   {
       "id": "39",
@@ -3271,9 +3271,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "2",
-      "row": "19",
+      "seat_row": 19,
       "letter": "F",
-      "column": 6
+      "seat_column": 6
   },
   {
       "id": "40",
@@ -3283,9 +3283,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "3",
-      "row": "9",
+      "seat_row": 9,
       "letter": "B",
-      "column": 2
+      "seat_column": 2
   },
   {
       "id": "41",
@@ -3295,9 +3295,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "25",
+      "seat_row": 25,
       "letter": "C",
-      "column": 3
+      "seat_column": 3
   },
   {
       "id": "42",
@@ -3307,9 +3307,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "1",
-      "row": "6",
+      "seat_row": 6,
       "letter": "B",
-      "column": 2
+      "seat_column": 2
   },
   {
       "id": "43",
@@ -3319,9 +3319,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "2",
-      "row": "6",
+      "seat_row": 6,
       "letter": "D",
-      "column": 4
+      "seat_column": 4
   },
   {
       "id": "44",
@@ -3331,9 +3331,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "3",
-      "row": "15",
+      "seat_row": 15,
       "letter": "C",
-      "column": 3
+      "seat_column": 3
   },
   {
       "id": "45",
@@ -3343,9 +3343,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "24",
+      "seat_row": 24,
       "letter": "C",
-      "column": 3
+      "seat_column": 3
   },
   {
       "id": "46",
@@ -3355,9 +3355,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "1",
-      "row": "9",
+      "seat_row": 9,
       "letter": "D",
-      "column": 4
+      "seat_column": 4
   },
   {
       "id": "47",
@@ -3367,9 +3367,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "2",
-      "row": "18",
+      "seat_row": 18,
       "letter": "F",
-      "column": 6
+      "seat_column": 6
   },
   {
       "id": "48",
@@ -3379,9 +3379,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "3",
-      "row": "21",
+      "seat_row": 21,
       "letter": "F",
-      "column": 6
+      "seat_column": 6
   },
   {
       "id": "49",
@@ -3391,9 +3391,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "28",
+      "seat_row": 28,
       "letter": "A",
-      "column": 1
+      "seat_column": 1
   },
   {
       "id": "50",
@@ -3403,9 +3403,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "1",
-      "row": "8",
+      "seat_row": 8,
       "letter": "C",
-      "column": 3
+      "seat_column": 3
   },
   {
       "id": "51",
@@ -3415,9 +3415,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "2",
-      "row": "17",
+      "seat_row": 17,
       "letter": "A",
-      "column": 1
+      "seat_column": 1
   },
   {
       "id": "52",
@@ -3427,9 +3427,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "3",
-      "row": "27",
+      "seat_row": 27,
       "letter": "B",
-      "column": 2
+      "seat_column": 2
   },
   {
       "id": "53",
@@ -3439,9 +3439,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "6",
+      "seat_row": 6,
       "letter": "E",
-      "column": 5
+      "seat_column": 5
   },
   {
       "id": "54",
@@ -3451,9 +3451,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "1",
-      "row": "1",
+      "seat_row": 1,
       "letter": "B",
-      "column": 2
+      "seat_column": 2
   },
   {
       "id": "55",
@@ -3463,9 +3463,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "2",
-      "row": "25",
+      "seat_row": 25,
       "letter": "D",
-      "column": 4
+      "seat_column": 4
   },
   {
       "id": "56",
@@ -3475,9 +3475,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "3",
-      "row": "16",
+      "seat_row": 16,
       "letter": "A",
-      "column": 1
+      "seat_column": 1
   },
   {
       "id": "1",
@@ -3487,9 +3487,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "23",
+      "seat_row": 23,
       "letter": "F",
-      "column": 6
+      "seat_column": 6
   },
   {
       "id": "2",
@@ -3499,9 +3499,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "8",
+      "seat_row": 8,
       "letter": "F",
-      "column": 6
+      "seat_column": 6
   },
   {
       "id": "3",
@@ -3511,9 +3511,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "3",
       "seat_location_id": "1",
-      "row": "15",
+      "seat_row": 15,
       "letter": "A",
-      "column": 1
+      "seat_column": 1
   },
   {
       "id": "4",
@@ -3523,9 +3523,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "3",
       "seat_location_id": "1",
-      "row": "2",
+      "seat_row": 2,
       "letter": "A",
-      "column": 1
+      "seat_column": 1
   },
   {
       "id": "5",
@@ -3535,9 +3535,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "19",
+      "seat_row": 19,
       "letter": "A",
-      "column": 1
+      "seat_column": 1
   },
   {
       "id": "6",
@@ -3547,9 +3547,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "1",
-      "row": "19",
+      "seat_row": 19,
       "letter": "D",
-      "column": 4
+      "seat_column": 4
   },
   {
       "id": "7",
@@ -3559,9 +3559,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "2",
-      "row": "16",
+      "seat_row": 16,
       "letter": "B",
-      "column": 2
+      "seat_column": 2
   },
   {
       "id": "8",
@@ -3571,9 +3571,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "1",
-      "row": "12",
+      "seat_row": 12,
       "letter": "D",
-      "column": 4
+      "seat_column": 4
   },
   {
       "id": "9",
@@ -3583,9 +3583,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "2",
-      "row": "8",
+      "seat_row": 8,
       "letter": "B",
-      "column": 2
+      "seat_column": 2
   },
   {
       "id": "10",
@@ -3595,9 +3595,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "26",
+      "seat_row": 26,
       "letter": "B",
-      "column": 2
+      "seat_column": 2
   },
   {
       "id": "11",
@@ -3607,9 +3607,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "2",
-      "row": "14",
+      "seat_row": 14,
       "letter": "D",
-      "column": 4
+      "seat_column": 4
   },
   {
       "id": "12",
@@ -3619,9 +3619,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "3",
       "seat_location_id": "3",
-      "row": "6",
+      "seat_row": 6,
       "letter": "A",
-      "column": 1
+      "seat_column": 1
   },
   {
       "id": "13",
@@ -3631,9 +3631,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "14",
+      "seat_row": 14,
       "letter": "E",
-      "column": 5
+      "seat_column": 5
   },
   {
       "id": "14",
@@ -3643,9 +3643,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "2",
-      "row": "2",
+      "seat_row": 2,
       "letter": "D",
-      "column": 4
+      "seat_column": 4
   },
   {
       "id": "15",
@@ -3655,9 +3655,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "3",
       "seat_location_id": "3",
-      "row": "24",
+      "seat_row": 24,
       "letter": "A",
-      "column": 1
+      "seat_column": 1
   },
   {
       "id": "16",
@@ -3667,9 +3667,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "3",
+      "seat_row": 3,
       "letter": "A",
-      "column": 1
+      "seat_column": 1
   },
   {
       "id": "17",
@@ -3679,9 +3679,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "1",
-      "row": "2",
+      "seat_row": 2,
       "letter": "B",
-      "column": 2
+      "seat_column": 2
   },
   {
       "id": "18",
@@ -3691,9 +3691,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "2",
-      "row": "26",
+      "seat_row": 26,
       "letter": "C",
-      "column": 3
+      "seat_column": 3
   },
   {
       "id": "19",
@@ -3703,9 +3703,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "3",
-      "row": "17",
+      "seat_row": 17,
       "letter": "C",
-      "column": 3
+      "seat_column": 3
   },
   {
       "id": "1",
@@ -3715,9 +3715,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "23",
+      "seat_row": 23,
       "letter": "F",
-      "column": 6
+      "seat_column": 6
   },
   {
       "id": "2",
@@ -3727,9 +3727,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "8",
+      "seat_row": 8,
       "letter": "F",
-      "column": 6
+      "seat_column": 6
   },
   {
       "id": "3",
@@ -3739,9 +3739,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "1",
-      "row": "15",
+      "seat_row": 15,
       "letter": "A",
-      "column": 1
+      "seat_column": 1
   },
   {
       "id": "4",
@@ -3751,9 +3751,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "2",
-      "row": "2",
+      "seat_row": 2,
       "letter": "A",
-      "column": 1
+      "seat_column": 1
   },
   {
       "id": "5",
@@ -3763,9 +3763,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "19",
+      "seat_row": 19,
       "letter": "A",
-      "column": 1
+      "seat_column": 1
   },
   {
       "id": "6",
@@ -3775,9 +3775,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "2",
-      "row": "19",
+      "seat_row": 19,
       "letter": "D",
-      "column": 4
+      "seat_column": 4
   },
   {
       "id": "7",
@@ -3787,9 +3787,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "3",
       "seat_location_id": "3",
-      "row": "16",
+      "seat_row": 16,
       "letter": "B",
-      "column": 2
+      "seat_column": 2
   },
   {
       "id": "8",
@@ -3799,9 +3799,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "12",
+      "seat_row": 12,
       "letter": "D",
-      "column": 4
+      "seat_column": 4
   },
   {
       "id": "9",
@@ -3811,9 +3811,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "1",
-      "row": "8",
+      "seat_row": 8,
       "letter": "B",
-      "column": 2
+      "seat_column": 2
   },
   {
       "id": "10",
@@ -3823,9 +3823,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "2",
-      "row": "26",
+      "seat_row": 26,
       "letter": "B",
-      "column": 2
+      "seat_column": 2
   },
   {
       "id": "11",
@@ -3835,9 +3835,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "3",
-      "row": "14",
+      "seat_row": 14,
       "letter": "D",
-      "column": 4
+      "seat_column": 4
   },
   {
       "id": "",
@@ -3847,9 +3847,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "1",
+      "seat_row": 1,
       "letter": "A",
-      "column": 1
+      "seat_column": 1
   },
   {
       "id": "",
@@ -3859,9 +3859,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "1",
-      "row": "1",
+      "seat_row": 1,
       "letter": "B",
-      "column": 2
+      "seat_column": 2
   },
   {
       "id": "",
@@ -3871,9 +3871,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "3",
       "seat_location_id": "1",
-      "row": "1",
+      "seat_row": 1,
       "letter": "C",
-      "column": 3
+      "seat_column": 3
   },
   {
       "id": "",
@@ -3883,9 +3883,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "2",
+      "seat_row": 2,
       "letter": "A",
-      "column": 1
+      "seat_column": 1
   },
   {
       "id": "",
@@ -3895,9 +3895,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "2",
       "seat_location_id": "1",
-      "row": "2",
+      "seat_row": 2,
       "letter": "B",
-      "column": 2
+      "seat_column": 2
   },
   {
       "id": "",
@@ -3907,9 +3907,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "3",
       "seat_location_id": "1",
-      "row": "2",
+      "seat_row": 2,
       "letter": "C",
-      "column": 3
+      "seat_column": 3
   },
   {
       "id": "",
@@ -3919,9 +3919,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "3",
       "seat_location_id": "1",
-      "row": "2",
+      "seat_row": 2,
       "letter": "D",
-      "column": 4
+      "seat_column": 4
   },
   {
       "id": "",
@@ -3931,9 +3931,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "2",
       "seat_location_id": "1",
-      "row": "2",
+      "seat_row": 2,
       "letter": "E",
-      "column": 5
+      "seat_column": 5
   },
   {
       "id": "",
@@ -3943,9 +3943,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "2",
+      "seat_row": 2,
       "letter": "F",
-      "column": 6
+      "seat_column": 6
   },
   {
       "id": "",
@@ -3955,9 +3955,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "3",
+      "seat_row": 3,
       "letter": "A",
-      "column": 1
+      "seat_column": 1
   },
   {
       "id": "",
@@ -3967,9 +3967,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "2",
       "seat_location_id": "1",
-      "row": "3",
+      "seat_row": 3,
       "letter": "B",
-      "column": 2
+      "seat_column": 2
   },
   {
       "id": "",
@@ -3979,9 +3979,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "3",
       "seat_location_id": "1",
-      "row": "3",
+      "seat_row": 3,
       "letter": "C",
-      "column": 3
+      "seat_column": 3
   },
   {
       "id": "",
@@ -3991,9 +3991,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "3",
       "seat_location_id": "1",
-      "row": "3",
+      "seat_row": 3,
       "letter": "D",
-      "column": 4
+      "seat_column": 4
   },
   {
       "id": "",
@@ -4003,9 +4003,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "2",
       "seat_location_id": "1",
-      "row": "3",
+      "seat_row": 3,
       "letter": "E",
-      "column": 5
+      "seat_column": 5
   },
   {
       "id": "",
@@ -4015,9 +4015,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "3",
+      "seat_row": 3,
       "letter": "F",
-      "column": 6
+      "seat_column": 6
   },
   {
       "id": "",
@@ -4027,9 +4027,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "4",
+      "seat_row": 4,
       "letter": "A",
-      "column": 1
+      "seat_column": 1
   },
   {
       "id": "",
@@ -4039,9 +4039,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "2",
       "seat_location_id": "1",
-      "row": "4",
+      "seat_row": 4,
       "letter": "B",
-      "column": 2
+      "seat_column": 2
   },
   {
       "id": "",
@@ -4051,9 +4051,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "3",
       "seat_location_id": "1",
-      "row": "4",
+      "seat_row": 4,
       "letter": "C",
-      "column": 3
+      "seat_column": 3
   },
   {
       "id": "",
@@ -4063,9 +4063,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "3",
       "seat_location_id": "1",
-      "row": "4",
+      "seat_row": 4,
       "letter": "D",
-      "column": 4
+      "seat_column": 4
   },
   {
       "id": "",
@@ -4075,9 +4075,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "2",
       "seat_location_id": "1",
-      "row": "4",
+      "seat_row": 4,
       "letter": "E",
-      "column": 5
+      "seat_column": 5
   },
   {
       "id": "",
@@ -4087,9 +4087,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "4",
+      "seat_row": 4,
       "letter": "F",
-      "column": 6
+      "seat_column": 6
   },
   {
       "id": "",
@@ -4099,9 +4099,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "5",
+      "seat_row": 5,
       "letter": "A",
-      "column": 1
+      "seat_column": 1
   },
   {
       "id": "",
@@ -4111,9 +4111,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "2",
       "seat_location_id": "1",
-      "row": "5",
+      "seat_row": 5,
       "letter": "B",
-      "column": 2
+      "seat_column": 2
   },
   {
       "id": "",
@@ -4123,9 +4123,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "3",
       "seat_location_id": "1",
-      "row": "5",
+      "seat_row": 5,
       "letter": "C",
-      "column": 3
+      "seat_column": 3
   },
   {
       "id": "",
@@ -4135,9 +4135,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "3",
       "seat_location_id": "1",
-      "row": "5",
+      "seat_row": 5,
       "letter": "D",
-      "column": 4
+      "seat_column": 4
   },
   {
       "id": "",
@@ -4147,9 +4147,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "2",
       "seat_location_id": "1",
-      "row": "5",
+      "seat_row": 5,
       "letter": "E",
-      "column": 5
+      "seat_column": 5
   },
   {
       "id": "",
@@ -4159,9 +4159,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "5",
+      "seat_row": 5,
       "letter": "F",
-      "column": 6
+      "seat_column": 6
   },
   {
       "id": "",
@@ -4171,9 +4171,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "6",
+      "seat_row": 6,
       "letter": "A",
-      "column": 1
+      "seat_column": 1
   },
   {
       "id": "",
@@ -4183,9 +4183,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "2",
       "seat_location_id": "1",
-      "row": "6",
+      "seat_row": 6,
       "letter": "B",
-      "column": 2
+      "seat_column": 2
   },
   {
       "id": "",
@@ -4195,9 +4195,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "3",
       "seat_location_id": "1",
-      "row": "6",
+      "seat_row": 6,
       "letter": "C",
-      "column": 3
+      "seat_column": 3
   },
   {
       "id": "",
@@ -4207,9 +4207,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "3",
       "seat_location_id": "1",
-      "row": "6",
+      "seat_row": 6,
       "letter": "D",
-      "column": 4
+      "seat_column": 4
   },
   {
       "id": "",
@@ -4219,9 +4219,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "2",
       "seat_location_id": "1",
-      "row": "6",
+      "seat_row": 6,
       "letter": "E",
-      "column": 5
+      "seat_column": 5
   },
   {
       "id": "",
@@ -4231,9 +4231,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "6",
+      "seat_row": 6,
       "letter": "F",
-      "column": 6
+      "seat_column": 6
   },
   {
       "id": "",
@@ -4243,9 +4243,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "7",
+      "seat_row": 7,
       "letter": "A",
-      "column": 1
+      "seat_column": 1
   },
   {
       "id": "",
@@ -4255,9 +4255,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "2",
       "seat_location_id": "1",
-      "row": "7",
+      "seat_row": 7,
       "letter": "B",
-      "column": 2
+      "seat_column": 2
   },
   {
       "id": "",
@@ -4267,9 +4267,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "3",
       "seat_location_id": "1",
-      "row": "7",
+      "seat_row": 7,
       "letter": "C",
-      "column": 3
+      "seat_column": 3
   },
   {
       "id": "",
@@ -4279,9 +4279,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "3",
       "seat_location_id": "1",
-      "row": "7",
+      "seat_row": 7,
       "letter": "D",
-      "column": 4
+      "seat_column": 4
   },
   {
       "id": "",
@@ -4291,9 +4291,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "2",
       "seat_location_id": "1",
-      "row": "7",
+      "seat_row": 7,
       "letter": "E",
-      "column": 5
+      "seat_column": 5
   },
   {
       "id": "",
@@ -4303,9 +4303,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "7",
+      "seat_row": 7,
       "letter": "F",
-      "column": 6
+      "seat_column": 6
   },
   {
       "id": "",
@@ -4315,9 +4315,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "8",
+      "seat_row": 8,
       "letter": "A",
-      "column": 1
+      "seat_column": 1
   },
   {
       "id": "",
@@ -4327,9 +4327,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "2",
       "seat_location_id": "1",
-      "row": "8",
+      "seat_row": 8,
       "letter": "B",
-      "column": 2
+      "seat_column": 2
   },
   {
       "id": "",
@@ -4339,9 +4339,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "3",
       "seat_location_id": "1",
-      "row": "8",
+      "seat_row": 8,
       "letter": "C",
-      "column": 3
+      "seat_column": 3
   },
   {
       "id": "",
@@ -4351,9 +4351,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "3",
       "seat_location_id": "1",
-      "row": "8",
+      "seat_row": 8,
       "letter": "D",
-      "column": 4
+      "seat_column": 4
   },
   {
       "id": "",
@@ -4363,9 +4363,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "2",
       "seat_location_id": "1",
-      "row": "8",
+      "seat_row": 8,
       "letter": "E",
-      "column": 5
+      "seat_column": 5
   },
   {
       "id": "",
@@ -4375,9 +4375,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "8",
+      "seat_row": 8,
       "letter": "F",
-      "column": 6
+      "seat_column": 6
   },
   {
       "id": "",
@@ -4387,9 +4387,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "9",
+      "seat_row": 9,
       "letter": "A",
-      "column": 1
+      "seat_column": 1
   },
   {
       "id": "",
@@ -4399,9 +4399,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "2",
       "seat_location_id": "1",
-      "row": "9",
+      "seat_row": 9,
       "letter": "B",
-      "column": 2
+      "seat_column": 2
   },
   {
       "id": "",
@@ -4411,9 +4411,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "3",
       "seat_location_id": "1",
-      "row": "9",
+      "seat_row": 9,
       "letter": "C",
-      "column": 3
+      "seat_column": 3
   },
   {
       "id": "",
@@ -4423,9 +4423,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "3",
       "seat_location_id": "1",
-      "row": "9",
+      "seat_row": 9,
       "letter": "D",
-      "column": 4
+      "seat_column": 4
   },
   {
       "id": "",
@@ -4435,9 +4435,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "2",
       "seat_location_id": "1",
-      "row": "9",
+      "seat_row": 9,
       "letter": "E",
-      "column": 5
+      "seat_column": 5
   },
   {
       "id": "",
@@ -4447,9 +4447,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "9",
+      "seat_row": 9,
       "letter": "F",
-      "column": 6
+      "seat_column": 6
   },
   {
       "id": "",
@@ -4459,9 +4459,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "10",
+      "seat_row": 10,
       "letter": "A",
-      "column": 1
+      "seat_column": 1
   },
   {
       "id": "",
@@ -4471,9 +4471,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "2",
       "seat_location_id": "1",
-      "row": "10",
+      "seat_row": 10,
       "letter": "B",
-      "column": 2
+      "seat_column": 2
   },
   {
       "id": "",
@@ -4483,9 +4483,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "3",
       "seat_location_id": "1",
-      "row": "10",
+      "seat_row": 10,
       "letter": "C",
-      "column": 3
+      "seat_column": 3
   },
   {
       "id": "",
@@ -4495,9 +4495,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "3",
       "seat_location_id": "1",
-      "row": "10",
+      "seat_row": 10,
       "letter": "D",
-      "column": 4
+      "seat_column": 4
   },
   {
       "id": "",
@@ -4507,9 +4507,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "2",
       "seat_location_id": "1",
-      "row": "10",
+      "seat_row": 10,
       "letter": "E",
-      "column": 5
+      "seat_column": 5
   },
   {
       "id": "",
@@ -4519,9 +4519,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "10",
+      "seat_row": 10,
       "letter": "F",
-      "column": 6
+      "seat_column": 6
   },
   {
       "id": "",
@@ -4531,9 +4531,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "11",
+      "seat_row": 11,
       "letter": "A",
-      "column": 1
+      "seat_column": 1
   },
   {
       "id": "",
@@ -4543,9 +4543,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "2",
       "seat_location_id": "1",
-      "row": "11",
+      "seat_row": 11,
       "letter": "B",
-      "column": 2
+      "seat_column": 2
   },
   {
       "id": "",
@@ -4555,9 +4555,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "3",
       "seat_location_id": "1",
-      "row": "11",
+      "seat_row": 11,
       "letter": "C",
-      "column": 3
+      "seat_column": 3
   },
   {
       "id": "",
@@ -4567,9 +4567,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "3",
       "seat_location_id": "1",
-      "row": "11",
+      "seat_row": 11,
       "letter": "D",
-      "column": 4
+      "seat_column": 4
   },
   {
       "id": "",
@@ -4579,9 +4579,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "2",
       "seat_location_id": "1",
-      "row": "11",
+      "seat_row": 11,
       "letter": "E",
-      "column": 5
+      "seat_column": 5
   },
   {
       "id": "",
@@ -4591,9 +4591,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "1",
-      "row": "11",
+      "seat_row": 11,
       "letter": "F",
-      "column": 6
+      "seat_column": 6
   },
   {
       "id": "",
@@ -4603,9 +4603,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "2",
-      "row": "12",
+      "seat_row": 12,
       "letter": "A",
-      "column": 1
+      "seat_column": 1
   },
   {
       "id": "",
@@ -4615,9 +4615,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "2",
       "seat_location_id": "2",
-      "row": "12",
+      "seat_row": 12,
       "letter": "B",
-      "column": 2
+      "seat_column": 2
   },
   {
       "id": "",
@@ -4627,9 +4627,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "3",
       "seat_location_id": "2",
-      "row": "12",
+      "seat_row": 12,
       "letter": "C",
-      "column": 3
+      "seat_column": 3
   },
   {
       "id": "",
@@ -4639,9 +4639,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "3",
       "seat_location_id": "2",
-      "row": "12",
+      "seat_row": 12,
       "letter": "D",
-      "column": 4
+      "seat_column": 4
   },
   {
       "id": "",
@@ -4651,9 +4651,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "2",
       "seat_location_id": "2",
-      "row": "12",
+      "seat_row": 12,
       "letter": "E",
-      "column": 5
+      "seat_column": 5
   },
   {
       "id": "",
@@ -4663,9 +4663,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "2",
-      "row": "12",
+      "seat_row": 12,
       "letter": "F",
-      "column": 6
+      "seat_column": 6
   },
   {
       "id": "",
@@ -4675,9 +4675,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "2",
-      "row": "13",
+      "seat_row": 13,
       "letter": "A",
-      "column": 1
+      "seat_column": 1
   },
   {
       "id": "",
@@ -4687,9 +4687,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "2",
       "seat_location_id": "2",
-      "row": "13",
+      "seat_row": 13,
       "letter": "B",
-      "column": 2
+      "seat_column": 2
   },
   {
       "id": "",
@@ -4699,9 +4699,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "3",
       "seat_location_id": "2",
-      "row": "13",
+      "seat_row": 13,
       "letter": "C",
-      "column": 3
+      "seat_column": 3
   },
   {
       "id": "",
@@ -4711,9 +4711,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "3",
       "seat_location_id": "2",
-      "row": "13",
+      "seat_row": 13,
       "letter": "D",
-      "column": 4
+      "seat_column": 4
   },
   {
       "id": "",
@@ -4723,9 +4723,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "2",
       "seat_location_id": "2",
-      "row": "13",
+      "seat_row": 13,
       "letter": "E",
-      "column": 5
+      "seat_column": 5
   },
   {
       "id": "",
@@ -4735,9 +4735,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "2",
-      "row": "13",
+      "seat_row": 13,
       "letter": "F",
-      "column": 6
+      "seat_column": 6
   },
   {
       "id": "",
@@ -4747,9 +4747,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "2",
-      "row": "14",
+      "seat_row": 14,
       "letter": "A",
-      "column": 1
+      "seat_column": 1
   },
   {
       "id": "",
@@ -4759,9 +4759,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "2",
       "seat_location_id": "2",
-      "row": "14",
+      "seat_row": 14,
       "letter": "B",
-      "column": 2
+      "seat_column": 2
   },
   {
       "id": "",
@@ -4771,9 +4771,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "3",
       "seat_location_id": "2",
-      "row": "14",
+      "seat_row": 14,
       "letter": "C",
-      "column": 3
+      "seat_column": 3
   },
   {
       "id": "",
@@ -4783,9 +4783,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "3",
       "seat_location_id": "2",
-      "row": "14",
+      "seat_row": 14,
       "letter": "D",
-      "column": 4
+      "seat_column": 4
   },
   {
       "id": "",
@@ -4795,9 +4795,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "2",
       "seat_location_id": "2",
-      "row": "14",
+      "seat_row": 14,
       "letter": "E",
-      "column": 5
+      "seat_column": 5
   },
   {
       "id": "",
@@ -4807,9 +4807,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "2",
-      "row": "14",
+      "seat_row": 14,
       "letter": "F",
-      "column": 6
+      "seat_column": 6
   },
   {
       "id": "",
@@ -4819,9 +4819,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "2",
-      "row": "15",
+      "seat_row": 15,
       "letter": "A",
-      "column": 1
+      "seat_column": 1
   },
   {
       "id": "",
@@ -4831,9 +4831,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "2",
       "seat_location_id": "2",
-      "row": "15",
+      "seat_row": 15,
       "letter": "B",
-      "column": 2
+      "seat_column": 2
   },
   {
       "id": "",
@@ -4843,9 +4843,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "3",
       "seat_location_id": "2",
-      "row": "15",
+      "seat_row": 15,
       "letter": "C",
-      "column": 3
+      "seat_column": 3
   },
   {
       "id": "",
@@ -4855,9 +4855,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "3",
       "seat_location_id": "2",
-      "row": "15",
+      "seat_row": 15,
       "letter": "D",
-      "column": 4
+      "seat_column": 4
   },
   {
       "id": "",
@@ -4867,9 +4867,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "2",
       "seat_location_id": "2",
-      "row": "15",
+      "seat_row": 15,
       "letter": "E",
-      "column": 5
+      "seat_column": 5
   },
   {
       "id": "",
@@ -4879,9 +4879,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "2",
-      "row": "15",
+      "seat_row": 15,
       "letter": "F",
-      "column": 6
+      "seat_column": 6
   },
   {
       "id": "",
@@ -4891,9 +4891,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "1",
       "seat_location_id": "2",
-      "row": "16",
+      "seat_row": 16,
       "letter": "A",
-      "column": 1
+      "seat_column": 1
   },
   {
       "id": "",
@@ -4903,9 +4903,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "2",
-      "row": "16",
+      "seat_row": 16,
       "letter": "B",
-      "column": 2
+      "seat_column": 2
   },
   {
       "id": "",
@@ -4915,9 +4915,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "3",
       "seat_location_id": "2",
-      "row": "16",
+      "seat_row": 16,
       "letter": "C",
-      "column": 3
+      "seat_column": 3
   },
   {
       "id": "",
@@ -4927,9 +4927,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "3",
       "seat_location_id": "2",
-      "row": "16",
+      "seat_row": 16,
       "letter": "D",
-      "column": 4
+      "seat_column": 4
   },
   {
       "id": "",
@@ -4939,9 +4939,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "2",
-      "row": "16",
+      "seat_row": 16,
       "letter": "E",
-      "column": 5
+      "seat_column": 5
   },
   {
       "id": "",
@@ -4951,9 +4951,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "1",
       "seat_location_id": "2",
-      "row": "16",
+      "seat_row": 16,
       "letter": "F",
-      "column": 6
+      "seat_column": 6
   },
   {
       "id": "",
@@ -4963,9 +4963,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "1",
       "seat_location_id": "2",
-      "row": "17",
+      "seat_row": 17,
       "letter": "A",
-      "column": 1
+      "seat_column": 1
   },
   {
       "id": "",
@@ -4975,9 +4975,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "2",
-      "row": "17",
+      "seat_row": 17,
       "letter": "B",
-      "column": 2
+      "seat_column": 2
   },
   {
       "id": "",
@@ -4987,9 +4987,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "3",
       "seat_location_id": "2",
-      "row": "17",
+      "seat_row": 17,
       "letter": "C",
-      "column": 3
+      "seat_column": 3
   },
   {
       "id": "",
@@ -4999,9 +4999,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "3",
       "seat_location_id": "2",
-      "row": "17",
+      "seat_row": 17,
       "letter": "D",
-      "column": 4
+      "seat_column": 4
   },
   {
       "id": "",
@@ -5011,9 +5011,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "2",
       "seat_location_id": "2",
-      "row": "17",
+      "seat_row": 17,
       "letter": "E",
-      "column": 5
+      "seat_column": 5
   },
   {
       "id": "",
@@ -5023,9 +5023,9 @@ module.exports = [
       "legroom": "TRUE",
       "seat_position_id": "1",
       "seat_location_id": "2",
-      "row": "17",
+      "seat_row": 17,
       "letter": "F",
-      "column": 6
+      "seat_column": 6
   },
   {
       "id": "",
@@ -5035,9 +5035,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "2",
-      "row": "18",
+      "seat_row": 18,
       "letter": "A",
-      "column": 1
+      "seat_column": 1
   },
   {
       "id": "",
@@ -5047,9 +5047,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "2",
       "seat_location_id": "2",
-      "row": "18",
+      "seat_row": 18,
       "letter": "B",
-      "column": 2
+      "seat_column": 2
   },
   {
       "id": "",
@@ -5059,9 +5059,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "3",
       "seat_location_id": "2",
-      "row": "18",
+      "seat_row": 18,
       "letter": "C",
-      "column": 3
+      "seat_column": 3
   },
   {
       "id": "",
@@ -5071,9 +5071,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "3",
       "seat_location_id": "2",
-      "row": "18",
+      "seat_row": 18,
       "letter": "D",
-      "column": 4
+      "seat_column": 4
   },
   {
       "id": "",
@@ -5083,9 +5083,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "2",
       "seat_location_id": "2",
-      "row": "18",
+      "seat_row": 18,
       "letter": "E",
-      "column": 5
+      "seat_column": 5
   },
   {
       "id": "",
@@ -5095,9 +5095,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "2",
-      "row": "18",
+      "seat_row": 18,
       "letter": "F",
-      "column": 6
+      "seat_column": 6
   },
   {
       "id": "",
@@ -5107,9 +5107,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "2",
-      "row": "19",
+      "seat_row": 19,
       "letter": "A",
-      "column": 1
+      "seat_column": 1
   },
   {
       "id": "",
@@ -5119,9 +5119,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "2",
       "seat_location_id": "2",
-      "row": "19",
+      "seat_row": 19,
       "letter": "B",
-      "column": 2
+      "seat_column": 2
   },
   {
       "id": "",
@@ -5131,9 +5131,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "3",
       "seat_location_id": "2",
-      "row": "19",
+      "seat_row": 19,
       "letter": "C",
-      "column": 3
+      "seat_column": 3
   },
   {
       "id": "",
@@ -5143,9 +5143,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "3",
       "seat_location_id": "2",
-      "row": "19",
+      "seat_row": 19,
       "letter": "D",
-      "column": 4
+      "seat_column": 4
   },
   {
       "id": "",
@@ -5155,9 +5155,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "2",
       "seat_location_id": "2",
-      "row": "19",
+      "seat_row": 19,
       "letter": "E",
-      "column": 5
+      "seat_column": 5
   },
   {
       "id": "",
@@ -5167,9 +5167,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "2",
-      "row": "19",
+      "seat_row": 19,
       "letter": "F",
-      "column": 6
+      "seat_column": 6
   },
   {
       "id": "",
@@ -5179,9 +5179,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "2",
-      "row": "20",
+      "seat_row": 20,
       "letter": "A",
-      "column": 1
+      "seat_column": 1
   },
   {
       "id": "",
@@ -5191,9 +5191,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "2",
       "seat_location_id": "2",
-      "row": "20",
+      "seat_row": 20,
       "letter": "B",
-      "column": 2
+      "seat_column": 2
   },
   {
       "id": "",
@@ -5203,9 +5203,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "3",
       "seat_location_id": "2",
-      "row": "20",
+      "seat_row": 20,
       "letter": "C",
-      "column": 3
+      "seat_column": 3
   },
   {
       "id": "",
@@ -5215,9 +5215,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "3",
       "seat_location_id": "2",
-      "row": "20",
+      "seat_row": 20,
       "letter": "D",
-      "column": 4
+      "seat_column": 4
   },
   {
       "id": "",
@@ -5227,9 +5227,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "2",
       "seat_location_id": "2",
-      "row": "20",
+      "seat_row": 20,
       "letter": "E",
-      "column": 5
+      "seat_column": 5
   },
   {
       "id": "",
@@ -5239,9 +5239,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "2",
-      "row": "20",
+      "seat_row": 20,
       "letter": "F",
-      "column": 6
+      "seat_column": 6
   },
   {
       "id": "",
@@ -5251,9 +5251,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "2",
-      "row": "21",
+      "seat_row": 21,
       "letter": "A",
-      "column": 1
+      "seat_column": 1
   },
   {
       "id": "",
@@ -5263,9 +5263,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "2",
       "seat_location_id": "2",
-      "row": "21",
+      "seat_row": 21,
       "letter": "B",
-      "column": 2
+      "seat_column": 2
   },
   {
       "id": "",
@@ -5275,9 +5275,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "3",
       "seat_location_id": "2",
-      "row": "21",
+      "seat_row": 21,
       "letter": "C",
-      "column": 3
+      "seat_column": 3
   },
   {
       "id": "",
@@ -5287,9 +5287,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "3",
       "seat_location_id": "2",
-      "row": "21",
+      "seat_row": 21,
       "letter": "D",
-      "column": 4
+      "seat_column": 4
   },
   {
       "id": "",
@@ -5299,9 +5299,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "2",
       "seat_location_id": "2",
-      "row": "21",
+      "seat_row": 21,
       "letter": "E",
-      "column": 5
+      "seat_column": 5
   },
   {
       "id": "",
@@ -5311,9 +5311,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "2",
-      "row": "21",
+      "seat_row": 21,
       "letter": "F",
-      "column": 6
+      "seat_column": 6
   },
   {
       "id": "",
@@ -5323,9 +5323,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "2",
-      "row": "22",
+      "seat_row": 22,
       "letter": "A",
-      "column": 1
+      "seat_column": 1
   },
   {
       "id": "",
@@ -5335,9 +5335,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "2",
       "seat_location_id": "2",
-      "row": "22",
+      "seat_row": 22,
       "letter": "B",
-      "column": 2
+      "seat_column": 2
   },
   {
       "id": "",
@@ -5347,9 +5347,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "3",
       "seat_location_id": "2",
-      "row": "22",
+      "seat_row": 22,
       "letter": "C",
-      "column": 3
+      "seat_column": 3
   },
   {
       "id": "",
@@ -5359,9 +5359,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "3",
       "seat_location_id": "2",
-      "row": "22",
+      "seat_row": 22,
       "letter": "D",
-      "column": 4
+      "seat_column": 4
   },
   {
       "id": "",
@@ -5371,9 +5371,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "2",
       "seat_location_id": "2",
-      "row": "22",
+      "seat_row": 22,
       "letter": "E",
-      "column": 5
+      "seat_column": 5
   },
   {
       "id": "",
@@ -5383,9 +5383,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "2",
-      "row": "22",
+      "seat_row": 22,
       "letter": "F",
-      "column": 6
+      "seat_column": 6
   },
   {
       "id": "",
@@ -5395,9 +5395,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "3",
-      "row": "23",
+      "seat_row": 23,
       "letter": "A",
-      "column": 1
+      "seat_column": 1
   },
   {
       "id": "",
@@ -5407,9 +5407,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "2",
       "seat_location_id": "3",
-      "row": "23",
+      "seat_row": 23,
       "letter": "B",
-      "column": 2
+      "seat_column": 2
   },
   {
       "id": "",
@@ -5419,9 +5419,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "3",
       "seat_location_id": "3",
-      "row": "23",
+      "seat_row": 23,
       "letter": "C",
-      "column": 3
+      "seat_column": 3
   },
   {
       "id": "",
@@ -5431,9 +5431,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "3",
       "seat_location_id": "3",
-      "row": "23",
+      "seat_row": 23,
       "letter": "D",
-      "column": 4
+      "seat_column": 4
   },
   {
       "id": "",
@@ -5443,9 +5443,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "2",
       "seat_location_id": "3",
-      "row": "23",
+      "seat_row": 23,
       "letter": "E",
-      "column": 5
+      "seat_column": 5
   },
   {
       "id": "",
@@ -5455,9 +5455,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "3",
-      "row": "23",
+      "seat_row": 23,
       "letter": "F",
-      "column": 6
+      "seat_column": 6
   },
   {
       "id": "",
@@ -5467,9 +5467,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "3",
-      "row": "24",
+      "seat_row": 24,
       "letter": "A",
-      "column": 1
+      "seat_column": 1
   },
   {
       "id": "",
@@ -5479,9 +5479,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "2",
       "seat_location_id": "3",
-      "row": "24",
+      "seat_row": 24,
       "letter": "B",
-      "column": 2
+      "seat_column": 2
   },
   {
       "id": "",
@@ -5491,9 +5491,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "3",
       "seat_location_id": "3",
-      "row": "24",
+      "seat_row": 24,
       "letter": "C",
-      "column": 3
+      "seat_column": 3
   },
   {
       "id": "",
@@ -5503,9 +5503,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "3",
       "seat_location_id": "3",
-      "row": "24",
+      "seat_row": 24,
       "letter": "D",
-      "column": 4
+      "seat_column": 4
   },
   {
       "id": "",
@@ -5515,9 +5515,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "2",
       "seat_location_id": "3",
-      "row": "24",
+      "seat_row": 24,
       "letter": "E",
-      "column": 5
+      "seat_column": 5
   },
   {
       "id": "",
@@ -5527,9 +5527,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "3",
-      "row": "24",
+      "seat_row": 24,
       "letter": "F",
-      "column": 6
+      "seat_column": 6
   },
   {
       "id": "",
@@ -5539,9 +5539,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "3",
-      "row": "25",
+      "seat_row": 25,
       "letter": "A",
-      "column": 1
+      "seat_column": 1
   },
   {
       "id": "",
@@ -5551,9 +5551,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "2",
       "seat_location_id": "3",
-      "row": "25",
+      "seat_row": 25,
       "letter": "B",
-      "column": 2
+      "seat_column": 2
   },
   {
       "id": "",
@@ -5563,9 +5563,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "3",
       "seat_location_id": "3",
-      "row": "25",
+      "seat_row": 25,
       "letter": "C",
-      "column": 3
+      "seat_column": 3
   },
   {
       "id": "",
@@ -5575,9 +5575,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "3",
       "seat_location_id": "3",
-      "row": "25",
+      "seat_row": 25,
       "letter": "D",
-      "column": 4
+      "seat_column": 4
   },
   {
       "id": "",
@@ -5587,9 +5587,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "2",
       "seat_location_id": "3",
-      "row": "25",
+      "seat_row": 25,
       "letter": "E",
-      "column": 5
+      "seat_column": 5
   },
   {
       "id": "",
@@ -5599,9 +5599,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "3",
-      "row": "25",
+      "seat_row": 25,
       "letter": "F",
-      "column": 6
+      "seat_column": 6
   },
   {
       "id": "",
@@ -5611,9 +5611,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "3",
-      "row": "26",
+      "seat_row": 26,
       "letter": "A",
-      "column": 1
+      "seat_column": 1
   },
   {
       "id": "",
@@ -5623,9 +5623,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "2",
       "seat_location_id": "3",
-      "row": "26",
+      "seat_row": 26,
       "letter": "B",
-      "column": 2
+      "seat_column": 2
   },
   {
       "id": "",
@@ -5635,9 +5635,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "3",
       "seat_location_id": "3",
-      "row": "26",
+      "seat_row": 26,
       "letter": "C",
-      "column": 3
+      "seat_column": 3
   },
   {
       "id": "",
@@ -5647,9 +5647,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "3",
       "seat_location_id": "3",
-      "row": "26",
+      "seat_row": 26,
       "letter": "D",
-      "column": 4
+      "seat_column": 4
   },
   {
       "id": "",
@@ -5659,9 +5659,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "2",
       "seat_location_id": "3",
-      "row": "26",
+      "seat_row": 26,
       "letter": "E",
-      "column": 5
+      "seat_column": 5
   },
   {
       "id": "",
@@ -5671,9 +5671,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "3",
-      "row": "26",
+      "seat_row": 26,
       "letter": "F",
-      "column": 6
+      "seat_column": 6
   },
   {
       "id": "",
@@ -5683,9 +5683,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "3",
-      "row": "27",
+      "seat_row": 27,
       "letter": "A",
-      "column": 1
+      "seat_column": 1
   },
   {
       "id": "",
@@ -5695,9 +5695,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "2",
       "seat_location_id": "3",
-      "row": "27",
+      "seat_row": 27,
       "letter": "B",
-      "column": 2
+      "seat_column": 2
   },
   {
       "id": "",
@@ -5707,9 +5707,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "3",
       "seat_location_id": "3",
-      "row": "27",
+      "seat_row": 27,
       "letter": "C",
-      "column": 3
+      "seat_column": 3
   },
   {
       "id": "",
@@ -5719,9 +5719,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "3",
       "seat_location_id": "3",
-      "row": "27",
+      "seat_row": 27,
       "letter": "D",
-      "column": 4
+      "seat_column": 4
   },
   {
       "id": "",
@@ -5731,9 +5731,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "2",
       "seat_location_id": "3",
-      "row": "27",
+      "seat_row": 27,
       "letter": "E",
-      "column": 5
+      "seat_column": 5
   },
   {
       "id": "",
@@ -5743,9 +5743,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "3",
-      "row": "27",
+      "seat_row": 27,
       "letter": "F",
-      "column": 6
+      "seat_column": 6
   },
   {
       "id": "",
@@ -5755,9 +5755,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "3",
-      "row": "28",
+      "seat_row": 28,
       "letter": "A",
-      "column": 1
+      "seat_column": 1
   },
   {
       "id": "",
@@ -5767,9 +5767,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "2",
       "seat_location_id": "3",
-      "row": "28",
+      "seat_row": 28,
       "letter": "B",
-      "column": 2
+      "seat_column": 2
   },
   {
       "id": "",
@@ -5779,9 +5779,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "3",
       "seat_location_id": "3",
-      "row": "28",
+      "seat_row": 28,
       "letter": "C",
-      "column": 3
+      "seat_column": 3
   },
   {
       "id": "",
@@ -5791,9 +5791,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "3",
       "seat_location_id": "3",
-      "row": "28",
+      "seat_row": 28,
       "letter": "D",
-      "column": 4
+      "seat_column": 4
   },
   {
       "id": "",
@@ -5803,9 +5803,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "2",
       "seat_location_id": "3",
-      "row": "28",
+      "seat_row": 28,
       "letter": "E",
-      "column": 5
+      "seat_column": 5
   },
   {
       "id": "",
@@ -5815,9 +5815,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "3",
-      "row": "28",
+      "seat_row": 28,
       "letter": "F",
-      "column": 6
+      "seat_column": 6
   },
   {
       "id": "",
@@ -5827,9 +5827,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "3",
-      "row": "29",
+      "seat_row": 29,
       "letter": "A",
-      "column": 1
+      "seat_column": 1
   },
   {
       "id": "",
@@ -5839,9 +5839,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "2",
       "seat_location_id": "3",
-      "row": "29",
+      "seat_row": 29,
       "letter": "B",
-      "column": 2
+      "seat_column": 2
   },
   {
       "id": "",
@@ -5851,9 +5851,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "3",
       "seat_location_id": "3",
-      "row": "29",
+      "seat_row": 29,
       "letter": "C",
-      "column": 3
+      "seat_column": 3
   },
   {
       "id": "",
@@ -5863,9 +5863,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "3",
       "seat_location_id": "3",
-      "row": "29",
+      "seat_row": 29,
       "letter": "D",
-      "column": 4
+      "seat_column": 4
   },
   {
       "id": "",
@@ -5875,9 +5875,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "2",
       "seat_location_id": "3",
-      "row": "29",
+      "seat_row": 29,
       "letter": "E",
-      "column": 5
+      "seat_column": 5
   },
   {
       "id": "",
@@ -5887,9 +5887,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "3",
-      "row": "29",
+      "seat_row": 29,
       "letter": "F",
-      "column": 6
+      "seat_column": 6
   },
   {
       "id": "",
@@ -5899,9 +5899,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "3",
-      "row": "30",
+      "seat_row": 30,
       "letter": "A",
-      "column": 1
+      "seat_column": 1
   },
   {
       "id": "",
@@ -5911,9 +5911,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "2",
       "seat_location_id": "3",
-      "row": "30",
+      "seat_row": 30,
       "letter": "B",
-      "column": 2
+      "seat_column": 2
   },
   {
       "id": "",
@@ -5923,9 +5923,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "3",
       "seat_location_id": "3",
-      "row": "30",
+      "seat_row": 30,
       "letter": "C",
-      "column": 3
+      "seat_column": 3
   },
   {
       "id": "",
@@ -5935,9 +5935,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "3",
       "seat_location_id": "3",
-      "row": "30",
+      "seat_row": 30,
       "letter": "D",
-      "column": 4
+      "seat_column": 4
   },
   {
       "id": "",
@@ -5947,9 +5947,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "2",
       "seat_location_id": "3",
-      "row": "30",
+      "seat_row": 30,
       "letter": "E",
-      "column": 5
+      "seat_column": 5
   },
   {
       "id": "",
@@ -5959,9 +5959,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "3",
-      "row": "30",
+      "seat_row": 30,
       "letter": "F",
-      "column": 6
+      "seat_column": 6
   },
   {
       "id": "",
@@ -5971,9 +5971,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "3",
-      "row": "31",
+      "seat_row": 31,
       "letter": "A",
-      "column": 1
+      "seat_column": 1
   },
   {
       "id": "",
@@ -5983,9 +5983,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "2",
       "seat_location_id": "3",
-      "row": "31",
+      "seat_row": 31,
       "letter": "B",
-      "column": 2
+      "seat_column": 2
   },
   {
       "id": "",
@@ -5995,9 +5995,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "3",
       "seat_location_id": "3",
-      "row": "31",
+      "seat_row": 31,
       "letter": "C",
-      "column": 3
+      "seat_column": 3
   },
   {
       "id": "",
@@ -6007,9 +6007,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "3",
       "seat_location_id": "3",
-      "row": "31",
+      "seat_row": 31,
       "letter": "D",
-      "column": 4
+      "seat_column": 4
   },
   {
       "id": "",
@@ -6019,9 +6019,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "2",
       "seat_location_id": "3",
-      "row": "31",
+      "seat_row": 31,
       "letter": "E",
-      "column": 5
+      "seat_column": 5
   },
   {
       "id": "",
@@ -6031,9 +6031,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "3",
-      "row": "31",
+      "seat_row": 31,
       "letter": "F",
-      "column": 6
+      "seat_column": 6
   },
   {
       "id": "",
@@ -6043,9 +6043,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "3",
-      "row": "32",
+      "seat_row": 32,
       "letter": "A",
-      "column": 1
+      "seat_column": 1
   },
   {
       "id": "",
@@ -6055,9 +6055,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "2",
       "seat_location_id": "3",
-      "row": "32",
+      "seat_row": 32,
       "letter": "B",
-      "column": 2
+      "seat_column": 2
   },
   {
       "id": "",
@@ -6067,9 +6067,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "3",
       "seat_location_id": "3",
-      "row": "32",
+      "seat_row": 32,
       "letter": "C",
-      "column": 3
+      "seat_column": 3
   },
   {
       "id": "",
@@ -6079,9 +6079,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "3",
       "seat_location_id": "3",
-      "row": "32",
+      "seat_row": 32,
       "letter": "D",
-      "column": 4
+      "seat_column": 4
   },
   {
       "id": "",
@@ -6091,9 +6091,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "2",
       "seat_location_id": "3",
-      "row": "32",
+      "seat_row": 32,
       "letter": "E",
-      "column": 5
+      "seat_column": 5
   },
   {
       "id": "",
@@ -6103,9 +6103,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "3",
-      "row": "32",
+      "seat_row": 32,
       "letter": "F",
-      "column": 6
+      "seat_column": 6
   },
   {
       "id": "",
@@ -6115,9 +6115,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "3",
-      "row": "33",
+      "seat_row": 33,
       "letter": "A",
-      "column": 1
+      "seat_column": 1
   },
   {
       "id": "",
@@ -6127,9 +6127,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "2",
       "seat_location_id": "3",
-      "row": "33",
+      "seat_row": 33,
       "letter": "B",
-      "column": 2
+      "seat_column": 2
   },
   {
       "id": "",
@@ -6139,9 +6139,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "3",
       "seat_location_id": "3",
-      "row": "33",
+      "seat_row": 33,
       "letter": "C",
-      "column": 3
+      "seat_column": 3
   },
   {
       "id": "",
@@ -6151,9 +6151,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "3",
       "seat_location_id": "3",
-      "row": "33",
+      "seat_row": 33,
       "letter": "D",
-      "column": 4
+      "seat_column": 4
   },
   {
       "id": "",
@@ -6163,9 +6163,9 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "2",
       "seat_location_id": "3",
-      "row": "33",
+      "seat_row": 33,
       "letter": "E",
-      "column": 5
+      "seat_column": 5
   },
   {
       "id": "",
@@ -6175,8 +6175,8 @@ module.exports = [
       "legroom": "FALSE",
       "seat_position_id": "1",
       "seat_location_id": "3",
-      "row": "33",
+      "seat_row": 33,
       "letter": "F",
-      "column": 6
+      "seat_column": 6
   }
 ]
