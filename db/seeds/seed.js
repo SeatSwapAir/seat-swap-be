@@ -60,8 +60,8 @@ const seed = async ({
         center_pref BOOLEAN,
         back_pref BOOLEAN,
         side_by_side_pref BOOLEAN,
-        neighbouring_seat_row_pref BOOLEAN,
-        same_seat_row_pref BOOLEAN
+        neighbouring_row_pref BOOLEAN,
+        same_row_pref BOOLEAN
       );
     `);
 
@@ -209,7 +209,7 @@ const seed = async ({
     await db.query(insertSeatQueryStr);
 
     const insertJourneyPrefsQueryStr = format(
-      'INSERT INTO journey_prefs (user_id, flight_id, legroom_pref, window_pref, middle_pref, aisle_pref, front_pref, center_pref, back_pref, side_by_side_pref, neighbouring_seat_row_pref, same_seat_row_pref) VALUES %L RETURNING *;',
+      'INSERT INTO journey_prefs (user_id, flight_id, legroom_pref, window_pref, middle_pref, aisle_pref, front_pref, center_pref, back_pref, side_by_side_pref, neighbouring_row_pref, same_row_pref) VALUES %L RETURNING *;',
       journeyPrefsData.map(
         ({
           user_id,
@@ -222,8 +222,8 @@ const seed = async ({
           center_pref,
           back_pref,
           side_by_side_pref,
-          neighbouring_seat_row_pref,
-          same_seat_row_pref,
+          neighbouring_row_pref,
+          same_row_pref,
         }) => [
           user_id,
           flight_id,
@@ -235,8 +235,8 @@ const seed = async ({
           center_pref,
           back_pref,
           side_by_side_pref,
-          neighbouring_seat_row_pref,
-          same_seat_row_pref,
+          neighbouring_row_pref,
+          same_row_pref,
         ]
       )
     );
