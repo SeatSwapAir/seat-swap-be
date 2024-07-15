@@ -36,23 +36,6 @@ const seed = async ({
     `);
 
     await db.query(`
-      CREATE TABLE default_prefs (
-        id SERIAL PRIMARY KEY,
-        user_id INTEGER REFERENCES "user"(id),
-        legroom_pref BOOLEAN,
-        window_pref BOOLEAN,
-        middle_pref BOOLEAN,
-        aisle_pref BOOLEAN,
-        front_pref BOOLEAN,
-        center_pref BOOLEAN,
-        back_pref BOOLEAN,
-        side_by_side_pref BOOLEAN,
-        neighbouring_row_pref BOOLEAN,
-        same_row_pref BOOLEAN
-      );
-    `);
-
-    await db.query(`
       CREATE TABLE flight (
         id SERIAL PRIMARY KEY,
         flightNumber VARCHAR(255),
@@ -169,39 +152,6 @@ const seed = async ({
     );
 
     await db.query(insertUserQueryStr);
-
-    const insertDefaultPrefsQueryStr = format(
-      'INSERT INTO default_prefs (user_id, legroom_pref, window_pref, middle_pref, aisle_pref, front_pref, center_pref, back_pref, side_by_side_pref, neighbouring_row_pref, same_row_pref) VALUES %L RETURNING *;',
-      defaultPrefsData.map(
-        ({
-          user_id,
-          legroom_pref,
-          window_pref,
-          middle_pref,
-          aisle_pref,
-          front_pref,
-          center_pref,
-          back_pref,
-          side_by_side_pref,
-          neighbouring_row_pref,
-          same_row_pref,
-        }) => [
-          user_id,
-          legroom_pref,
-          window_pref,
-          middle_pref,
-          aisle_pref,
-          front_pref,
-          center_pref,
-          back_pref,
-          side_by_side_pref,
-          neighbouring_row_pref,
-          same_row_pref,
-        ]
-      )
-    );
-
-    await db.query(insertDefaultPrefsQueryStr);
 
     const insertFlightQueryStr = format(
       'INSERT INTO flight (flightNumber, departureAirport, arrivalAirport, departureTime, arrivalTime, airline) VALUES %L RETURNING *;',
