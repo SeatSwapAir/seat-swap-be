@@ -41,6 +41,8 @@ describe('GET /api/users/:user_id/flights', () => {
           flight.seats.forEach((seat) => {
             expect(seat).toMatchObject({
               number: expect.any(String),
+              seat_letter: expect.any(String),
+              seat_row: expect.any(Number),
               location: expect.any(String),
               extraLegroom: expect.any(Boolean),
               position: expect.any(String),
@@ -67,6 +69,8 @@ describe('GET /api/users/:user_id/flights', () => {
             id: 2,
             location: 'front',
             number: '8F',
+            seat_letter: 'F',
+            seat_row: 8,
             position: 'window',
           },
         ],
@@ -97,6 +101,8 @@ describe('GET /api/users/:user_id/flights', () => {
             id: 129,
             location: 'front',
             number: '8F',
+            seat_letter: 'F',
+            seat_row: 8,
             position: 'window',
           },
         ],
@@ -127,6 +133,8 @@ describe('GET /api/users/:user_id/flights', () => {
             id: 236,
             location: 'front',
             number: '8F',
+            seat_letter: 'F',
+            seat_row: 8,
             position: 'window',
           },
         ],
@@ -157,6 +165,8 @@ describe('GET /api/users/:user_id/flights', () => {
             id: 292,
             location: 'front',
             number: '8F',
+            seat_letter: 'F',
+            seat_row: 8,
             position: 'window',
           },
         ],
@@ -187,6 +197,8 @@ describe('GET /api/users/:user_id/flights', () => {
             id: 311,
             location: 'front',
             number: '8F',
+            seat_letter: 'F',
+            seat_row: 8,
             position: 'window',
           },
         ],
@@ -217,6 +229,8 @@ describe('GET /api/users/:user_id/flights', () => {
             id: 424,
             location: 'center',
             number: '18E',
+            seat_letter: 'E',
+            seat_row: 18,
             position: 'middle',
           },
           {
@@ -224,6 +238,8 @@ describe('GET /api/users/:user_id/flights', () => {
             id: 483,
             location: 'back',
             number: '28D',
+            seat_letter: 'D',
+            seat_row: 28,
             position: 'aisle',
           }
         ],
@@ -334,6 +350,8 @@ describe('PATCH /api/users/:user_id/flights/:flight_id', () => {
       {
         id: 80,
         number: '12F',
+        seat_letter: 'F',
+        seat_row: 12,
         extraLegroom: false,
         location: 'back',
         position: 'aisle',
@@ -341,6 +359,8 @@ describe('PATCH /api/users/:user_id/flights/:flight_id', () => {
       {
         id: 81,
         number: '20E',
+        seat_letter: 'E',
+        seat_row: 20,
         extraLegroom: false,
         location: 'back',
         position: 'aisle',
@@ -348,6 +368,8 @@ describe('PATCH /api/users/:user_id/flights/:flight_id', () => {
       {
         id: 82,
         number: '13D',
+        seat_letter: 'D',
+        seat_row: 13,
         extraLegroom: true,
         location: 'front',
         position: 'window',
@@ -379,6 +401,8 @@ describe('PATCH /api/users/:user_id/flights/:flight_id', () => {
         {
           id: expect.any(Number),
           number: '12F',
+          seat_letter: 'F',
+          seat_row: 12,
           extraLegroom: false,
           location: 'back',
           position: 'aisle',
@@ -386,6 +410,8 @@ describe('PATCH /api/users/:user_id/flights/:flight_id', () => {
         {
           id: expect.any(Number),
           number: '20E',
+          seat_letter: 'E',
+          seat_row: 20,
           extraLegroom: false,
           location: 'back',
           position: 'aisle',
@@ -393,6 +419,8 @@ describe('PATCH /api/users/:user_id/flights/:flight_id', () => {
         {
           id: expect.any(Number),
           number: '13D',
+          seat_letter: 'D',
+          seat_row: 13,
           extraLegroom: true,
           location: 'front',
           position: 'window',
@@ -492,6 +520,8 @@ describe('POST /api/users/:user_id/flights/:flight_id', () => {
       {
         id: 80,
         number: '12G',
+        seat_letter: 'G',
+        seat_row: 12,
         extraLegroom: false,
         location: 'back',
         position: 'aisle',
@@ -499,6 +529,8 @@ describe('POST /api/users/:user_id/flights/:flight_id', () => {
       {
         id: 81,
         number: '20G',
+        seat_letter: 'G',
+        seat_row: 20,
         extraLegroom: false,
         location: 'back',
         position: 'aisle',
@@ -529,6 +561,9 @@ describe('POST /api/users/:user_id/flights/:flight_id', () => {
         {
           id: expect.any(Number),
           number: '12G',
+          seat_letter: 'G',
+          seat_row: 12,
+          seat_column: 7,
           extraLegroom: false,
           location: 'back',
           position: 'aisle',
@@ -536,6 +571,9 @@ describe('POST /api/users/:user_id/flights/:flight_id', () => {
         {
           id: expect.any(Number),
           number: '20G',
+          seat_letter: 'G',
+          seat_row: 20,
+          seat_column: 7,
           extraLegroom: false,
           location: 'back',
           position: 'aisle',
