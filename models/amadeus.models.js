@@ -1,3 +1,4 @@
+const db = require('../db/connection.js');
 const dayjs = require('dayjs');
 
 const getToken = async () => {
@@ -70,7 +71,14 @@ const getFlightDetails = async (flightNumber, departureTime) => {
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
-    const airline = await getAirlineName(carrierCode, headers);
+    const carrierCodeExist = await db.query(
+      `SELECT * FROM airline WHERE iata = $1;`,
+      [carrierCode]
+    );
+    const airline =
+      carrierCodeExist.rowCount > 0
+        ? carrierCodeExist.rows[0].airline
+        : await getAirlineName(carrierCode, headers);
 
     const flightData = [
       carrierCode + flightNumber,

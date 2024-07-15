@@ -8,7 +8,6 @@ beforeEach(() => seed(data));
 afterAll(() => db.end());
 
 describe('GET /api/flights/:flightNumber/date/:departureTime', () => {
-
   test('200: Responds with a with a flightId if it exists in local DB for a given flightNumber and departureTime', () => {
     return request(app)
       .get('/api/flights/FR9336/date/2024-07-14')
@@ -37,7 +36,7 @@ describe('GET /api/flights/:flightNumber/date/:departureTime', () => {
           arrivalairport: 'LGW',
           departuretime: '2024-08-16T06:50+02:00',
           arrivaltime: '2024-08-16T08:30+01:00',
-          airline: 'RYANAIR',
+          airline: 'Ryanair',
         });
       });
   });
