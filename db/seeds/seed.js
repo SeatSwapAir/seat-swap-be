@@ -84,7 +84,6 @@ const seed = async ({
         id SERIAL PRIMARY KEY,
         flight_id INTEGER REFERENCES flight(id),
         user_id INTEGER REFERENCES "user"(id),
-        number VARCHAR(255),
         seat_row SMALLINT,
         seat_letter CHAR(1),
         seat_column SMALLINT,
@@ -180,12 +179,11 @@ const seed = async ({
     await db.query(insertFlightQueryStr);
 
     const insertSeatQueryStr = format(
-      'INSERT INTO seat (flight_id, user_id, number, legroom, seat_location_id, seat_position_id, seat_row, seat_letter, seat_column) VALUES %L RETURNING *;',
+      'INSERT INTO seat (flight_id, user_id, legroom, seat_location_id, seat_position_id, seat_row, seat_letter, seat_column) VALUES %L RETURNING *;',
       seatData.map(
         ({
           flight_id,
           user_id,
-          number,
           legroom,
           seat_location_id,
           seat_position_id,
@@ -195,7 +193,6 @@ const seed = async ({
         }) => [
           flight_id,
           user_id,
-          number,
           legroom,
           seat_location_id,
           seat_position_id,
