@@ -40,7 +40,8 @@ describe('GET /api/users/:user_id/flights', () => {
 
           flight.seats.forEach((seat) => {
             expect(seat).toMatchObject({
-              number: expect.any(String),
+              seat_letter: expect.any(String),
+              seat_row: expect.any(Number),
               location: expect.any(String),
               extraLegroom: expect.any(Boolean),
               position: expect.any(String),
@@ -66,7 +67,8 @@ describe('GET /api/users/:user_id/flights', () => {
             extraLegroom: false,
             id: 2,
             location: 'front',
-            number: '8F',
+            seat_letter: 'F',
+            seat_row: 8,
             position: 'window',
           },
         ],
@@ -96,7 +98,8 @@ describe('GET /api/users/:user_id/flights', () => {
             extraLegroom: false,
             id: 129,
             location: 'front',
-            number: '8F',
+            seat_letter: 'F',
+            seat_row: 8,
             position: 'window',
           },
         ],
@@ -126,7 +129,8 @@ describe('GET /api/users/:user_id/flights', () => {
             extraLegroom: false,
             id: 236,
             location: 'front',
-            number: '8F',
+            seat_letter: 'F',
+            seat_row: 8,
             position: 'window',
           },
         ],
@@ -156,7 +160,8 @@ describe('GET /api/users/:user_id/flights', () => {
             extraLegroom: false,
             id: 292,
             location: 'front',
-            number: '8F',
+            seat_letter: 'F',
+            seat_row: 8,
             position: 'window',
           },
         ],
@@ -186,7 +191,8 @@ describe('GET /api/users/:user_id/flights', () => {
             extraLegroom: false,
             id: 311,
             location: 'front',
-            number: '8F',
+            seat_letter: 'F',
+            seat_row: 8,
             position: 'window',
           },
         ],
@@ -214,18 +220,20 @@ describe('GET /api/users/:user_id/flights', () => {
         seats: [
           {
             extraLegroom: false,
-            id: 424,
-            location: 'center',
-            number: '18E',
-            position: 'middle',
+            id: 483,
+            location: 'back',
+            seat_letter: 'D',
+            seat_row: 28,
+            position: 'aisle',
           },
           {
             extraLegroom: false,
-            id: 483,
-            location: 'back',
-            number: '28D',
-            position: 'aisle',
-          }
+            id: 424,
+            location: 'center',
+            seat_letter: 'E',
+            seat_row: 18,
+            position: 'middle',
+          },
         ],
         preferences: {
           legroom_pref: false,
@@ -246,6 +254,7 @@ describe('GET /api/users/:user_id/flights', () => {
       .expect(200)
       .then(({ body }) => {
         const { flights } = body;
+        // flights.map((flight) => { console.log(flight.seats)})
         expect(flights).toStrictEqual(expected);
       });
   });
@@ -334,6 +343,8 @@ describe('PATCH /api/users/:user_id/flights/:flight_id', () => {
       {
         id: 80,
         number: '12F',
+        seat_letter: 'F',
+        seat_row: 12,
         extraLegroom: false,
         location: 'back',
         position: 'aisle',
@@ -341,6 +352,8 @@ describe('PATCH /api/users/:user_id/flights/:flight_id', () => {
       {
         id: 81,
         number: '20E',
+        seat_letter: 'E',
+        seat_row: 20,
         extraLegroom: false,
         location: 'back',
         position: 'aisle',
@@ -348,6 +361,8 @@ describe('PATCH /api/users/:user_id/flights/:flight_id', () => {
       {
         id: 82,
         number: '13D',
+        seat_letter: 'D',
+        seat_row: 13,
         extraLegroom: true,
         location: 'front',
         position: 'window',
@@ -378,21 +393,24 @@ describe('PATCH /api/users/:user_id/flights/:flight_id', () => {
       seats: [
         {
           id: expect.any(Number),
-          number: '12F',
+          seat_letter: 'F',
+          seat_row: 12,
           extraLegroom: false,
           location: 'back',
           position: 'aisle',
         },
         {
           id: expect.any(Number),
-          number: '20E',
+          seat_letter: 'E',
+          seat_row: 20,
           extraLegroom: false,
           location: 'back',
           position: 'aisle',
         },
         {
           id: expect.any(Number),
-          number: '13D',
+          seat_letter: 'D',
+          seat_row: 13,
           extraLegroom: true,
           location: 'front',
           position: 'window',
@@ -464,6 +482,8 @@ describe('PATCH /api/users/:user_id/flights/:flight_id', () => {
     const extraSeat = {
       id: 327,
       number: '24B',
+      seat_row: 24,
+      seat_letter: 'B',
       extraLegroom: true,
       location: 'back',
       position: 'aisle',
@@ -474,7 +494,7 @@ describe('PATCH /api/users/:user_id/flights/:flight_id', () => {
       .send(newPayload)
       .expect(400)
       .then(({ body }) => {
-        expect(body.msg).toBe('Seat(s) already taken by another passenger');
+        expect(body.msg).toBe('Seat(s) 24B already taken by another passenger');
       });
   });
 });
@@ -492,6 +512,8 @@ describe('POST /api/users/:user_id/flights/:flight_id', () => {
       {
         id: 80,
         number: '12G',
+        seat_letter: 'G',
+        seat_row: 12,
         extraLegroom: false,
         location: 'back',
         position: 'aisle',
@@ -499,6 +521,8 @@ describe('POST /api/users/:user_id/flights/:flight_id', () => {
       {
         id: 81,
         number: '20G',
+        seat_letter: 'G',
+        seat_row: 20,
         extraLegroom: false,
         location: 'back',
         position: 'aisle',
@@ -528,14 +552,18 @@ describe('POST /api/users/:user_id/flights/:flight_id', () => {
       seats: [
         {
           id: expect.any(Number),
-          number: '12G',
+          seat_letter: 'G',
+          seat_row: 12,
+          seat_column: 7,
           extraLegroom: false,
           location: 'back',
           position: 'aisle',
         },
         {
           id: expect.any(Number),
-          number: '20G',
+          seat_letter: 'G',
+          seat_row: 20,
+          seat_column: 7,
           extraLegroom: false,
           location: 'back',
           position: 'aisle',
@@ -605,6 +633,8 @@ describe('POST /api/users/:user_id/flights/:flight_id', () => {
     const extraSeat = {
       id: 327,
       number: '24B',
+      seat_row: 24,
+      seat_letter: 'B',
       extraLegroom: true,
       location: 'back',
       position: 'aisle',
@@ -615,7 +645,7 @@ describe('POST /api/users/:user_id/flights/:flight_id', () => {
       .send(newPayload)
       .expect(400)
       .then(({ body }) => {
-        expect(body.msg).toBe('Seat(s) already taken by another passenger');
+        expect(body.msg).toBe('Seat(s) 24B already taken by another passenger');
       });
   });
 });

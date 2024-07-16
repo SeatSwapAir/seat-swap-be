@@ -28,7 +28,8 @@ const selectFlightsByUser = async (user_id) => {
         flight.arrivalTime,
         flight.airline,
         seat.id AS seat_id,
-        seat.number AS seat_number,
+        seat.seat_letter AS seat_letter,
+        seat.seat_row AS seat_row,
         seat.legroom AS seat_legroom,
         seat_location.location_name AS seat_location_name,
         seat_position.position_name AS seat_position_name,
@@ -95,7 +96,8 @@ const selectFlightsByUser = async (user_id) => {
       if (row.seat_id) {
         flights[row.flight_id].seats.push({
           id: row.seat_id,
-          number: row.seat_number,
+          seat_letter: row.seat_letter,
+          seat_row: row.seat_row,
           extraLegroom: row.seat_legroom,
           location: row.seat_location_name,
           position: row.seat_position_name,
@@ -182,7 +184,7 @@ const updateFlightByUserIdAndFlightId = async (user_id, flight_id, journey) => {
     preferences,
   } = journey;
   try {
-    const seatNumbers = seats.map((seat) => seat.number);
+    const seatNumbers = seats.map((seat) => seat.seat_row + seat.seat_letter);
 
     const findDuplicates = seatNumbers.filter(
       (seat, index) => seatNumbers.indexOf(seat) !== index
@@ -216,18 +218,31 @@ const updateFlightByUserIdAndFlightId = async (user_id, flight_id, journey) => {
         msg: 'Flight not found',
       });
     }
-    const sql = pgformat(
-      `SELECT * FROM "seat" WHERE user_id != %s AND flight_id = %s AND number IN (%L)`,
-      user_id,
-      flight_id,
-      seatNumbers
-    );
-    const isSeatTaken = await db.query(sql);
+    const takenSeats = (
+      await Promise.all(
+        seats.map(async (seat) => {
+          const sql = pgformat(
+            `SELECT * FROM "seat" WHERE user_id != %s AND flight_id = %s AND seat_row = %s AND seat_letter = '%s'`,
+            user_id,
+            flight_id,
+            seat.seat_row,
+            seat.seat_letter
+          );
+          const isSeatTaken = await db.query(sql);
+          if (isSeatTaken.rowCount === 0) {
+            return false;
+          }
+          return isSeatTaken.rows[0].seat_row + isSeatTaken.rows[0].seat_letter;
+        })
+      )
+    ).filter((seat) => seat !== false);
 
-    if (isSeatTaken.rowCount !== 0) {
+    if (takenSeats.length > 0) {
       return Promise.reject({
         status: 400,
-        msg: 'Seat(s) already taken by another passenger',
+        msg: `Seat(s) ${takenSeats.join(
+          ', '
+        )} already taken by another passenger`,
       });
     }
 
@@ -239,20 +254,24 @@ const updateFlightByUserIdAndFlightId = async (user_id, flight_id, journey) => {
     const seatsForQuery = formatSeatsQuery(seats, user_id, flight_id);
 
     const insertSeatQueryStr = pgformat(
-      `INSERT INTO seat (flight_id, user_id, number, legroom, seat_location_id, seat_position_id) VALUES %L 
+      `INSERT INTO seat (flight_id, user_id, seat_row, seat_letter, seat_column, legroom, seat_location_id, seat_position_id) VALUES %L 
       RETURNING *;`,
       seatsForQuery.map(
         ({
           flight_id,
           user_id,
-          number,
+          seat_row,
+          seat_letter,
+          seat_column,
           legroom,
           seat_location_id,
           seat_position_id,
         }) => [
           flight_id,
           user_id,
-          number,
+          seat_row,
+          seat_letter,
+          seat_column,
           legroom,
           seat_location_id,
           seat_position_id,
@@ -339,7 +358,7 @@ const insertFlightByUserIdAndFlightId = async (user_id, flight_id, journey) => {
     preferences,
   } = journey;
   try {
-    const seatNumbers = seats.map((seat) => seat.number);
+    const seatNumbers = seats.map((seat) => seat.seat_row + seat.seat_letter);
 
     const findDuplicates = seatNumbers.filter(
       (seat, index) => seatNumbers.indexOf(seat) !== index
@@ -373,18 +392,31 @@ const insertFlightByUserIdAndFlightId = async (user_id, flight_id, journey) => {
         msg: 'Flight not found',
       });
     }
-    const sql = pgformat(
-      `SELECT * FROM "seat" WHERE user_id != %s AND flight_id = %s AND number IN (%L)`,
-      user_id,
-      flight_id,
-      seatNumbers
-    );
-    const isSeatTaken = await db.query(sql);
+    const takenSeats = (
+      await Promise.all(
+        seats.map(async (seat) => {
+          const sql = pgformat(
+            `SELECT * FROM "seat" WHERE user_id != %s AND flight_id = %s AND seat_row = %s AND seat_letter = '%s'`,
+            user_id,
+            flight_id,
+            seat.seat_row,
+            seat.seat_letter
+          );
+          const isSeatTaken = await db.query(sql);
+          if (isSeatTaken.rowCount === 0) {
+            return false;
+          }
+          return isSeatTaken.rows[0].seat_row + isSeatTaken.rows[0].seat_letter;
+        })
+      )
+    ).filter((seat) => seat !== false);
 
-    if (isSeatTaken.rowCount !== 0) {
+    if (takenSeats.length > 0) {
       return Promise.reject({
         status: 400,
-        msg: 'Seat(s) already taken by another passenger',
+        msg: `Seat(s) ${takenSeats.join(
+          ', '
+        )} already taken by another passenger`,
       });
     }
 
@@ -396,20 +428,24 @@ const insertFlightByUserIdAndFlightId = async (user_id, flight_id, journey) => {
     const seatsForQuery = formatSeatsQuery(seats, user_id, flight_id);
 
     const insertSeatQueryStr = pgformat(
-      `INSERT INTO seat (flight_id, user_id, number, legroom, seat_location_id, seat_position_id) VALUES %L 
+      `INSERT INTO seat (flight_id, user_id, seat_row, seat_letter, seat_column, legroom, seat_location_id, seat_position_id) VALUES %L 
           RETURNING *;`,
       seatsForQuery.map(
         ({
           flight_id,
           user_id,
-          number,
+          seat_row,
+          seat_letter,
+          seat_column,
           legroom,
           seat_location_id,
           seat_position_id,
         }) => [
           flight_id,
           user_id,
-          number,
+          seat_row,
+          seat_letter,
+          seat_column,
           legroom,
           seat_location_id,
           seat_position_id,
