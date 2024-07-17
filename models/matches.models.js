@@ -14,24 +14,9 @@ const selectSideBySideMatches = async (user_id, flight_id) => {
       [flight_id, user_id]
     );
 
-    const side_by_side_matches = await Promise.all (usersSeats.rows.map(async (seat) => {
-      const current_seats = {
-        id: seat.id,
-        seat_row: seat.seat_row,
-        seat_letter: seat.seat_letter,
-        extraLegroom: seat.legroom,
-        position: getPositionName(seat.seat_position_id),
-        location: getLocationName(seat.seat_location_id),
-      };
-      const sql = pgformat(
-        'SELECT * FROM seat WHERE flight_id = %s AND seat_row = %s AND seat_column IN (%L);',
-        flight_id,
-        seat.seat_row,
-        [seat.seat_column + 1, seat.seat_column - 1]
-      );
-      const {rows} = await db.query(sql);
-      const offer_seats = rows.map((seat) => {
-        return {
+    const side_by_side_matches = await Promise.all(
+      usersSeats.rows.map(async (seat) => {
+        const current_seats = {
           id: seat.id,
           seat_row: seat.seat_row,
           seat_letter: seat.seat_letter,
@@ -39,13 +24,30 @@ const selectSideBySideMatches = async (user_id, flight_id) => {
           position: getPositionName(seat.seat_position_id),
           location: getLocationName(seat.seat_location_id),
         };
-      });
+        const sql = pgformat(
+          'SELECT * FROM seat WHERE flight_id = %s AND seat_row = %s AND seat_column IN (%L);',
+          flight_id,
+          seat.seat_row,
+          [seat.seat_column + 1, seat.seat_column - 1]
+        );
+        const { rows } = await db.query(sql);
+        const offer_seats = rows.map((seat) => {
+          return {
+            id: seat.id,
+            seat_row: seat.seat_row,
+            seat_letter: seat.seat_letter,
+            extraLegroom: seat.legroom,
+            position: getPositionName(seat.seat_position_id),
+            location: getLocationName(seat.seat_location_id),
+          };
+        });
 
-      return {
-        current_seats: current_seats,
-        offer_seats: offer_seats,
-      };
-    }));
+        return {
+          current_seats: current_seats,
+          offer_seats: offer_seats,
+        };
+      })
+    );
     return side_by_side_matches;
   } catch (err) {
     throw err;
@@ -55,4 +57,3 @@ const selectSideBySideMatches = async (user_id, flight_id) => {
 module.exports = {
   selectSideBySideMatches,
 };
-

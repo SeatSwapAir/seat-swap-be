@@ -4,19 +4,17 @@ const {
   formatSeatsQuery,
   formatSeatsReturn,
 } = require('../helpers/seatsArrayTranformer.js');
+const {
+  doesUserExist,
+  doesFlightExist,
+  isSeatDuplicate,
+  isSeatTaken,
+  seatsInsertedFormatted,
+} = require('../helpers/errorChecks');
 
 const selectFlightsByUser = async (user_id) => {
   try {
-    const userResult = await db.query(`SELECT * FROM "user" WHERE id = $1;`, [
-      user_id,
-    ]);
-
-    if (userResult.rows.length === 0) {
-      return Promise.reject({
-        status: 404,
-        msg: 'User not found',
-      });
-    }
+    await doesUserExist(user_id);
 
     const userFlightResult = await db.query(
       `SELECT 
@@ -186,102 +184,23 @@ const updateFlightByUserIdAndFlightId = async (user_id, flight_id, journey) => {
   try {
     const seatNumbers = seats.map((seat) => seat.seat_row + seat.seat_letter);
 
-    const findDuplicates = seatNumbers.filter(
-      (seat, index) => seatNumbers.indexOf(seat) !== index
-    );
-    if (findDuplicates.length > 0) {
-      return Promise.reject({
-        status: 400,
-        msg: 'You cannot enter the same seat twice. Remove duplicate.',
-      });
-    }
+    isSeatDuplicate(seatNumbers);
 
-    const doesUserExist = await db.query(`SELECT * FROM "user" WHERE id = $1`, [
-      user_id,
-    ]);
+    await doesUserExist(user_id);
+    await doesFlightExist(flight_id);
 
-    if (doesUserExist.rowCount === 0) {
-      return Promise.reject({
-        status: 404,
-        msg: 'User not found',
-      });
-    }
-
-    const doesFlightExist = await db.query(
-      `SELECT * FROM "flight" WHERE id = $1`,
-      [flight_id]
-    );
-
-    if (doesFlightExist.rowCount === 0) {
-      return Promise.reject({
-        status: 404,
-        msg: 'Flight not found',
-      });
-    }
-    const takenSeats = (
-      await Promise.all(
-        seats.map(async (seat) => {
-          const sql = pgformat(
-            `SELECT * FROM "seat" WHERE user_id != %s AND flight_id = %s AND seat_row = %s AND seat_letter = '%s'`,
-            user_id,
-            flight_id,
-            seat.seat_row,
-            seat.seat_letter
-          );
-          const isSeatTaken = await db.query(sql);
-          if (isSeatTaken.rowCount === 0) {
-            return false;
-          }
-          return isSeatTaken.rows[0].seat_row + isSeatTaken.rows[0].seat_letter;
-        })
-      )
-    ).filter((seat) => seat !== false);
-
-    if (takenSeats.length > 0) {
-      return Promise.reject({
-        status: 400,
-        msg: `Seat(s) ${takenSeats.join(
-          ', '
-        )} already taken by another passenger`,
-      });
-    }
+    await isSeatTaken(seats, user_id, flight_id);
 
     await db.query(`DELETE FROM "seat" WHERE user_id = $1 AND flight_id= $2`, [
       user_id,
       flight_id,
     ]);
 
-    const seatsForQuery = formatSeatsQuery(seats, user_id, flight_id);
-
-    const insertSeatQueryStr = pgformat(
-      `INSERT INTO seat (flight_id, user_id, seat_row, seat_letter, seat_column, legroom, seat_location_id, seat_position_id) VALUES %L 
-      RETURNING *;`,
-      seatsForQuery.map(
-        ({
-          flight_id,
-          user_id,
-          seat_row,
-          seat_letter,
-          seat_column,
-          legroom,
-          seat_location_id,
-          seat_position_id,
-        }) => [
-          flight_id,
-          user_id,
-          seat_row,
-          seat_letter,
-          seat_column,
-          legroom,
-          seat_location_id,
-          seat_position_id,
-        ]
-      )
+    const seatsFormatted = await seatsInsertedFormatted(
+      seats,
+      user_id,
+      flight_id
     );
-
-    const newSeats = await db.query(insertSeatQueryStr);
-
-    const seatsFormatted = formatSeatsReturn(newSeats.rows);
 
     const {
       legroom_pref,
@@ -360,102 +279,23 @@ const insertFlightByUserIdAndFlightId = async (user_id, flight_id, journey) => {
   try {
     const seatNumbers = seats.map((seat) => seat.seat_row + seat.seat_letter);
 
-    const findDuplicates = seatNumbers.filter(
-      (seat, index) => seatNumbers.indexOf(seat) !== index
-    );
-    if (findDuplicates.length > 0) {
-      return Promise.reject({
-        status: 400,
-        msg: 'You cannot enter the same seat twice. Remove duplicate.',
-      });
-    }
+    isSeatDuplicate(seatNumbers);
 
-    const doesUserExist = await db.query(`SELECT * FROM "user" WHERE id = $1`, [
-      user_id,
-    ]);
+    await doesUserExist(user_id);
 
-    if (doesUserExist.rowCount === 0) {
-      return Promise.reject({
-        status: 404,
-        msg: 'User not found',
-      });
-    }
+    await doesFlightExist(flight_id);
 
-    const doesFlightExist = await db.query(
-      `SELECT * FROM "flight" WHERE id = $1`,
-      [flight_id]
-    );
-
-    if (doesFlightExist.rowCount === 0) {
-      return Promise.reject({
-        status: 404,
-        msg: 'Flight not found',
-      });
-    }
-    const takenSeats = (
-      await Promise.all(
-        seats.map(async (seat) => {
-          const sql = pgformat(
-            `SELECT * FROM "seat" WHERE user_id != %s AND flight_id = %s AND seat_row = %s AND seat_letter = '%s'`,
-            user_id,
-            flight_id,
-            seat.seat_row,
-            seat.seat_letter
-          );
-          const isSeatTaken = await db.query(sql);
-          if (isSeatTaken.rowCount === 0) {
-            return false;
-          }
-          return isSeatTaken.rows[0].seat_row + isSeatTaken.rows[0].seat_letter;
-        })
-      )
-    ).filter((seat) => seat !== false);
-
-    if (takenSeats.length > 0) {
-      return Promise.reject({
-        status: 400,
-        msg: `Seat(s) ${takenSeats.join(
-          ', '
-        )} already taken by another passenger`,
-      });
-    }
+    await isSeatTaken(seats, user_id, flight_id);
 
     await db.query(`DELETE FROM "seat" WHERE user_id = $1 AND flight_id= $2`, [
       user_id,
       flight_id,
     ]);
-
-    const seatsForQuery = formatSeatsQuery(seats, user_id, flight_id);
-
-    const insertSeatQueryStr = pgformat(
-      `INSERT INTO seat (flight_id, user_id, seat_row, seat_letter, seat_column, legroom, seat_location_id, seat_position_id) VALUES %L 
-          RETURNING *;`,
-      seatsForQuery.map(
-        ({
-          flight_id,
-          user_id,
-          seat_row,
-          seat_letter,
-          seat_column,
-          legroom,
-          seat_location_id,
-          seat_position_id,
-        }) => [
-          flight_id,
-          user_id,
-          seat_row,
-          seat_letter,
-          seat_column,
-          legroom,
-          seat_location_id,
-          seat_position_id,
-        ]
-      )
+    const seatsFormatted = await seatsInsertedFormatted(
+      seats,
+      user_id,
+      flight_id
     );
-
-    const newSeats = await db.query(insertSeatQueryStr);
-
-    const seatsFormatted = formatSeatsReturn(newSeats.rows);
 
     const preferencesArray = [
       flight_id,
