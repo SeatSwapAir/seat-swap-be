@@ -292,7 +292,6 @@ describe('DELETE /api/users/:user_id/flights/:flight_id', () => {
     return request(app).delete('/api/users/2/flights/1').expect(204);
   });
 
-
   test('404: Responds with an error message for a non-existent flight_id', () => {
     return request(app)
       .delete('/api/users/2/flights/2147483647')
@@ -526,7 +525,8 @@ describe('POST /api/users/:user_id/flights/:flight_id', () => {
         extraLegroom: false,
         location: 'back',
         position: 'aisle',
-      }],
+      },
+    ],
     preferences: {
       legroom_pref: false,
       window_pref: true,
@@ -567,7 +567,8 @@ describe('POST /api/users/:user_id/flights/:flight_id', () => {
           extraLegroom: false,
           location: 'back',
           position: 'aisle',
-        }],
+        },
+      ],
       preferences: {
         legroom_pref: false,
         window_pref: true,
@@ -589,7 +590,7 @@ describe('POST /api/users/:user_id/flights/:flight_id', () => {
         expect(body).toMatchObject(result);
       });
   });
-    test('400: Responds with a bad request error for an invalid user id', () => {
+  test('400: Responds with a bad request error for an invalid user id', () => {
     return request(app)
       .patch('/api/users/invalid_id/flights/1')
       .send(payload)

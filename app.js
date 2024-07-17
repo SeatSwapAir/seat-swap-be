@@ -11,14 +11,14 @@ const {
   getFlightsByUser,
   removeJourneyByUserIdAndFlightId,
   patchJourneyByUserIdAndFlightId,
-  postJourneyByUserIdAndFlightId
+  postJourneyByUserIdAndFlightId,
 } = require('./controllers/users.controllers.js');
 
 const {
   getFlightByNumberAndDate,
 } = require('./controllers/flights.controllers');
 
-const {getSideBySideMatches} = require('./controllers/matches.controllers');
+const { getSideBySideMatches } = require('./controllers/matches.controllers');
 
 app.get('/api/users/:user_id/flights', getFlightsByUser);
 app.delete(
@@ -35,9 +35,15 @@ app.get(
   getFlightByNumberAndDate
 );
 
-app.post('/api/users/:user_id/flights/:flight_id', postJourneyByUserIdAndFlightId);
+app.post(
+  '/api/users/:user_id/flights/:flight_id',
+  postJourneyByUserIdAndFlightId
+);
 
-app.get('/api/matches/side_by_side/user/:user_id/flight/:flight_id', getSideBySideMatches);
+app.get(
+  '/api/matches/side_by_side/user/:user_id/flight/:flight_id',
+  getSideBySideMatches
+);
 
 //handle custom errors
 app.use((err, req, res, next) => {

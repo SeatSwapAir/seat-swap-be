@@ -13,5 +13,5 @@ const getSideBySideMatches = async (req, res, next) => {
 };
 
 module.exports = {
-  getSideBySideMatches
+  getSideBySideMatches,
 };

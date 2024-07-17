@@ -40,16 +40,15 @@ describe('GET /api/matches/side_by_side/user/:user_id/flight/:flight_id', () => 
           ],
         },
         {
-          current_seats: 
-            {
-              id: 483,
-              seat_row: 28,
-              seat_letter: 'D',
-              extraLegroom: false,
-              position: 'aisle',
-              location: 'back',
-            },
-          
+          current_seats: {
+            id: 483,
+            seat_row: 28,
+            seat_letter: 'D',
+            extraLegroom: false,
+            position: 'aisle',
+            location: 'back',
+          },
+
           offer_seats: [
             {
               id: 482,
@@ -77,6 +76,40 @@ describe('GET /api/matches/side_by_side/user/:user_id/flight/:flight_id', () => 
       .expect(200)
       .then(({ body }) => {
         expect(body).toMatchObject(result);
+      });
+  });
+  test('404: Responds with an error message for a non-existent user id', () => {
+    return request(app)
+      .get('/api/matches/side_by_side/user/3645634/flight/2')
+      .expect(404)
+      .then(({ body }) => {
+        expect(body.msg).toBe('User not found');
+      });
+  });
+
+  test('404: Responds with an error message for a non-existent flight id', () => {
+    return request(app)
+      .get('/api/matches/side_by_side/user/2/flight/3456435')
+      .expect(404)
+      .then(({ body }) => {
+        expect(body.msg).toBe('Flight not found');
+      });
+  });
+
+  test('400: Responds with a bad request error for an invalid user id', () => {
+    return request(app)
+      .get('/api/matches/side_by_side/user/invalid-id/flight/2')
+      .expect(400)
+      .then(({ body }) => {
+        expect(body.msg).toBe('Bad request');
+      });
+  });
+  test('400: Responds with a bad request error for an invalid flight_id', () => {
+    return request(app)
+      .get('/api/matches/side_by_side/user/2/flight/invalid-id')
+      .expect(400)
+      .then(({ body }) => {
+        expect(body.msg).toBe('Bad request');
       });
   });
 });

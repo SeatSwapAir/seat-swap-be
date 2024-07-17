@@ -7,8 +7,13 @@ const {
   getLocationName,
 } = require('../helpers/seatsArrayTranformer.js');
 
+const { doesUserExist, doesFlightExist } = require('../helpers/errorChecks');
+
 const selectSideBySideMatches = async (user_id, flight_id) => {
   try {
+    await doesUserExist(user_id);
+    await doesFlightExist(flight_id);
+
     const usersSeats = await db.query(
       `SELECT * FROM seat WHERE flight_id = $1 AND user_id = $2;`,
       [flight_id, user_id]
