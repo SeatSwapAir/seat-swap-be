@@ -2,6 +2,11 @@ const db = require('../db/connection.js');
 const pgformat = require('pg-format');
 const dayjs = require('dayjs');
 
+const {
+  getPositionName,
+  getLocationName,
+} = require('../helpers/seatsArrayTranformer.js');
+
 const selectSideBySideMatches = async (user_id, flight_id) => {
   try {
     const usersSeats = await db.query(
@@ -9,53 +14,39 @@ const selectSideBySideMatches = async (user_id, flight_id) => {
       [flight_id, user_id]
     );
 
-    const neighbouringSeats = usersSeats.rows.map((seat) => {
-      return {
+    const side_by_side_matches = await Promise.all (usersSeats.rows.map(async (seat) => {
+      const current_seats = {
+        id: seat.id,
         seat_row: seat.seat_row,
-        seat_column: seat.seat_column + 1,
+        seat_letter: seat.seat_letter,
+        extraLegroom: seat.legroom,
+        position: getPositionName(seat.seat_position_id),
+        location: getLocationName(seat.seat_location_id),
       };
-    }).concat(usersSeats.rows.map((seat) => {
+      const sql = pgformat(
+        'SELECT * FROM seat WHERE flight_id = %s AND seat_row = %s AND seat_column IN (%L);',
+        flight_id,
+        seat.seat_row,
+        [seat.seat_column + 1, seat.seat_column - 1]
+      );
+      const {rows} = await db.query(sql);
+      const offer_seats = rows.map((seat) => {
+        return {
+          id: seat.id,
+          seat_row: seat.seat_row,
+          seat_letter: seat.seat_letter,
+          extraLegroom: seat.legroom,
+          position: getPositionName(seat.seat_position_id),
+          location: getLocationName(seat.seat_location_id),
+        };
+      });
+
       return {
-        seat_row: seat.seat_row,
-        seat_column: seat.seat_column - 1,
+        current_seats: current_seats,
+        offer_seats: offer_seats,
       };
     }));
-
-
-    const sqlNeighbouringSeats = pgformat(
-      'SELECT * FROM seat WHERE flight_id = %s AND seat_row IN (%L) AND seat_column IN (%L);',
-      flight_id,
-      neighbouringSeats.map((seat) => seat.seat_row),
-      neighbouringSeats.map((seat) => seat.seat_column)
-    );
-
-    console.log("🚀 ~ neighbouringSeats ~ neighbouringSeats:", sqlNeighbouringSeats)
-
-
-
-    // const sqlRightNeighbor = pgformat(
-    // console.log("🚀 ~ selectSideBySideMatches ~ sqlNeighbouringSeats:", sqlNeighbouringSeats)
-    // console.log("🚀 ~ selectSideBySideMatches ~ sqlNeighbouringSeats:", sqlNeighbouringSeats)
-    // //   'SELECT * FROM seat WHERE flight_id = %s AND seat_row = %s AND seat_column IN (%L);',
-    //   flight_id,
-    //   usersSeatsCoordinates[0].seat_row,
-    //   usersSeatsCoordinates.map((seat) => seat.seat_column + 1)
-    // );
-    // const sqlLeftNeighbor = pgformat(
-    //   'SELECT * FROM seat WHERE flight_id = %s AND seat_row = %s AND seat_column IN (%L);',
-    //   flight_id,
-    //   usersSeatsCoordinates[0].seat_row,
-    //   usersSeatsCoordinates.map((seat) => seat.seat_column - 1)
-    // );
-
-    // const rightNeighbour = await db.query(sqlRightNeighbor);
-    // const leftNeighbour = await db.query(sqlLeftNeighbor);
-
-    // const neighbouringSeats = leftNeighbour.rows.concat(rightNeighbour.rows);
-    // console.log("🚀 ~ selectSideBySideMatches ~ neighbouringSeats:", neighbouringSeats)
-
-
-    
+    return side_by_side_matches;
   } catch (err) {
     throw err;
   }
@@ -64,3 +55,4 @@ const selectSideBySideMatches = async (user_id, flight_id) => {
 module.exports = {
   selectSideBySideMatches,
 };
+

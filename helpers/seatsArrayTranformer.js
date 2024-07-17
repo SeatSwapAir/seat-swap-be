@@ -61,5 +61,10 @@ function formatSeatsQuery(seats, user_id, flight_id) {
 
 module.exports = {
   formatSeatsReturn,
-  formatSeatsQuery
-}
+  formatSeatsQuery,
+  getPositionName,
+  getLocationName,
+  getSeatColumn,
+  getPositionId,
+  getLocationId,
+};
