@@ -18,7 +18,11 @@ const {
   getFlightByNumberAndDate,
 } = require('./controllers/flights.controllers');
 
-const { getSideBySideMatches } = require('./controllers/matches.controllers');
+const {
+  getSideBySideMatches,
+  getSameRowMatches,
+  getNeighbouringRowsMatches,
+} = require('./controllers/matches.controllers');
 
 app.get('/api/users/:user_id/flights', getFlightsByUser);
 app.delete(
@@ -43,6 +47,16 @@ app.post(
 app.get(
   '/api/matches/side_by_side/user/:user_id/flight/:flight_id',
   getSideBySideMatches
+);
+
+app.get(
+  '/api/matches/same_row/user/:user_id/flight/:flight_id',
+  getSameRowMatches
+);
+
+app.get(
+  '/api/matches/neighbouring_rows/user/:user_id/flight/:flight_id',
+  getNeighbouringRowsMatches
 );
 
 //handle custom errors
