@@ -10,6 +10,7 @@ const getFlightsByUser = async (req, res, next) => {
 
   selectFlightsByUser(user_id)
     .then((flights) => {
+      console.log("🚀 ~ .then ~ flights:", flights[0].seats)
       res.status(200).send({ flights });
     })
     .catch((error) => {
