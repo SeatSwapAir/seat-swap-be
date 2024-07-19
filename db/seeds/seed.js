@@ -3,13 +3,13 @@ const db = require('../connection');
 
 const seed = async ({
   userData,
-  defaultPrefsData,
   flightData,
   seatData,
   journeyPrefsData,
   seatLocationData,
   seatPositionData,
   airlineData,
+  swapData,
 }) => {
   try {
     await db.query('DROP TABLE IF EXISTS review CASCADE;');
@@ -96,8 +96,11 @@ const seed = async ({
     await db.query(`
       CREATE TABLE swap (
         id SERIAL PRIMARY KEY,
-        seat1 INTEGER REFERENCES seat(id),
-        seat2 INTEGER REFERENCES seat(id)
+        offered_seat_id INTEGER REFERENCES seat(id),
+        requested_seat_id INTEGER REFERENCES seat(id),
+        swap_request_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        swap_approval_date TIMESTAMP,
+        rejection BOOLEAN DEFAULT FALSE
       );
     `);
 
@@ -252,6 +255,27 @@ const seed = async ({
     );
 
     await db.query(insertAirlineQueryStr);
+
+    const insertSwapQueryStr = format(
+      'INSERT INTO swap (offered_seat_id, requested_seat_id, swap_request_date, swap_approval_date, rejection) VALUES %L RETURNING *;',
+      swapData.map(
+        ({
+          offered_seat_id,
+          requested_seat_id,
+          swap_request_date,
+          swap_approval_date,
+          rejection,
+        }) => [
+          offered_seat_id,
+          requested_seat_id,
+          swap_request_date,
+          swap_approval_date,
+          rejection,
+        ]
+      )
+    );
+
+    await db.query(insertSwapQueryStr);
   } catch (error) {
     console.error('Error creating tables:', error);
     throw error;
