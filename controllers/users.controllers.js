@@ -2,7 +2,7 @@ const {
   selectFlightsByUser,
   deleteFlightByUserIdAndFlightId,
   updateFlightByUserIdAndFlightId,
-  insertFlightByUserIdAndFlightId
+  insertFlightByUserIdAndFlightId,
 } = require('../models/users.models');
 
 const getFlightsByUser = async (req, res, next) => {
@@ -10,7 +10,6 @@ const getFlightsByUser = async (req, res, next) => {
 
   selectFlightsByUser(user_id)
     .then((flights) => {
-      console.log("🚀 ~ .then ~ flights:", flights[0].seats)
       res.status(200).send({ flights });
     })
     .catch((error) => {
@@ -42,7 +41,6 @@ const patchJourneyByUserIdAndFlightId = async (req, res, next) => {
     });
 };
 
-
 const postJourneyByUserIdAndFlightId = async (req, res, next) => {
   const { user_id, flight_id } = req.params;
   insertFlightByUserIdAndFlightId(user_id, flight_id, req.body)
@@ -57,5 +55,5 @@ module.exports = {
   getFlightsByUser,
   removeJourneyByUserIdAndFlightId,
   patchJourneyByUserIdAndFlightId,
-  postJourneyByUserIdAndFlightId
+  postJourneyByUserIdAndFlightId,
 };

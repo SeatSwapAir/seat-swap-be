@@ -80,9 +80,10 @@ const selectSameRowMatches = async (user_id, flight_id) => {
           location: getLocationName(seat.seat_location_id),
         };
         const sql = pgformat(
-          'SELECT * FROM seat WHERE flight_id = %s AND seat_row = %s AND user_id !=%s;',
+          'SELECT * FROM seat WHERE flight_id = %s AND seat_row = %s AND seat_column NOT IN (%L) AND user_id !=%s;',
           flight_id,
           seat.seat_row,
+          [seat.seat_column + 1, seat.seat_column - 1],
           user_id
         );
         const { rows } = await db.query(sql);
