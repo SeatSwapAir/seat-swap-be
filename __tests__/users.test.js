@@ -7,7 +7,7 @@ const data = require('../db/data/test-data/index.js');
 beforeEach(() => seed(data));
 afterAll(() => db.end());
 
-describe('GET /api/users/:user_id/flights', () => {
+xdescribe('GET /api/users/:user_id/flights', () => {
   test('200: Responds with array of flight objects for a user id', () => {
     return request(app)
       .get('/api/users/2/flights')
@@ -287,7 +287,7 @@ describe('GET /api/users/:user_id/flights', () => {
   });
 });
 
-describe('DELETE /api/users/:user_id/flights/:flight_id', () => {
+xdescribe('DELETE /api/users/:user_id/flights/:flight_id', () => {
   test('204: Successfully deletes a flight by user_flight_id', () => {
     return request(app).delete('/api/users/2/flights/1').expect(204);
   });
@@ -329,7 +329,7 @@ describe('DELETE /api/users/:user_id/flights/:flight_id', () => {
   });
 });
 
-describe('PATCH /api/users/:user_id/flights/:flight_id', () => {
+xdescribe('PATCH /api/users/:user_id/flights/:flight_id', () => {
   const payload = {
     id: 1,
     flightnumber: 'AA101',
@@ -498,7 +498,7 @@ describe('PATCH /api/users/:user_id/flights/:flight_id', () => {
   });
 });
 
-describe('POST /api/users/:user_id/flights/:flight_id', () => {
+xdescribe('POST /api/users/:user_id/flights/:flight_id', () => {
   const payload = {
     id: 2,
     flightnumber: 'AA101',

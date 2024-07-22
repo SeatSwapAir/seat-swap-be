@@ -1,4 +1,4 @@
-const { insertSwap } = require('../models/swaps.models');
+const { insertSwap, updateSwap } = require('../models/swaps.models');
 
 const postSwap = async (req, res, next) => {
   const { offered_seat_id, requested_seat_id } = req.body;
@@ -10,6 +10,19 @@ const postSwap = async (req, res, next) => {
       next(error);
     });
 };
+
+const patchSwap = async (req, res, next) => {
+  const { action } = req.body;
+  const { swapid } = req.params;
+  updateSwap(action, swapid)
+    .then((body) => {
+      res.status(200).send(body);
+    })
+    .catch((error) => {
+      next(error);
+    });
+};
 module.exports = {
   postSwap,
+  patchSwap,
 };

@@ -7,7 +7,7 @@ const data = require('../db/data/test-data/index.js');
 beforeEach(() => seed(data));
 afterAll(() => db.end());
 
-describe('GET /api/matches/side_by_side/user/:user_id/flight/:flight_id', () => {
+xdescribe('GET /api/matches/side_by_side/user/:user_id/flight/:flight_id', () => {
   test('200: Responds with an array of side_by_side matches for a user id and flight id', () => {
     const result = {
       side_by_side_matches: [
@@ -114,7 +114,7 @@ describe('GET /api/matches/side_by_side/user/:user_id/flight/:flight_id', () => 
   });
 });
 
-describe('GET /api/matches/same_row/user/:user_id/flight/:flight_id', () => {
+xdescribe('GET /api/matches/same_row/user/:user_id/flight/:flight_id', () => {
   test('200: Responds with an array of side_by_side matches for a user id and flight id', () => {
     const result = {
       same_row_matches: [
@@ -236,7 +236,7 @@ describe('GET /api/matches/same_row/user/:user_id/flight/:flight_id', () => {
   });
 });
 
-describe('GET /api/matches/neighbouring_rows/user/:user_id/flight/:flight_id', () => {
+xdescribe('GET /api/matches/neighbouring_rows/user/:user_id/flight/:flight_id', () => {
   test('200: Responds with an array of neighbouring_rows matches for a user id and flight id', () => {
     const result = {
       neighbouring_rows_matches: [

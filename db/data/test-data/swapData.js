@@ -5,6 +5,7 @@ module.exports = [
     swap_request_date: '2024-07-19 15:12:43.790189+01',
     swap_approval_date: null,
     rejection: false,
+    cancelled: false,
   },
   {
     offered_seat_id: 453,
@@ -12,6 +13,7 @@ module.exports = [
     swap_request_date: '2024-07-19 15:12:43.790189+01',
     swap_approval_date: null,
     rejection: true,
+    cancelled: false,
   },
   {
     offered_seat_id: 451,
@@ -19,6 +21,7 @@ module.exports = [
     swap_request_date: '2024-07-19 15:12:43.790189+01',
     swap_approval_date: null,
     rejection: false,
+    cancelled: false,
   },
   {
     offered_seat_id: 450,
@@ -26,5 +29,6 @@ module.exports = [
     swap_request_date: '2024-07-19 15:12:43.790189+01',
     swap_approval_date: null,
     rejection: true,
+    cancelled: false,
   },
 ];

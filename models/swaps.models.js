@@ -39,6 +39,46 @@ const insertSwap = async (offered_seat_id, requested_seat_id) => {
   }
 };
 
+const updateSwap = async (action, swap_id) => {
+  try {
+    const doesSwapExist = await db.query('SELECT * FROM swap WHERE id=$1', [
+      swap_id,
+    ]);
+
+    if (doesSwapExist.rowCount === 0) {
+      return Promise.reject({
+        status: 400,
+        msg: 'Swap does not exist',
+      });
+    }
+    if (action === 'approve') {
+      const updatedSwap = await db.query(
+        'UPDATE swap SET swap_approval_date = CURRENT_TIMESTAMP WHERE id=$1 RETURNING offered_seat_id, requested_seat_id, swap_approval_date;',
+        [swap_id]
+      );
+      return updatedSwap.rows[0];
+    }
+    if (action === 'reject') {
+      const updatedSwap = await db.query(
+        'UPDATE swap SET rejection = true WHERE id=$1 RETURNING offered_seat_id, requested_seat_id, rejection;',
+        [swap_id]
+      );
+      return updatedSwap.rows[0];
+    }
+    if (action === 'cancel') {
+      const updatedSwap = await db.query(
+        'UPDATE swap SET cancelled = true WHERE id=$1 RETURNING offered_seat_id, requested_seat_id, cancelled;',
+        [swap_id]
+      );
+      return updatedSwap.rows[0];
+    }
+  } catch (err) {
+    // console.error('Database query error:', err);
+    throw err;
+  }
+};
+
 module.exports = {
   insertSwap,
+  updateSwap,
 };

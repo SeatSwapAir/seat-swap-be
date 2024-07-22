@@ -100,7 +100,8 @@ const seed = async ({
         requested_seat_id INTEGER REFERENCES seat(id),
         swap_request_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         swap_approval_date TIMESTAMP,
-        rejection BOOLEAN DEFAULT FALSE
+        rejection BOOLEAN DEFAULT FALSE,
+        cancelled BOOLEAN DEFAULT FALSE
       );
     `);
 
@@ -257,7 +258,7 @@ const seed = async ({
     await db.query(insertAirlineQueryStr);
 
     const insertSwapQueryStr = format(
-      'INSERT INTO swap (offered_seat_id, requested_seat_id, swap_request_date, swap_approval_date, rejection) VALUES %L RETURNING *;',
+      'INSERT INTO swap (offered_seat_id, requested_seat_id, swap_request_date, swap_approval_date, rejection, cancelled) VALUES %L RETURNING *;',
       swapData.map(
         ({
           offered_seat_id,
@@ -265,12 +266,14 @@ const seed = async ({
           swap_request_date,
           swap_approval_date,
           rejection,
+          cancelled,
         }) => [
           offered_seat_id,
           requested_seat_id,
           swap_request_date,
           swap_approval_date,
           rejection,
+          cancelled,
         ]
       )
     );

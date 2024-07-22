@@ -24,7 +24,7 @@ const {
   getNeighbouringRowsMatches,
 } = require('./controllers/matches.controllers');
 
-const { postSwap } = require('./controllers/swaps.controllers');
+const { postSwap, patchSwap } = require('./controllers/swaps.controllers');
 
 app.get('/api/users/:user_id/flights', getFlightsByUser);
 app.delete(
@@ -62,6 +62,8 @@ app.get(
 );
 
 app.post('/api/swap', postSwap);
+
+app.patch('/api/swap/:swapid', patchSwap);
 
 //handle custom errors
 app.use((err, req, res, next) => {
