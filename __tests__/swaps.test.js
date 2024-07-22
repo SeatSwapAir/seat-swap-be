@@ -141,8 +141,67 @@ describe('PATCH /api/swap/:swapid', () => {
   });
 });
 
-describe('GET /api/swap/yourseat/:yourseatid/matched/:matchedseatid', () => {
-  test('200: Responds with request action if no swaps found for provided seat ids', () => {});
+describe('GET /api/swap/yourseat/:your_seat_id/matched/:matched_seat_id', () => {
+  test('200: Responds with request action if no swaps found for provided seat ids', () => {
+    const result = {
+      actions: ['request'],
+    };
+    return request(app)
+      .get('/api/swap/yourseat/24/matched/42')
+      .expect(200)
+      .then(({ body }) => {
+        expect(body).toMatchObject(result);
+      });
+  });
+  test('200: Responds with accept and reject actions if swap found and matched_seat_id is offered_seat_id', () => {
+    const result = {
+      actions: ['accept', 'reject'],
+    };
+    return request(app)
+      .get('/api/swap/yourseat/452/matched/453')
+      .expect(200)
+      .then(({ body }) => {
+        expect(body).toMatchObject(result);
+      });
+  });
+  test('200: Responds with cancel action if swap found and accepted for matched_seat_id and your_seat_id', () => {
+    const result = {
+      actions: ['cancel'],
+    };
+    return request(app)
+      .get('/api/swap/yourseat/453/matched/444')
+      .expect(200)
+      .then(({ body }) => {
+        expect(body).toMatchObject(result);
+      });
+  });
+  test('200: Responds with cancel action if swap found and requested by your_seat_id', () => {
+    const result = {
+      actions: ['cancel'],
+    };
+    return request(app)
+      .get('/api/swap/yourseat/453/matched/452')
+      .expect(200)
+      .then(({ body }) => {
+        expect(body).toMatchObject(result);
+      });
+  });
+  test('400: Responds with a bad request for a non-existent your_seat_id', () => {
+    return request(app)
+      .get('/api/swap/yourseat/345345/matched/452')
+      .expect(400)
+      .then(({ body }) => {
+        expect(body.msg).toBe('Seat id not found');
+      });
+  });
+  test('400: Responds with a bad request for a non-existent matched_seat_id', () => {
+    return request(app)
+      .get('/api/swap/yourseat/453/matched/90984')
+      .expect(400)
+      .then(({ body }) => {
+        expect(body.msg).toBe('Seat id not found');
+      });
+  });
 });
 
 // api/swap/ (POST with payload of {offered_seat_id and requested_seat_id} returning same ids)

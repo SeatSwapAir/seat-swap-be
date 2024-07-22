@@ -31,4 +31,12 @@ module.exports = [
     rejection: true,
     cancelled: false,
   },
+  {
+    offered_seat_id: 453,
+    requested_seat_id: 444,
+    swap_request_date: '2024-07-19 15:12:43.790189+01',
+    swap_approval_date: '2024-07-19 19:12:43.790189+01',
+    rejection: false,
+    cancelled: false,
+  },
 ];

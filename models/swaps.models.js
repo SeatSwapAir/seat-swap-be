@@ -78,7 +78,59 @@ const updateSwap = async (action, swap_id) => {
   }
 };
 
+const selectSwap = async (your_seat_id, matched_seat_id) => {
+  try {
+    await doesSeatIdExist(your_seat_id);
+    await doesSeatIdExist(matched_seat_id);
+    const didRequestQuery = await db.query(
+      'SELECT * FROM swap WHERE offered_seat_id = $1 AND requested_seat_id = $2;',
+      [your_seat_id, matched_seat_id]
+    );
+    const seatRequestedQuery = await db.query(
+      'SELECT * FROM swap WHERE offered_seat_id = $2 AND requested_seat_id = $1;',
+      [your_seat_id, matched_seat_id]
+    );
+
+    if (didRequestQuery.rowCount === 0 && seatRequestedQuery.rowCount === 0) {
+      return {
+        actions: ['request'],
+      };
+    }
+    if (
+      seatRequestedQuery.rowCount !== 0 &&
+      seatRequestedQuery.rows[0].swap_approval_date
+    ) {
+      return {
+        actions: ['cancel'],
+      };
+    }
+    if (seatRequestedQuery.rowCount !== 0) {
+      return {
+        actions: ['accept', 'reject'],
+      };
+    }
+    if (
+      didRequestQuery.rowCount !== 0 &&
+      didRequestQuery.rows[0].swap_approval_date
+    ) {
+      return {
+        actions: ['cancel'],
+      };
+    }
+
+    if (didRequestQuery.rowCount !== 0) {
+      return {
+        actions: ['cancel'],
+      };
+    }
+  } catch (err) {
+    // console.error('Database query error:', err);
+    throw err;
+  }
+};
+
 module.exports = {
   insertSwap,
   updateSwap,
+  selectSwap,
 };
