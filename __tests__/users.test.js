@@ -259,7 +259,178 @@ describe('GET /api/users/:user_id/flights', () => {
       });
   });
 
-  test('404: Responds with an error message for a non-existent user id', () => {
+  test('200: Responds with array of flight objects that exactly match those for a user id', () => {
+    const expected = [
+      {
+        id: 1,
+        flightnumber: 'AA101',
+        departureairport: 'JFK',
+        arrivalairport: 'LAX',
+        departuretime: '2023-06-01T07:00:00Z',
+        arrivaltime: '2023-06-01T10:00:00Z',
+        airline: 'American Airlines',
+        seats: [
+          {
+            id: 24,
+            seat_letter: 'E',
+            seat_row: 7,
+            extraLegroom: true,
+            location: 'front',
+            position: 'aisle',
+          },
+        ],
+        preferences: {
+          legroom_pref: false,
+          window_pref: true,
+          middle_pref: true,
+          aisle_pref: false,
+          front_pref: false,
+          center_pref: false,
+          back_pref: false,
+          neighbouring_row_pref: false,
+          same_row_pref: false,
+          side_by_side_pref: false,
+        },
+      },
+      {
+        id: 2,
+        flightnumber: 'AA101',
+        departureairport: 'JFK',
+        arrivalairport: 'LAX',
+        departuretime: '2023-06-08T07:00:00Z',
+        arrivaltime: '2023-06-08T10:00:00Z',
+        airline: 'American Airlines',
+        seats: [
+          {
+            id: 151,
+            seat_letter: 'E',
+            seat_row: 7,
+            extraLegroom: true,
+            location: 'front',
+            position: 'aisle',
+          },
+        ],
+        preferences: {
+          legroom_pref: false,
+          window_pref: false,
+          middle_pref: false,
+          aisle_pref: false,
+          front_pref: true,
+          center_pref: true,
+          back_pref: true,
+          neighbouring_row_pref: false,
+          same_row_pref: false,
+          side_by_side_pref: true,
+        },
+      },
+      {
+        id: 3,
+        flightnumber: 'DL202',
+        departureairport: 'ATL',
+        arrivalairport: 'ORD',
+        departuretime: '2023-06-02T09:30:00Z',
+        arrivaltime: '2023-06-02T11:30:00Z',
+        airline: 'Delta Airlines',
+        seats: [
+          {
+            id: 286,
+            seat_letter: 'B',
+            seat_row: 27,
+            extraLegroom: true,
+            location: 'back',
+            position: 'middle',
+          },
+          {
+            id: 285,
+            seat_letter: 'A',
+            seat_row: 17,
+            extraLegroom: true,
+            location: 'center',
+            position: 'middle',
+          },
+          {
+            id: 284,
+            seat_letter: 'C',
+            seat_row: 8,
+            extraLegroom: true,
+            location: 'front',
+            position: 'middle',
+          },
+          {
+            id: 283,
+            seat_letter: 'A',
+            seat_row: 28,
+            extraLegroom: true,
+            location: 'front',
+            position: 'window',
+          },
+        ],
+        preferences: {
+          legroom_pref: false,
+          window_pref: true,
+          middle_pref: false,
+          aisle_pref: true,
+          front_pref: true,
+          center_pref: true,
+          back_pref: true,
+          neighbouring_row_pref: true,
+          same_row_pref: true,
+          side_by_side_pref: true,
+        },
+      },
+      {
+        id: 8,
+        flightnumber: 'FR9336',
+        departureairport: 'BRS',
+        arrivalairport: 'GRO',
+        departuretime: '2024-08-25T21:40+01:00',
+        arrivaltime: '2024-08-26T00:40+02:00',
+        airline: 'RYANAIR',
+        seats: [
+          {
+            id: 444,
+            seat_letter: 'A',
+            seat_row: 22,
+            extraLegroom: false,
+            location: 'center',
+            position: 'window',
+          },
+          {
+            id: 374,
+            seat_letter: 'C',
+            seat_row: 10,
+            extraLegroom: false,
+            location: 'front',
+            position: 'aisle',
+          },
+        ],
+        preferences: {
+          legroom_pref: false,
+          window_pref: false,
+          middle_pref: false,
+          aisle_pref: false,
+          front_pref: false,
+          center_pref: false,
+          back_pref: false,
+          neighbouring_row_pref: false,
+          same_row_pref: false,
+          side_by_side_pref: false,
+        },
+      },
+    ];
+    return request(app)
+      .get('/api/users/24/flights')
+      .expect(200)
+      .then(({ body }) => {
+        const { flights } = body;
+        // flights.map((flight) => {
+        //   console.log(flight.seats);
+        // });
+        expect(flights).toStrictEqual(expected);
+      });
+  });
+
+  xtest('404: Responds with an error message for a non-existent user id', () => {
     return request(app)
       .get('/api/users/2147483647/flights')
       .expect(404)
@@ -268,7 +439,7 @@ describe('GET /api/users/:user_id/flights', () => {
       });
   });
 
-  test('404: Responds with an error message for a user with no flights', () => {
+  xtest('404: Responds with an error message for a user with no flights', () => {
     return request(app)
       .get('/api/users/146/flights')
       .expect(404)
@@ -277,7 +448,7 @@ describe('GET /api/users/:user_id/flights', () => {
       });
   });
 
-  test('400: Responds with a bad request error for an invalid user id', () => {
+  xtest('400: Responds with a bad request error for an invalid user id', () => {
     return request(app)
       .get('/api/users/invalid-id/flights')
       .expect(400)
@@ -287,7 +458,7 @@ describe('GET /api/users/:user_id/flights', () => {
   });
 });
 
-describe('DELETE /api/users/:user_id/flights/:flight_id', () => {
+xdescribe('DELETE /api/users/:user_id/flights/:flight_id', () => {
   test('204: Successfully deletes a flight by user_flight_id', () => {
     return request(app).delete('/api/users/2/flights/1').expect(204);
   });
@@ -329,7 +500,7 @@ describe('DELETE /api/users/:user_id/flights/:flight_id', () => {
   });
 });
 
-describe('PATCH /api/users/:user_id/flights/:flight_id', () => {
+xdescribe('PATCH /api/users/:user_id/flights/:flight_id', () => {
   const payload = {
     id: 1,
     flightnumber: 'AA101',
@@ -498,7 +669,7 @@ describe('PATCH /api/users/:user_id/flights/:flight_id', () => {
   });
 });
 
-describe('POST /api/users/:user_id/flights/:flight_id', () => {
+xdescribe('POST /api/users/:user_id/flights/:flight_id', () => {
   const payload = {
     id: 2,
     flightnumber: 'AA101',

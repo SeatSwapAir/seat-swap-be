@@ -111,10 +111,23 @@ const seatsInsertedFormatted = async (seats, user_id, flight_id) => {
   return seatsFormatted;
 };
 
+const doesSeatIdExist = async (seat_id) => {
+  const seatExist = await db.query(`SELECT * FROM seat WHERE id= $1`, [
+    seat_id,
+  ]);
+  if (seatExist.rowCount === 0) {
+    return Promise.reject({
+      status: 400,
+      msg: 'Seat id not found',
+    });
+  }
+};
+
 module.exports = {
   doesUserExist,
   doesFlightExist,
   isSeatDuplicate,
   isSeatTaken,
   seatsInsertedFormatted,
+  doesSeatIdExist,
 };
