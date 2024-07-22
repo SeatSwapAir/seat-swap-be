@@ -3,6 +3,8 @@ const pgformat = require('pg-format');
 const {
   formatSeatsQuery,
   formatSeatsReturn,
+  getLocationName,
+  getPositionName,
 } = require('../helpers/seatsArrayTranformer.js');
 const {
   doesUserExist,
@@ -65,7 +67,7 @@ const selectFlightsByUser = async (user_id) => {
 
     const flights = {};
 
-    userFlightResult.rows.forEach((row) => {
+    for (const row of userFlightResult.rows) {
       if (!flights[row.flight_id]) {
         flights[row.flight_id] = {
           id: row.flight_id,
@@ -92,21 +94,57 @@ const selectFlightsByUser = async (user_id) => {
       }
 
       if (row.seat_id) {
-        flights[row.flight_id].seats.push({
-          id: row.seat_id,
-          seat_letter: row.seat_letter,
-          seat_row: row.seat_row,
-          extraLegroom: row.seat_legroom,
-          location: row.seat_location_name,
-          position: row.seat_position_name,
-        });
-      }
-    });
+        const isSwapped = await seatSwapChecker(row.seat_id);
 
+        if (isSwapped) {
+          const swappedSeatFormatted = {
+            id: isSwapped.id,
+            seat_letter: isSwapped.seat_letter,
+            seat_row: isSwapped.seat_row,
+            extraLegroom: isSwapped.legroom,
+            location: getLocationName(isSwapped.seat_location_id),
+            position: getPositionName(isSwapped.seat_position_id),
+          };
+          flights[row.flight_id].seats.push(swappedSeatFormatted);
+        } else {
+          flights[row.flight_id].seats.push({
+            id: row.seat_id,
+            seat_letter: row.seat_letter,
+            seat_row: row.seat_row,
+            extraLegroom: row.seat_legroom,
+            location: row.seat_location_name,
+            position: row.seat_position_name,
+          });
+        }
+      }
+    }
     return Object.values(flights);
   } catch (err) {
     throw err;
   }
+};
+
+const seatSwapChecker = async (seat_id) => {
+  const isSeatSwapped = await db.query(
+    `SELECT * FROM swap WHERE (offered_seat_id = $1 OR requested_seat_id = $1) AND swap_approval_date IS NOT NULL;`,
+    [seat_id]
+  );
+  // console.log(seat_id);
+  if (isSeatSwapped.rowCount !== 0) {
+    const offered_seat_id = isSeatSwapped.rows[0].offered_seat_id;
+    const requested_seat_id = isSeatSwapped.rows[0].requested_seat_id;
+    if (offered_seat_id === seat_id) {
+      const swappedSeat = await db.query(`SELECT * FROM seat WHERE id=$1;`, [
+        requested_seat_id,
+      ]);
+      return swappedSeat.rows[0];
+    }
+    const swappedSeat = await db.query(`SELECT * FROM seat WHERE id=$1;`, [
+      offered_seat_id,
+    ]);
+    return swappedSeat.rows[0];
+  }
+  return false;
 };
 
 const selectJourneyByUserIdAndFlightId = async (user_id, flight_id) => {

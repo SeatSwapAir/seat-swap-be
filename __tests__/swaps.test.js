@@ -164,17 +164,6 @@ describe('GET /api/swap/yourseat/:your_seat_id/matched/:matched_seat_id', () => 
         expect(body).toMatchObject(result);
       });
   });
-  test('200: Responds with cancel action if swap found and accepted for matched_seat_id and your_seat_id', () => {
-    const result = {
-      actions: ['cancel'],
-    };
-    return request(app)
-      .get('/api/swap/yourseat/453/matched/444')
-      .expect(200)
-      .then(({ body }) => {
-        expect(body).toMatchObject(result);
-      });
-  });
   test('200: Responds with cancel action if swap found and requested by your_seat_id', () => {
     const result = {
       actions: ['cancel'],
@@ -208,3 +197,6 @@ describe('GET /api/swap/yourseat/:your_seat_id/matched/:matched_seat_id', () => 
 // api/swap/:id (GET Returns the swap and status (either rejected or approval date or))
 // api/swap/:id/approve
 // api/swap/:id/reject (PATCH for the swap id changing rejected to TRUE, in model: check if swap hasn't already been approv)
+
+// if someone tries to cancel but both dates are not null, shouldn't allow
+// if someone tries to reject but both dates are not null, shouldn't allow

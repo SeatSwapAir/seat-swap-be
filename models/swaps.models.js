@@ -96,14 +96,6 @@ const selectSwap = async (your_seat_id, matched_seat_id) => {
         actions: ['request'],
       };
     }
-    if (
-      seatRequestedQuery.rowCount !== 0 &&
-      seatRequestedQuery.rows[0].swap_approval_date
-    ) {
-      return {
-        actions: ['cancel'],
-      };
-    }
     if (seatRequestedQuery.rowCount !== 0) {
       return {
         actions: ['accept', 'reject'],
@@ -111,14 +103,8 @@ const selectSwap = async (your_seat_id, matched_seat_id) => {
     }
     if (
       didRequestQuery.rowCount !== 0 &&
-      didRequestQuery.rows[0].swap_approval_date
+      didRequestQuery.rows[0].swap_approval_date === null
     ) {
-      return {
-        actions: ['cancel'],
-      };
-    }
-
-    if (didRequestQuery.rowCount !== 0) {
       return {
         actions: ['cancel'],
       };

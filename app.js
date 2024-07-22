@@ -73,6 +73,7 @@ app.get('/api/swap/yourseat/:your_seat_id/matched/:matched_seat_id', getSwap);
 
 //handle custom errors
 app.use((err, req, res, next) => {
+  // console.log('🚀 ~ app.use ~ err:', err);
   if (err.status && err.msg) {
     res.status(err.status).send({ msg: err.msg });
   } else {
@@ -82,6 +83,7 @@ app.use((err, req, res, next) => {
 
 //handle Database errors
 app.use((err, req, res, next) => {
+  // console.log('🚀 ~ app.use ~ err:', err);
   if (err.code === '22P02' || err.code === '42703') {
     res.status(400).send({ msg: 'Bad request' });
   } else {
@@ -90,7 +92,7 @@ app.use((err, req, res, next) => {
 });
 
 app.use((err, req, res, next) => {
-  console.log(err);
+  // console.log(err);
   res.status(500).send({ msg: 'server error getting API' });
 });
 
