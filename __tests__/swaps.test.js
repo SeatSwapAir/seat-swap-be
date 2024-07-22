@@ -78,18 +78,58 @@ describe('PATCH /api/swap/:swapid', () => {
   };
   test('200: Responds with relevant seat ids and swap approval date', () => {
     const result = {
-      offered_seat_id: 453,
-      requested_seat_id: 452,
-      swap_approval_date: moment().format('YYYY-MM-DD HH'),
+      approved: {
+        offered_seat_id: 453,
+        requested_seat_id: 452,
+        swap_approval_date: moment().format('YYYY-MM-DD HH'),
+      },
+      cancelled: [
+        {
+          id: 2,
+          offered_seat_id: 453,
+          requested_seat_id: 455,
+          swap_request_date: '2024-07-19T14:12:43.790Z',
+          swap_approval_date: null,
+          rejection: true,
+          cancelled: true,
+        },
+        {
+          id: 3,
+          offered_seat_id: 451,
+          requested_seat_id: 453,
+          swap_request_date: '2024-07-19T14:12:43.790Z',
+          swap_approval_date: null,
+          rejection: true,
+          cancelled: true,
+        },
+        {
+          id: 4,
+          offered_seat_id: 450,
+          requested_seat_id: 453,
+          swap_request_date: '2024-07-19T14:12:43.790Z',
+          swap_approval_date: null,
+          rejection: true,
+          cancelled: true,
+        },
+        {
+          id: 6,
+          offered_seat_id: 374,
+          requested_seat_id: 367,
+          swap_request_date: '2024-07-19T14:12:43.790Z',
+          swap_approval_date: null,
+          rejection: true,
+          cancelled: true,
+        },
+      ],
     };
     return request(app)
       .patch('/api/swap/1')
       .send(payload)
       .expect(200)
       .then(({ body }) => {
-        body.swap_approval_date = moment(body.swap_approval_date).format(
-          'YYYY-MM-DD HH'
-        );
+        body.approved.swap_approval_date = moment(
+          body.approved.swap_approval_date
+        ).format('YYYY-MM-DD HH');
         expect(body).toMatchObject(result);
       });
   });

@@ -56,7 +56,36 @@ const updateSwap = async (action, swap_id) => {
         'UPDATE swap SET swap_approval_date = CURRENT_TIMESTAMP WHERE id=$1 RETURNING offered_seat_id, requested_seat_id, swap_approval_date;',
         [swap_id]
       );
-      return updatedSwap.rows[0];
+
+      const findSwapUsers = await db.query(
+        'SELECT flight_id, user_id FROM seat WHERE id IN ($1,$2);',
+        [
+          updatedSwap.rows[0].offered_seat_id,
+          updatedSwap.rows[0].requested_seat_id,
+        ]
+      );
+      const findUsersSeats = await db.query(
+        'SELECT id FROM seat WHERE flight_id=$1 AND user_id IN ($2,$3);',
+        [
+          findSwapUsers.rows[0].flight_id,
+          findSwapUsers.rows[0].user_id,
+          findSwapUsers.rows[1].user_id,
+        ]
+      );
+      const userSeatsFormatted = findUsersSeats.rows.map((seat) => seat.id);
+
+      const cancelSwapsQuery = pgformat(
+        'UPDATE swap SET rejection = true, cancelled = true WHERE (offered_seat_id IN %L OR requested_seat_id IN %L) AND swap_approval_date IS NULL RETURNING *;',
+        [userSeatsFormatted],
+        [userSeatsFormatted]
+      );
+      const cancelledSwaps = await db.query(cancelSwapsQuery);
+      const result = {
+        approved: updatedSwap.rows[0],
+        cancelled: cancelledSwaps.rows,
+      };
+
+      return result;
     }
     if (action === 'reject') {
       const updatedSwap = await db.query(
