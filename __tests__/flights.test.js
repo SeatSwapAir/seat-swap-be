@@ -5,9 +5,9 @@ const seed = require('../db/seeds/seed');
 const data = require('../db/data/test-data/index.js');
 
 beforeEach(() => seed(data));
-afterAll(() => db.end());
+afterAll(() => db.end()); 
 
-xdescribe('GET /api/flights/:flightNumber/date/:departureTime', () => {
+describe('GET /api/flights/:flightNumber/date/:departureTime', () => {
   test('200: Responds with a with a flightId if it exists in local DB for a given flightNumber and departureTime', () => {
     return request(app)
       .get('/api/flights/FR9336/date/2024-07-14')
@@ -42,7 +42,7 @@ xdescribe('GET /api/flights/:flightNumber/date/:departureTime', () => {
   });
   test('404: Responds with an error message for a flight number that Amadeus cannot find', () => {
     return request(app)
-      .get('/api/flights/Z0799/date/2024-07-19')
+      .get('/api/flights/Z0799/date/2024-12-05')
       .expect(404)
       .then(({ body }) => {
         expect(body.msg).toBe('Flight not found');
