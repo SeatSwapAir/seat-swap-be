@@ -430,7 +430,7 @@ describe('GET /api/users/:user_id/flights', () => {
       });
   });
 
-  xtest('404: Responds with an error message for a non-existent user id', () => {
+  test('404: Responds with an error message for a non-existent user id', () => {
     return request(app)
       .get('/api/users/2147483647/flights')
       .expect(404)
@@ -439,7 +439,7 @@ describe('GET /api/users/:user_id/flights', () => {
       });
   });
 
-  xtest('404: Responds with an error message for a user with no flights', () => {
+  test('404: Responds with an error message for a user with no flights', () => {
     return request(app)
       .get('/api/users/146/flights')
       .expect(404)
@@ -448,7 +448,7 @@ describe('GET /api/users/:user_id/flights', () => {
       });
   });
 
-  xtest('400: Responds with a bad request error for an invalid user id', () => {
+  test('400: Responds with a bad request error for an invalid user id', () => {
     return request(app)
       .get('/api/users/invalid-id/flights')
       .expect(400)
@@ -458,7 +458,7 @@ describe('GET /api/users/:user_id/flights', () => {
   });
 });
 
-xdescribe('DELETE /api/users/:user_id/flights/:flight_id', () => {
+describe('DELETE /api/users/:user_id/flights/:flight_id', () => {
   test('204: Successfully deletes a flight by user_flight_id', () => {
     return request(app).delete('/api/users/2/flights/1').expect(204);
   });
@@ -500,7 +500,7 @@ xdescribe('DELETE /api/users/:user_id/flights/:flight_id', () => {
   });
 });
 
-xdescribe('PATCH /api/users/:user_id/flights/:flight_id', () => {
+describe('PATCH /api/users/:user_id/flights/:flight_id', () => {
   const payload = {
     id: 1,
     flightnumber: 'AA101',
@@ -669,7 +669,7 @@ xdescribe('PATCH /api/users/:user_id/flights/:flight_id', () => {
   });
 });
 
-xdescribe('POST /api/users/:user_id/flights/:flight_id', () => {
+describe('POST /api/users/:user_id/flights/:flight_id', () => {
   const payload = {
     id: 2,
     flightnumber: 'AA101',
