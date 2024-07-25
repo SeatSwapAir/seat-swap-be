@@ -92,7 +92,7 @@ const selectFlightsByUser = async (user_id) => {
           },
         };
       }
-
+ 
       if (row.seat_id) {
         const isSwapped = await seatSwapChecker(row.seat_id);
 
@@ -129,7 +129,7 @@ const seatSwapChecker = async (seat_id) => {
     `SELECT * FROM swap WHERE (offered_seat_id = $1 OR requested_seat_id = $1) AND swap_approval_date IS NOT NULL;`,
     [seat_id]
   );
-  // console.log(seat_id);
+
   if (isSeatSwapped.rowCount !== 0) {
     const offered_seat_id = isSeatSwapped.rows[0].offered_seat_id;
     const requested_seat_id = isSeatSwapped.rows[0].requested_seat_id;
@@ -144,29 +144,10 @@ const seatSwapChecker = async (seat_id) => {
     ]);
     return swappedSeat.rows[0];
   }
+
   return false;
 };
 
-const selectJourneyByUserIdAndFlightId = async (user_id, flight_id) => {
-  try {
-    const userJourneyResult = await db.query(
-      `SELECT * FROM journey_prefs WHERE user_id = $1 AND flight_id = $2;`,
-      [user_id, flight_id]
-    );
-
-    if (userJourneyResult.rows.length === 0) {
-      return Promise.reject({
-        status: 404,
-        msg: 'User journey not found',
-      });
-    }
-
-    return userJourneyResult.rows[0];
-  } catch (err) {
-    console.error('Database query error:', err);
-    throw err;
-  }
-};
 
 const deleteFlightByUserIdAndFlightId = async (user_id, flight_id) => {
   try {
@@ -369,6 +350,7 @@ module.exports = {
   deleteFlightByUserIdAndFlightId,
   updateFlightByUserIdAndFlightId,
   insertFlightByUserIdAndFlightId,
+  seatSwapChecker,
 };
 
 //post model for adding new journey pref and seats

@@ -2,10 +2,12 @@ const db = require('../db/connection.js');
 const pgformat = require('pg-format');
 const dayjs = require('dayjs');
 
+const {seatsAfterSwaps} = require('../helpers/seatsAfterSwaps.js');
 const {
   getPositionName,
   getLocationName,
 } = require('../helpers/seatsArrayTranformer.js');
+const {selectFlightsByUser} = require('./users.models.js');
 
 const { doesUserExist, doesFlightExist } = require('../helpers/errorChecks');
 
@@ -14,13 +16,17 @@ const selectSideBySideMatches = async (user_id, flight_id) => {
     await doesUserExist(user_id);
     await doesFlightExist(flight_id);
 
-    const usersSeats = await db.query(
-      `SELECT * FROM seat WHERE flight_id = $1 AND user_id = $2;`,
-      [flight_id, user_id]
-    );
+    const usersSeats = await (await seatsAfterSwaps(user_id, flight_id))
+    
+    
+    // const usersSeats = await db.query(
+    //   `SELECT * FROM seat WHERE flight_id = $1 AND user_id = $2;`,
+    //   [flight_id, user_id]
+    // );
+    // console.log("🚀 ~ selectSideBySideMatches ~ usersSeats:", usersSeats.rows)
 
     const side_by_side_matches = await Promise.all(
-      usersSeats.rows.map(async (seat) => {
+      usersSeats.map(async (seat) => {
         const current_seats = {
           id: seat.id,
           seat_row: seat.seat_row,
@@ -64,13 +70,16 @@ const selectSameRowMatches = async (user_id, flight_id) => {
     await doesUserExist(user_id);
     await doesFlightExist(flight_id);
 
-    const usersSeats = await db.query(
-      `SELECT * FROM seat WHERE flight_id = $1 AND user_id = $2;`,
-      [flight_id, user_id]
-    );
+    // const usersSeats = await db.query(
+    //   `SELECT * FROM seat WHERE flight_id = $1 AND user_id = $2;`,
+    //   [flight_id, user_id]
+    // );
+
+    // const usersSeats= await (await selectFlightsByUser(user_id)).filter(flight => flight.id === +flight_id)[0].seats
+    const usersSeats = await (await seatsAfterSwaps(user_id, flight_id))
 
     const same_row_matches = await Promise.all(
-      usersSeats.rows.map(async (seat) => {
+      usersSeats.map(async (seat) => {
         const current_seats = {
           id: seat.id,
           seat_row: seat.seat_row,
@@ -115,13 +124,11 @@ const selectNeighbourhingRowsMatches = async (user_id, flight_id) => {
     await doesUserExist(user_id);
     await doesFlightExist(flight_id);
 
-    const usersSeats = await db.query(
-      `SELECT * FROM seat WHERE flight_id = $1 AND user_id = $2;`,
-      [flight_id, user_id]
-    );
+    const usersSeats = await (await seatsAfterSwaps(user_id, flight_id))
+    // console.log("🚀 ~ selectNeighbourhingRowsMatches ~ usersSeats:", usersSeats)
 
     const neighbouring_rows_matches = await Promise.all(
-      usersSeats.rows.map(async (seat) => {
+      usersSeats.map(async (seat) => {
         const current_seats = {
           id: seat.id,
           seat_row: seat.seat_row,
