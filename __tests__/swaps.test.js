@@ -196,6 +196,7 @@ describe('GET /api/swap/yourseat/:your_seat_id/matched/:matched_seat_id', () => 
   test('200: Responds with accept and reject actions if swap found and matched_seat_id is offered_seat_id', () => {
     const result = {
       actions: ['accept', 'reject'],
+      swap_id: 1,
     };
     return request(app)
       .get('/api/swap/yourseat/452/matched/453')
@@ -207,6 +208,7 @@ describe('GET /api/swap/yourseat/:your_seat_id/matched/:matched_seat_id', () => 
   test('200: Responds with cancel action if swap found and requested by your_seat_id', () => {
     const result = {
       actions: ['cancel'],
+      swap_id: 1,
     };
     return request(app)
       .get('/api/swap/yourseat/453/matched/452')

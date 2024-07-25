@@ -128,6 +128,7 @@ const selectSwap = async (your_seat_id, matched_seat_id) => {
     if (seatRequestedQuery.rowCount !== 0) {
       return {
         actions: ['accept', 'reject'],
+        swap_id: seatRequestedQuery.rows[0].id,
       };
     }
     if (
@@ -136,6 +137,7 @@ const selectSwap = async (your_seat_id, matched_seat_id) => {
     ) {
       return {
         actions: ['cancel'],
+        swap_id: didRequestQuery.rows[0].id,
       };
     }
   } catch (err) {
