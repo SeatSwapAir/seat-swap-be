@@ -136,7 +136,16 @@ const selectSwap = async (your_seat_id, matched_seat_id) => {
         actions: ['request'],
       };
     }
-   
+    if (didRequestQuery.rowCount !== 0 && didRequestQuery.rows[0].swap_request_date) return {actions: ['cancel']};
+    if (didRequestQuery.rowCount !== 0 && didRequestQuery.rows[0].swap_request_date && didRequestQuery.rows[0].cancelled) return {actions: ['request']};
+    if (didRequestQuery.rowCount !== 0 && didRequestQuery.rows[0].swap_request_date && didRequestQuery.rows[0].rejected) return {actions: ['rejected']};
+    if (didRequestQuery.rowCount !== 0 && didRequestQuery.rows[0].swap_request_date && didRequestQuery.rows[0].rejected && didRequestQuery.rows[0].cancelled) return {actions: ['rejected']};
+    if (didRequestQuery.rowCount !== 0 && didRequestQuery.rows[0].swap_request_date && didRequestQuery.rows[0].swap_approval_date) return {actions: ['accepted']};
+
+
+    
+    
+  //  if(didRequestQuery.rowCount !== 0 && didRequestQuery.rows[0].swap_approval_date &&) {}
     if (
       didRequestQuery.rowCount !== 0 &&
       didRequestQuery.rows[0].cancelled === true
@@ -171,6 +180,7 @@ const selectSwap = async (your_seat_id, matched_seat_id) => {
         swap_id: didRequestQuery.rows[0].id,
       };
     }
+    return {actions: [ 'ok']};
   } catch (err) {
     // console.error('Database query error:', err);
     throw err;
@@ -182,3 +192,22 @@ module.exports = {
   updateSwap,
   selectSwap,
 };
+
+
+// didRequestQuery.rowCount !== 0 // user has requested
+// seatRequestedQuery.rowCount !== 0 // the other has requested
+
+// |offered_seat_id|requested_seat_id|swap_request_date|swap_approval_date|rej|can| // you have requested
+// |yours          |theirs           |not null         |null              |fal|fal| // you have requested
+// |yours          |theirs           |not null         |null              |fal|tru| // you requested and cancelled
+// |yours          |theirs           |not null         |null              |tru|fal| // you requested and got rejected
+// |yours          |theirs           |not null         |null              |tru|tru| // you requested but diffrent swap happened
+// |yours          |theirs           |not null         |not null          |fal|fal| // you requested and got accepted
+
+
+// |offered_seat_id|requested_seat_id|swap_request_date|swap_approval_date|rej|can| // 
+// |theirs         |yours            |not null         |null              |fal|fal| // user has requested
+// |theirs         |yours            |not null         |null              |fal|tru| // user has requested and cancelled
+// |theirs         |yours            |not null         |null              |tru|fal| // user has requested and got rejected
+// |theirs         |yours            |not null         |not null          |fal|fal| // user has requested and got accepted
+// |theirs         |yours            |not null         |null              |tru|tru| // user has requested but difffrent swap happened
