@@ -74,7 +74,7 @@ describe('POST /api/swap', () => {
 
 describe('PATCH /api/swap/:swap_id', () => {
   const payload = {
-    action: 'approve',
+    action: 'accept',
   };
   test('200: Responds with relevant seat ids and swap approval date', () => {
     const result = {

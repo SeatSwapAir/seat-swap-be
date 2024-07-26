@@ -55,7 +55,7 @@ const updateSwap = async (action, swap_id) => {
         msg: 'Swap does not exist',
       });
     }
-    if (action === 'approve') {
+    if (action === 'accept') {
       const updatedSwap = await db.query(
         'UPDATE swap SET swap_approval_date = CURRENT_TIMESTAMP WHERE id=$1 RETURNING offered_seat_id, requested_seat_id, swap_approval_date;',
         [swap_id]
