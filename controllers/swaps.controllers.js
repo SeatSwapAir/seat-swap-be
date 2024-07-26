@@ -17,8 +17,8 @@ const postSwap = async (req, res, next) => {
 
 const patchSwap = async (req, res, next) => {
   const { action } = req.body;
-  const { swapid } = req.params;
-  updateSwap(action, swapid)
+  const { swap_id } = req.params;
+  updateSwap(action, swap_id)
     .then((body) => {
       res.status(200).send(body);
     })

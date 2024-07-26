@@ -67,7 +67,7 @@ app.get(
 
 app.post('/api/swap', postSwap);
 
-app.patch('/api/swap/:swapid', patchSwap);
+app.patch('/api/swap/:swap_id', patchSwap);
 
 app.get('/api/swap/yourseat/:your_seat_id/matched/:matched_seat_id', getSwap);
 
