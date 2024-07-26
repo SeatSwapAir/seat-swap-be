@@ -13,6 +13,10 @@ const insertSwap = async (offered_seat_id, requested_seat_id) => {
       [offered_seat_id, requested_seat_id]
     );
 
+    if (doesSwapExist.rowCount !== 0 && doesSwapExist.rows[0].cancelled === true) {
+     return await updateSwap('request', doesSwapExist.rows[0].id);
+    }
+
     if (doesSwapExist.rowCount !== 0) {
       return Promise.reject({
         status: 400,
@@ -101,6 +105,13 @@ const updateSwap = async (action, swap_id) => {
       );
       return updatedSwap.rows[0];
     }
+    if (action === 'request') {
+      const updatedSwap = await db.query(
+        'UPDATE swap SET cancelled = false WHERE id=$1 RETURNING offered_seat_id, requested_seat_id, cancelled;',
+        [swap_id]
+      );
+      return updatedSwap.rows[0];
+    }
   } catch (err) {
     // console.error('Database query error:', err);
     throw err;
@@ -125,6 +136,25 @@ const selectSwap = async (your_seat_id, matched_seat_id) => {
         actions: ['request'],
       };
     }
+   
+    if (
+      didRequestQuery.rowCount !== 0 &&
+      didRequestQuery.rows[0].cancelled === true
+    ) {
+      return {
+        actions: ['request'],
+        swap_id: didRequestQuery.rows[0].id,
+      };
+    }
+    if (
+      seatRequestedQuery.rowCount !== 0 &&
+      seatRequestedQuery.rows[0].cancelled === true
+    ) {
+      return {
+        actions: ['request'],
+        swap_id: seatRequestedQuery.rows[0].id,
+      };
+    }
     if (seatRequestedQuery.rowCount !== 0) {
       return {
         actions: ['accept', 'reject'],
@@ -133,7 +163,8 @@ const selectSwap = async (your_seat_id, matched_seat_id) => {
     }
     if (
       didRequestQuery.rowCount !== 0 &&
-      didRequestQuery.rows[0].swap_approval_date === null
+      didRequestQuery.rows[0].swap_approval_date === null &&
+      didRequestQuery.rows[0].cancelled === false
     ) {
       return {
         actions: ['cancel'],

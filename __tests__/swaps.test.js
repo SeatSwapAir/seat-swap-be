@@ -72,7 +72,7 @@ describe('POST /api/swap', () => {
   });
 });
 
-describe('PATCH /api/swap/:swapid', () => {
+describe('PATCH /api/swap/:swap_id', () => {
   const payload = {
     action: 'approve',
   };
@@ -170,6 +170,23 @@ describe('PATCH /api/swap/:swapid', () => {
       offered_seat_id: 453,
       requested_seat_id: 452,
       cancelled: true,
+    };
+    return request(app)
+      .patch('/api/swap/1')
+      .send(payload)
+      .expect(200)
+      .then(({ body }) => {
+        expect(body).toMatchObject(result);
+      });
+  });
+  test('200: Responds with relevant seat ids and cancelled status false', () => {
+    const payload = {
+      action: 'request',
+    };
+    const result = {
+      offered_seat_id: 453,
+      requested_seat_id: 452,
+      cancelled: false,
     };
     return request(app)
       .patch('/api/swap/1')
