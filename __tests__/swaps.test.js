@@ -135,7 +135,7 @@ describe('PATCH /api/swap/:swap_id', () => {
   });
   test('400: Responds with a bad request for updating a non existent swap', () => {
     const payload = {
-      action: 'approve',
+      action: 'accept',
     };
     return request(app)
       .patch('/api/swap/34543')
