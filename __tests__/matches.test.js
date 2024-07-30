@@ -12,7 +12,7 @@ describe('GET /api/matches/side_by_side/user/:user_id/flight/:flight_id', () => 
     const result = {
       side_by_side_matches: [
         {
-          current_seats: { 
+          current_seats: {
             id: 424,
             seat_row: 18,
             seat_letter: 'E',

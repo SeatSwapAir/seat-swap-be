@@ -50,7 +50,7 @@ const isSeatTaken = async (seats, user_id, flight_id) => {
     await Promise.all(
       seats.map(async (seat) => {
         const sql = pgformat(
-          `SELECT * FROM "seat" WHERE user_id != %s AND flight_id = %s AND seat_row = %s AND seat_letter = '%s'`,
+          `SELECT * FROM "seat" WHERE current_user_id != %s AND flight_id = %s AND seat_row = %s AND seat_letter = '%s'`,
           user_id,
           flight_id,
           seat.seat_row,
@@ -77,14 +77,17 @@ const isSeatTaken = async (seats, user_id, flight_id) => {
 
 const seatsInsertedFormatted = async (seats, user_id, flight_id) => {
   const seatsForQuery = formatSeatsQuery(seats, user_id, flight_id);
+  // console.log('🚀 ~ seatsInsertedFormatted ~ seatsForQuery:', seatsForQuery);
 
   const insertSeatQueryStr = pgformat(
-    `INSERT INTO seat (flight_id, user_id, seat_row, seat_letter, seat_column, legroom, seat_location_id, seat_position_id) VALUES %L 
+    `INSERT INTO seat (flight_id, current_user_id, original_user_id, previous_user_id, seat_row, seat_letter, seat_column, legroom, seat_location_id, seat_position_id) VALUES %L 
       RETURNING *;`,
     seatsForQuery.map(
       ({
         flight_id,
-        user_id,
+        current_user_id,
+        original_user_id,
+        previous_user_id,
         seat_row,
         seat_letter,
         seat_column,
@@ -93,7 +96,9 @@ const seatsInsertedFormatted = async (seats, user_id, flight_id) => {
         seat_position_id,
       }) => [
         flight_id,
-        user_id,
+        current_user_id,
+        original_user_id,
+        previous_user_id,
         seat_row,
         seat_letter,
         seat_column,

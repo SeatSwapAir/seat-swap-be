@@ -15,7 +15,7 @@ describe('GET /api/users/:user_id/flights', () => {
       .then(({ body }) => {
         const { flights } = body;
         flights.forEach((flight) => {
-          expect(flight).toMatchObject({
+          expect(flight).toEqual({
             id: expect.any(Number),
             flightnumber: expect.any(String),
             departureairport: expect.any(String),
@@ -39,7 +39,10 @@ describe('GET /api/users/:user_id/flights', () => {
           });
 
           flight.seats.forEach((seat) => {
-            expect(seat).toMatchObject({
+            expect(seat).toEqual({
+              current_user_id: expect.any(Number),
+              original_user_id: expect.any(Number),
+              previous_user_id: null,
               seat_letter: expect.any(String),
               seat_row: expect.any(Number),
               location: expect.any(String),
@@ -66,6 +69,9 @@ describe('GET /api/users/:user_id/flights', () => {
           {
             extraLegroom: false,
             id: 2,
+            current_user_id: 2,
+            original_user_id: 2,
+            previous_user_id: null,
             location: 'front',
             seat_letter: 'F',
             seat_row: 8,
@@ -97,6 +103,9 @@ describe('GET /api/users/:user_id/flights', () => {
           {
             extraLegroom: false,
             id: 129,
+            current_user_id: 2,
+            original_user_id: 2,
+            previous_user_id: null,
             location: 'front',
             seat_letter: 'F',
             seat_row: 8,
@@ -128,6 +137,9 @@ describe('GET /api/users/:user_id/flights', () => {
           {
             extraLegroom: false,
             id: 236,
+            current_user_id: 2,
+            original_user_id: 2,
+            previous_user_id: null,
             location: 'front',
             seat_letter: 'F',
             seat_row: 8,
@@ -159,6 +171,9 @@ describe('GET /api/users/:user_id/flights', () => {
           {
             extraLegroom: false,
             id: 292,
+            current_user_id: 2,
+            original_user_id: 2,
+            previous_user_id: null,
             location: 'front',
             seat_letter: 'F',
             seat_row: 8,
@@ -190,6 +205,9 @@ describe('GET /api/users/:user_id/flights', () => {
           {
             extraLegroom: false,
             id: 311,
+            current_user_id: 2,
+            original_user_id: 2,
+            previous_user_id: null,
             location: 'front',
             seat_letter: 'F',
             seat_row: 8,
@@ -221,6 +239,9 @@ describe('GET /api/users/:user_id/flights', () => {
           {
             extraLegroom: false,
             id: 483,
+            current_user_id: 2,
+            original_user_id: 2,
+            previous_user_id: null,
             location: 'back',
             seat_letter: 'D',
             seat_row: 28,
@@ -229,6 +250,9 @@ describe('GET /api/users/:user_id/flights', () => {
           {
             extraLegroom: false,
             id: 424,
+            current_user_id: 2,
+            original_user_id: 2,
+            previous_user_id: null,
             location: 'center',
             seat_letter: 'E',
             seat_row: 18,
@@ -272,6 +296,9 @@ describe('GET /api/users/:user_id/flights', () => {
         seats: [
           {
             id: 24,
+            current_user_id: 24,
+            original_user_id: 24,
+            previous_user_id: null,
             seat_letter: 'E',
             seat_row: 7,
             extraLegroom: true,
@@ -303,6 +330,9 @@ describe('GET /api/users/:user_id/flights', () => {
         seats: [
           {
             id: 151,
+            current_user_id: 24,
+            original_user_id: 24,
+            previous_user_id: null,
             seat_letter: 'E',
             seat_row: 7,
             extraLegroom: true,
@@ -334,6 +364,9 @@ describe('GET /api/users/:user_id/flights', () => {
         seats: [
           {
             id: 286,
+            current_user_id: 24,
+            original_user_id: 24,
+            previous_user_id: null,
             seat_letter: 'B',
             seat_row: 27,
             extraLegroom: true,
@@ -342,6 +375,9 @@ describe('GET /api/users/:user_id/flights', () => {
           },
           {
             id: 285,
+            current_user_id: 24,
+            original_user_id: 24,
+            previous_user_id: null,
             seat_letter: 'A',
             seat_row: 17,
             extraLegroom: true,
@@ -350,6 +386,9 @@ describe('GET /api/users/:user_id/flights', () => {
           },
           {
             id: 284,
+            current_user_id: 24,
+            original_user_id: 24,
+            previous_user_id: null,
             seat_letter: 'C',
             seat_row: 8,
             extraLegroom: true,
@@ -358,6 +397,9 @@ describe('GET /api/users/:user_id/flights', () => {
           },
           {
             id: 283,
+            current_user_id: 24,
+            original_user_id: 24,
+            previous_user_id: null,
             seat_letter: 'A',
             seat_row: 28,
             extraLegroom: true,
@@ -389,6 +431,9 @@ describe('GET /api/users/:user_id/flights', () => {
         seats: [
           {
             id: 444,
+            current_user_id: 24,
+            original_user_id: 19,
+            previous_user_id: 19,
             seat_letter: 'A',
             seat_row: 22,
             extraLegroom: false,
@@ -397,6 +442,9 @@ describe('GET /api/users/:user_id/flights', () => {
           },
           {
             id: 374,
+            current_user_id: 24,
+            original_user_id: 24,
+            previous_user_id: null,
             seat_letter: 'C',
             seat_row: 10,
             extraLegroom: false,
@@ -563,6 +611,11 @@ describe('PATCH /api/users/:user_id/flights/:flight_id', () => {
       seats: [
         {
           id: expect.any(Number),
+          flight_id: 1,
+          seat_column: 6,
+          current_user_id: 77,
+          original_user_id: 77,
+          previous_user_id: null,
           seat_letter: 'F',
           seat_row: 12,
           extraLegroom: false,
@@ -571,6 +624,11 @@ describe('PATCH /api/users/:user_id/flights/:flight_id', () => {
         },
         {
           id: expect.any(Number),
+          flight_id: 1,
+          seat_column: 5,
+          current_user_id: 77,
+          original_user_id: 77,
+          previous_user_id: null,
           seat_letter: 'E',
           seat_row: 20,
           extraLegroom: false,
@@ -579,6 +637,11 @@ describe('PATCH /api/users/:user_id/flights/:flight_id', () => {
         },
         {
           id: expect.any(Number),
+          flight_id: 1,
+          seat_column: 4,
+          current_user_id: 77,
+          original_user_id: 77,
+          previous_user_id: null,
           seat_letter: 'D',
           seat_row: 13,
           extraLegroom: true,
@@ -587,6 +650,9 @@ describe('PATCH /api/users/:user_id/flights/:flight_id', () => {
         },
       ],
       preferences: {
+        flight_id: 1,
+        id: expect.any(Number),
+        user_id: 77,
         legroom_pref: false,
         window_pref: true,
         middle_pref: true,
@@ -604,7 +670,7 @@ describe('PATCH /api/users/:user_id/flights/:flight_id', () => {
       .send(payload)
       .expect(200)
       .then(({ body }) => {
-        expect(body).toMatchObject(result);
+        expect(body).toEqual(result);
       });
   });
 
@@ -723,6 +789,10 @@ describe('POST /api/users/:user_id/flights/:flight_id', () => {
       seats: [
         {
           id: expect.any(Number),
+          flight_id: 2,
+          current_user_id: 77,
+          original_user_id: 77,
+          previous_user_id: null,
           seat_letter: 'G',
           seat_row: 12,
           seat_column: 7,
@@ -732,6 +802,10 @@ describe('POST /api/users/:user_id/flights/:flight_id', () => {
         },
         {
           id: expect.any(Number),
+          flight_id: 2,
+          current_user_id: 77,
+          original_user_id: 77,
+          previous_user_id: null,
           seat_letter: 'G',
           seat_row: 20,
           seat_column: 7,
@@ -741,6 +815,9 @@ describe('POST /api/users/:user_id/flights/:flight_id', () => {
         },
       ],
       preferences: {
+        flight_id: 2,
+        user_id: 77,
+        id: expect.any(Number),
         legroom_pref: false,
         window_pref: true,
         middle_pref: true,
@@ -758,7 +835,7 @@ describe('POST /api/users/:user_id/flights/:flight_id', () => {
       .send(payload)
       .expect(200)
       .then(({ body }) => {
-        expect(body).toMatchObject(result);
+        expect(body).toEqual(result);
       });
   });
   test('400: Responds with a bad request error for an invalid user id', () => {

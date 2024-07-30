@@ -17,7 +17,6 @@ const {
 const selectFlightsByUser = async (user_id) => {
   try {
     await doesUserExist(user_id);
-
     const userFlightResult = await db.query(
       `SELECT 
         flight.id AS flight_id,
@@ -28,6 +27,9 @@ const selectFlightsByUser = async (user_id) => {
         flight.arrivalTime,
         flight.airline,
         seat.id AS seat_id,
+        seat.current_user_id AS seat_current_user_id,
+        seat.original_user_id AS seat_original_user_id,
+        seat.previous_user_id AS seat_previous_user_id,
         seat.seat_letter AS seat_letter,
         seat.seat_row AS seat_row,
         seat.legroom AS seat_legroom,
@@ -54,9 +56,13 @@ const selectFlightsByUser = async (user_id) => {
       LEFT JOIN 
         seat_position ON seat.seat_position_id = seat_position.id
       WHERE 
-        journey_prefs.user_id = $1 AND seat.user_id = $1;`,
+        journey_prefs.user_id = $1 AND seat.current_user_id = $1;`,
       [user_id]
     );
+    // console.log(
+    //   '🚀 ~ selectFlightsByUser ~ userFlightResult:',
+    //   userFlightResult.rows
+    // );
 
     if (userFlightResult.rows.length === 0) {
       return Promise.reject({
@@ -92,36 +98,41 @@ const selectFlightsByUser = async (user_id) => {
           },
         };
       }
- 
-      if (row.seat_id) {
-        const isSwapped = await seatSwapChecker(row.seat_id);
 
-        if (isSwapped) {
-          const swappedSeatFormatted = {
-            id: isSwapped.id,
-            seat_letter: isSwapped.seat_letter,
-            seat_row: isSwapped.seat_row,
-            extraLegroom: isSwapped.legroom,
-            location: getLocationName(isSwapped.seat_location_id),
-            position: getPositionName(isSwapped.seat_position_id),
-          };
-          flights[row.flight_id].seats.push(swappedSeatFormatted);
-        } else {
-          flights[row.flight_id].seats.push({
-            id: row.seat_id,
-            seat_letter: row.seat_letter,
-            seat_row: row.seat_row,
-            extraLegroom: row.seat_legroom,
-            location: row.seat_location_name,
-            position: row.seat_position_name,
-          });
-        }
+      if (row.seat_id) {
+        // const isSwapped = await seatSwapChecker(row.seat_id);
+
+        // if (isSwapped) {
+        //   const swappedSeatFormatted = {
+        //     id: isSwapped.id,
+        //     seat_letter: isSwapped.seat_letter,
+        //     seat_row: isSwapped.seat_row,
+        //     extraLegroom: isSwapped.legroom,
+        //     location: getLocationName(isSwapped.seat_location_id),
+        //     position: getPositionName(isSwapped.seat_position_id),
+        //   };
+        //   flights[row.flight_id].seats.push(swappedSeatFormatted);
+        // } else {
+        flights[row.flight_id].seats.push({
+          id: row.seat_id,
+          current_user_id: row.seat_current_user_id,
+          original_user_id: row.seat_original_user_id,
+          previous_user_id: row.seat_previous_user_id,
+          seat_letter: row.seat_letter,
+          seat_row: row.seat_row,
+          extraLegroom: row.seat_legroom,
+          location: row.seat_location_name,
+          position: row.seat_position_name,
+        });
+        // }
       }
     }
+
     return Object.values(flights);
   } catch (err) {
     throw err;
   }
+  console.log('🚀 ~ selectFlightsByUser ~ doesUserExist:', doesUserExist);
 };
 
 const seatSwapChecker = async (seat_id) => {
@@ -148,7 +159,6 @@ const seatSwapChecker = async (seat_id) => {
   return false;
 };
 
-
 const deleteFlightByUserIdAndFlightId = async (user_id, flight_id) => {
   try {
     const userJourneyResult = await db.query(
@@ -164,7 +174,7 @@ const deleteFlightByUserIdAndFlightId = async (user_id, flight_id) => {
     }
 
     const seatsDeleted = await db.query(
-      `DELETE FROM "seat" WHERE user_id = $1 AND flight_id = $2;`,
+      `DELETE FROM "seat" WHERE current_user_id = $1 AND flight_id = $2;`,
       [user_id, flight_id]
     );
 
@@ -200,20 +210,22 @@ const updateFlightByUserIdAndFlightId = async (user_id, flight_id, journey) => {
     seats,
     preferences,
   } = journey;
+
   try {
     const seatNumbers = seats.map((seat) => seat.seat_row + seat.seat_letter);
 
-    isSeatDuplicate(seatNumbers);
+    await isSeatDuplicate(seatNumbers);
 
     await doesUserExist(user_id);
+
     await doesFlightExist(flight_id);
 
     await isSeatTaken(seats, user_id, flight_id);
 
-    await db.query(`DELETE FROM "seat" WHERE user_id = $1 AND flight_id= $2`, [
-      user_id,
-      flight_id,
-    ]);
+    await db.query(
+      `DELETE FROM "seat" WHERE current_user_id = $1 AND flight_id= $2`,
+      [user_id, flight_id]
+    );
 
     const seatsFormatted = await seatsInsertedFormatted(
       seats,
@@ -277,11 +289,20 @@ const updateFlightByUserIdAndFlightId = async (user_id, flight_id, journey) => {
       seats: seatsFormatted,
       preferences: newPrefs.rows[0],
     };
+
     return journey;
   } catch (err) {
     // console.error('Database query error:', err);
     throw err;
   }
+  console.log(
+    '🚀 ~ updateFlightByUserIdAndFlightId ~ doesUserExist:',
+    doesUserExist
+  );
+  console.log(
+    '🚀 ~ updateFlightByUserIdAndFlightId ~ doesUserExist:',
+    doesUserExist
+  );
 };
 
 const insertFlightByUserIdAndFlightId = async (user_id, flight_id, journey) => {
@@ -306,10 +327,6 @@ const insertFlightByUserIdAndFlightId = async (user_id, flight_id, journey) => {
 
     await isSeatTaken(seats, user_id, flight_id);
 
-    await db.query(`DELETE FROM "seat" WHERE user_id = $1 AND flight_id= $2`, [
-      user_id,
-      flight_id,
-    ]);
     const seatsFormatted = await seatsInsertedFormatted(
       seats,
       user_id,

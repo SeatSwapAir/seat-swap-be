@@ -5,7 +5,7 @@ const seed = require('../db/seeds/seed');
 const data = require('../db/data/test-data/index.js');
 
 beforeEach(() => seed(data));
-afterAll(() => db.end()); 
+afterAll(() => db.end());
 
 describe('GET /api/flights/:flightNumber/date/:departureTime', () => {
   test('200: Responds with a with a flightId if it exists in local DB for a given flightNumber and departureTime', () => {
@@ -13,7 +13,7 @@ describe('GET /api/flights/:flightNumber/date/:departureTime', () => {
       .get('/api/flights/FR9336/date/2024-07-14')
       .expect(200)
       .then(({ body }) => {
-        expect(body).toMatchObject({
+        expect(body).toEqual({
           id: 6,
           flightnumber: 'FR9336',
           departureairport: 'BRS',
@@ -29,7 +29,7 @@ describe('GET /api/flights/:flightNumber/date/:departureTime', () => {
       .get('/api/flights/FR2714/date/2024-08-16')
       .expect(200)
       .then(({ body }) => {
-        expect(body).toMatchObject({
+        expect(body).toEqual({
           id: 9,
           flightnumber: 'FR2714',
           departureairport: 'ALC',
