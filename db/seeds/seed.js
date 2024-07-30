@@ -82,8 +82,10 @@ const seed = async ({
     await db.query(`
       CREATE TABLE seat (
         id SERIAL PRIMARY KEY,
+        current_user_id INTEGER REFERENCES "user"(id),
+        original_user_id INTEGER REFERENCES "user"(id),
+        previous_user_id INTEGER REFERENCES "user"(id) DEFAULT NULL,
         flight_id INTEGER REFERENCES flight(id),
-        user_id INTEGER REFERENCES "user"(id),
         seat_row SMALLINT,
         seat_letter CHAR(1),
         seat_column SMALLINT,
@@ -96,12 +98,13 @@ const seed = async ({
     await db.query(`
       CREATE TABLE swap (
         id SERIAL PRIMARY KEY,
-        offered_seat_id INTEGER REFERENCES seat(id),
-        requested_seat_id INTEGER REFERENCES seat(id),
-        swap_request_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        swap_approval_date TIMESTAMP,
-        rejection BOOLEAN DEFAULT FALSE,
-        cancelled BOOLEAN DEFAULT FALSE
+        requester_id INTEGER REFERENCES "user"(id),
+        respondent_id INTEGER REFERENCES "user"(id),
+        requester_seat_id INTEGER REFERENCES seat(id),
+        respondent_seat_id INTEGER REFERENCES seat(id),
+        status VARCHAR(255),
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMP DEFAULT NULL
       );
     `);
 
@@ -183,11 +186,13 @@ const seed = async ({
     await db.query(insertFlightQueryStr);
 
     const insertSeatQueryStr = format(
-      'INSERT INTO seat (flight_id, user_id, legroom, seat_location_id, seat_position_id, seat_row, seat_letter, seat_column) VALUES %L RETURNING *;',
+      'INSERT INTO seat (current_user_id, original_user_id, previous_user_id, flight_id, legroom, seat_location_id, seat_position_id, seat_row, seat_letter, seat_column) VALUES %L RETURNING *;',
       seatData.map(
         ({
+          current_user_id,
+          original_user_id,
+          previous_user_id,
           flight_id,
-          user_id,
           legroom,
           seat_location_id,
           seat_position_id,
@@ -195,8 +200,10 @@ const seed = async ({
           seat_letter,
           seat_column,
         }) => [
+          current_user_id,
+          original_user_id,
+          previous_user_id,
           flight_id,
-          user_id,
           legroom,
           seat_location_id,
           seat_position_id,
@@ -258,22 +265,24 @@ const seed = async ({
     await db.query(insertAirlineQueryStr);
 
     const insertSwapQueryStr = format(
-      'INSERT INTO swap (offered_seat_id, requested_seat_id, swap_request_date, swap_approval_date, rejection, cancelled) VALUES %L RETURNING *;',
+      'INSERT INTO swap (requester_id, respondent_id, requester_seat_id, respondent_seat_id, status, created_at, updated_at) VALUES %L RETURNING *;',
       swapData.map(
         ({
-          offered_seat_id,
-          requested_seat_id,
-          swap_request_date,
-          swap_approval_date,
-          rejection,
-          cancelled,
+          requester_id,
+          respondent_id,
+          requester_seat_id,
+          respondent_seat_id,
+          status,
+          created_at,
+          updated_at,
         }) => [
-          offered_seat_id,
-          requested_seat_id,
-          swap_request_date,
-          swap_approval_date,
-          rejection,
-          cancelled,
+          requester_id,
+          respondent_id,
+          requester_seat_id,
+          respondent_seat_id,
+          status,
+          created_at,
+          updated_at,
         ]
       )
     );
