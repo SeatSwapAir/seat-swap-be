@@ -5472,9 +5472,9 @@ module.exports = [
     seat_column: 6,
   },
   {
-    current_user_id: '27',
+    current_user_id: '17',
     original_user_id: '27',
-    previous_user_id: null,
+    previous_user_id: '27',
     flight_id: '8',
     number: '18A',
     legroom: 'FALSE',
@@ -5485,9 +5485,9 @@ module.exports = [
     seat_column: 1,
   },
   {
-    current_user_id: '17',
+    current_user_id: '27',
     original_user_id: '17',
-    previous_user_id: null,
+    previous_user_id: '17',
     flight_id: '8',
     number: '18B',
     legroom: 'FALSE',

@@ -7,7 +7,7 @@ const data = require('../db/data/test-data/index.js');
 beforeEach(() => seed(data));
 afterAll(() => db.end());
 
-xdescribe('GET /api/flights/:flightNumber/date/:departureTime', () => {
+describe('GET /api/flights/:flightNumber/date/:departureTime', () => {
   test('200: Responds with a with a flightId if it exists in local DB for a given flightNumber and departureTime', () => {
     return request(app)
       .get('/api/flights/FR9336/date/2024-07-14')

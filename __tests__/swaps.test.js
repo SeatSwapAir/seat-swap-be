@@ -203,6 +203,7 @@ describe('GET /api/swap/yourseat/:your_seat_id/matched/:matched_seat_id', () => 
   test('200: Responds with request action if swap found for provided seat ids but status is cancelled', () => {
     const result = {
       actions: ['request'],
+      swap_id: 6,
     };
     return request(app)
       .get('/api/swap/yourseat/374/matched/367')
@@ -211,36 +212,85 @@ describe('GET /api/swap/yourseat/:your_seat_id/matched/:matched_seat_id', () => 
         expect(body).toEqual(result);
       });
   });
-  test('200: Responds with action accepted if swap found for provided seat ids but status is accepted', () => {
+  test('200: Responds with action accepted if swap found for provided seat ids and status is accepted', () => {
     const result = {
       actions: ['accepted'],
+      swap_id: 8,
     };
     return request(app)
-      .get('/api/swap/yourseat/374/matched/367')
+      .get('/api/swap/yourseat/420/matched/421')
       .expect(200)
       .then(({ body }) => {
         expect(body).toEqual(result);
       });
   });
-  test('200: Responds with accept and reject actions if swap found and matched_seat_id is requester_seat_id', () => {
+  test('200: Responds with accept and reject actions if swap found and you user got a request for a seat', () => {
     const result = {
       actions: ['accept', 'reject'],
-      swap_id: 1,
+      swap_id: 9,
     };
     return request(app)
-      .get('/api/swap/yourseat/452/matched/453')
+      .get('/api/swap/yourseat/433/matched/432')
       .expect(200)
       .then(({ body }) => {
         expect(body).toEqual(result);
       });
   });
-  test('200: Responds with cancel action if swap found and requested by your_seat_id', () => {
+  test('200: Responds with cancel action if swap found and requested by the user (requester_id = user_id)', () => {
     const result = {
       actions: ['cancel'],
-      swap_id: 1,
+      swap_id: 7,
     };
     return request(app)
-      .get('/api/swap/yourseat/453/matched/452')
+      .get('/api/swap/yourseat/424/matched/425')
+      .expect(200)
+      .then(({ body }) => {
+        expect(body).toMatchObject(result);
+      });
+  });
+  test('200: Responds with request action if swap found and voided and user requested', () => {
+    const result = {
+      actions: ['request'],
+      swap_id: 10,
+    };
+    return request(app)
+      .get('/api/swap/yourseat/360/matched/361')
+      .expect(200)
+      .then(({ body }) => {
+        expect(body).toMatchObject(result);
+      });
+  });
+  test('200: Responds with request action if swap found and voided and user got request', () => {
+    const result = {
+      actions: ['request'],
+      swap_id: 10,
+    };
+    return request(app)
+      .get('/api/swap/yourseat/361/matched/360')
+      .expect(200)
+      .then(({ body }) => {
+        expect(body).toMatchObject(result);
+      });
+  });
+  test('200: Responds with rejected action if swap found and rejected and user did the request', () => {
+    const result = {
+      actions: ['rejected'],
+      swap_id: 11,
+    };
+    return request(app)
+      .get('/api/swap/yourseat/462/matched/463')
+      .expect(200)
+      .then(({ body }) => {
+        expect(body).toMatchObject(result);
+      });
+  });
+  test('200: Responds with request action if swap found and rejected by the user who received the request', () => {
+    const result = {
+      actions: ['request'],
+      swap_id: 11,
+    };
+    return request(app)
+      .get('/api/swap/yourseat/463/matched/462')
       .expect(200)
       .then(({ body }) => {
         expect(body).toMatchObject(result);

@@ -142,95 +142,36 @@ const selectSwap = async (your_seat_id, matched_seat_id) => {
     await doesSeatIdExist(your_seat_id);
     await doesSeatIdExist(matched_seat_id);
 
-    const user_id = await db.query(
+    const { rows } = await db.query(
       'SELECT current_user_id FROM seat WHERE id = $1;',
       [your_seat_id]
     );
 
+    const user_id = rows[0].current_user_id;
+
     const swapExistQuery = await db.query(
       'SELECT * FROM swap WHERE requester_seat_id IN ($1, $2) AND respondent_seat_id IN ($1, $2) AND (requester_id = $3 OR respondent_id = $3);',
-      [your_seat_id, matched_seat_id, user_id.rows[0].current_user_id]
+      [your_seat_id, matched_seat_id, user_id]
     );
-    console.log('🚀 ~ selectSwap ~ swapExistQuery:', swapExistQuery.rows);
+    
+    if (swapExistQuery.rowCount === 0) return {actions: ['request']};
+    
+    const { requester_id, status, id } = swapExistQuery.rows[0];
+    const gotAccepted = status === 'accepted';
+    const gotRejected = status === 'rejected' && requester_id === user_id;
+    const gotRequest = status === 'requested' && requester_id !== user_id;
+    const userRequested = status === 'requested' && requester_id === user_id;
 
-    if (swapExistQuery.rowCount === 0) {
-      return {
-        actions: ['request'],
-      };
-    }
-
-    const gotAccepted = swapExistQuery.rows[0].status === 'accepted';
-    console.log('🚀 ~ selectSwap ~ gotAccepted:', gotAccepted);
-    const gotRejected =
-      swapExistQuery.rows[0].status === 'rejected' &&
-      swapExistQuery.rows[0].requester_id === user_id.rows[0].current_user_id;
-    console.log('🚀 ~ selectSwap ~ gotRejected:', gotRejected);
-
-    // if (swapExistQuery.rows[0].status)
-    // if (
-    //   didRequestQuery.rowCount !== 0 &&
-    //   didRequestQuery.rows[0].swap_request_date &&
-    //   didRequestQuery.rows[0].rejected &&
-    //   didRequestQuery.rows[0].cancelled
-    // )
-    //   return { actions: ['rejected'], swap_id: didRequestQuery.rows[0].id };
-    // if (
-    //   didRequestQuery.rowCount !== 0 &&
-    //   didRequestQuery.rows[0].swap_request_date &&
-    //   didRequestQuery.rows[0].cancelled
-    // )
-    //   return { actions: ['request'], swap_id: didRequestQuery.rows[0].id };
-    // if (
-    //   didRequestQuery.rowCount !== 0 &&
-    //   didRequestQuery.rows[0].swap_request_date &&
-    //   didRequestQuery.rows[0].rejected
-    // )
-    //   return { actions: ['rejected'], swap_id: didRequestQuery.rows[0].id };
-    // if (
-    //   didRequestQuery.rowCount !== 0 &&
-    //   didRequestQuery.rows[0].swap_request_date &&
-    //   didRequestQuery.rows[0].swap_approval_date
-    // )
-    //   return { actions: ['accepted'], swap_id: didRequestQuery.rows[0].id };
-    // if (
-    //   didRequestQuery.rowCount !== 0 &&
-    //   didRequestQuery.rows[0].swap_request_date
-    // )
-    //   return { actions: ['cancel'], swap_id: didRequestQuery.rows[0].id };
-
-    // if (
-    //   seatRequestedQuery.rowCount !== 0 &&
-    //   seatRequestedQuery.rows[0].swap_request_date &&
-    //   seatRequestedQuery.rows[0].rejected &&
-    //   seatRequestedQuery.rows[0].cancelled
-    // )
-    //   return { actions: ['rejected'], swap_id: seatRequestedQuery.rows[0].id };
-    // if (
-    //   seatRequestedQuery.rowCount !== 0 &&
-    //   seatRequestedQuery.rows[0].swap_request_date &&
-    //   seatRequestedQuery.rows[0].cancelled
-    // )
-    //   return { actions: ['request'], swap_id: seatRequestedQuery.rows[0].id };
-    // if (
-    //   seatRequestedQuery.rowCount !== 0 &&
-    //   seatRequestedQuery.rows[0].swap_request_date &&
-    //   seatRequestedQuery.rows[0].rejected
-    // )
-    //   return { actions: ['rejected'], swap_id: seatRequestedQuery.rows[0].id };
-    // if (
-    //   seatRequestedQuery.rowCount !== 0 &&
-    //   seatRequestedQuery.rows[0].swap_request_date &&
-    //   seatRequestedQuery.rows[0].swap_approval_date
-    // )
-    //   return { actions: ['accepted'], swap_id: seatRequestedQuery.rows[0].id };
-    // if (
-    //   seatRequestedQuery.rowCount !== 0 &&
-    //   seatRequestedQuery.rows[0].swap_request_date
-    // )
-    //   return {
-    //     actions: ['accept', 'reject'],
-    //     swap_id: seatRequestedQuery.rows[0].id,
-    //   };
+    if (userRequested)
+      return { actions: ['cancel'], swap_id: id };
+    if (gotAccepted)
+      return { actions: ['accepted'], swap_id: id };
+    if (gotRejected)
+      return { actions: ['rejected'], swap_id: id };
+    if (gotRequest)
+      return { actions: ['accept', 'reject'], swap_id: id };
+    return { actions: ['request'], swap_id: id };
+    
   } catch (err) {
     // console.error('Database query error:', err);
     throw err;
@@ -243,19 +184,19 @@ module.exports = {
   selectSwap,
 };
 
-// swap for the seats not foud in db at all // you can request
+//V// swap for the seats not foud in db at all // you can request
 // |req_id |res_id |req_s_id | res_s_id | status
-// |you    |them   |your     |theirs    | requested // you can cancel
-// |you    |them   |your     |theirs    | cancelled 1. // you can request again // creates new entry canceled entries are ignored
-// |you    |them   |your     |theirs    | accepted  // nothing can be done
-// |you    |them   |your     |theirs    | voided    1. // you can request again // creates new entry canceled entries are ignored
+//V// |you    |them   |your     |theirs    | requested // you can cancel VV
+//V// |you    |them   |your     |theirs    | cancelled VV1. // you can request again // creates new entry canceled entries are ignored
+//V// |you    |them   |your     |theirs    | accepted  // nothing can be done VV
+//V// |you    |them   |your     |theirs    | voided    VV1. // you can request again // creates new entry canceled entries are ignored
 // |you    |them   |your     |theirs    | rejected  // you cannot! request again
 
 // |req_id |res_id |req_s_id | res_s_id | status
-// |them    |you   |theirs     |your    | requested // we can accept or reject
-// |them    |you   |theirs     |your    | cancelled 1. // we can request //new entry// row ignored
-// |them    |you   |theirs     |your    | accepted  // nothoing can be done
-// |them    |you   |theirs     |your    | voided    1. // we can request //new entry// row ignored
+//V// |them    |you   |theirs     |your    | requested // we can accept or reject VV
+//V// |them    |you   |theirs     |your    | cancelled VV1. // we can request //new entry// row ignored
+//V// |them    |you   |theirs     |your    | accepted  // nothoing can be done VV
+//V// |them    |you   |theirs     |your    | voided    1. // we can request //new entry// row ignored
 // |them    |you   |theirs     |your    | rejected  1. // we can request //new entry// row ignored
 
 // if its  even there. if not action: request
