@@ -242,7 +242,7 @@ describe('GET /api/user/:user_id/flight/:flight_id/offers', () => {
   });
   test('404: Responds with an error message for a non-existent user id', () => {
     return request(app)
-      .get('/api/matches/side_by_side/user/3645634/flight/2')
+      .get('/api/user/3645634/flight/2/offers')
       .expect(404)
       .then(({ body }) => {
         expect(body.msg).toBe('User not found');
@@ -251,7 +251,7 @@ describe('GET /api/user/:user_id/flight/:flight_id/offers', () => {
 
   test('404: Responds with an error message for a non-existent flight id', () => {
     return request(app)
-      .get('/api/matches/side_by_side/user/2/flight/3456435')
+      .get('/api/user/2/flight/3456435/offers')
       .expect(404)
       .then(({ body }) => {
         expect(body.msg).toBe('Flight not found');
@@ -260,7 +260,7 @@ describe('GET /api/user/:user_id/flight/:flight_id/offers', () => {
 
   test('400: Responds with a bad request error for an invalid user id', () => {
     return request(app)
-      .get('/api/matches/side_by_side/user/invalid-id/flight/2')
+      .get('/api/user/invalid-id/flight/2/offers')
       .expect(400)
       .then(({ body }) => {
         expect(body.msg).toBe('Bad request');
@@ -268,7 +268,7 @@ describe('GET /api/user/:user_id/flight/:flight_id/offers', () => {
   });
   test('400: Responds with a bad request error for an invalid flight_id', () => {
     return request(app)
-      .get('/api/matches/side_by_side/user/2/flight/invalid-id')
+      .get('/api/user/2/flight/invalid-id/offers')
       .expect(400)
       .then(({ body }) => {
         expect(body.msg).toBe('Bad request');

@@ -1,16 +1,11 @@
 const db = require('../db/connection.js');
-const dayjs = require('dayjs');
 const pgformat = require('pg-format');
 const {
   doesUserExist,
   doesFlightExist,
-  isSeatDuplicate,
-  isSeatTaken,
-  seatsInsertedFormatted,
 } = require('../helpers/errorChecks');
 
 const selectOffers = async (user_id, flight_id) => {
-  // console.log("🚀 ~ selectOffers ~ user_id:", user_id)
   try {
     await doesUserExist(user_id);
     await doesFlightExist(flight_id);
@@ -35,13 +30,8 @@ const selectOffers = async (user_id, flight_id) => {
       [usersSeatsIds],
       [usersSeatsIds]
     );
-    const usersOffers = await db.query(usersOffersSql);
 
-    // const x = usersSeatsIds.map((seat_id) => {
-    //   const offers = usersOffers.rows.filter((offer) => offer.requester_seat_id === seat_id || offer.respondent_seat_id === seat_id)
-    //   return offers
-    // })
-    // console.log("🚀 ~ x ~ x:", x)
+    const usersOffers = await db.query(usersOffersSql);
 
     const offeredSwaps = usersOffers.rows.filter((offer) => {
       return offer.respondent_id === +user_id;
@@ -55,10 +45,6 @@ const selectOffers = async (user_id, flight_id) => {
       return offer.requester_id === +user_id && offer.status === 'voided';
     });
 
-    // const seat = await db.query(
-    //   `SELECT * FROM seat WHERE id = $1;`,
-    //   [seat_id]
-    // );
 const seatSql = 
   `SELECT 
     seat.id, 
@@ -114,8 +100,6 @@ const seatSql =
         offer_seats: await Promise.all(offer_seats)
       };
     });
-
-
 
     const result = { 
       offers: await Promise.all(offeredSeats),
