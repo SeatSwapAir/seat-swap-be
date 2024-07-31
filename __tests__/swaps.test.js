@@ -42,7 +42,7 @@ describe('POST /api/swap', () => {
         expect(body.msg).toBe('Swap already exists');
       });
   });
-  test('400: Responds with a bad request for a non-existent offered_seat_id', () => {
+  test('400: Responds with a bad request for a non-existent requester_seat_id', () => {
     const payload = {
       requester_seat_id: 238239,
       respondent_seat_id: 452,
@@ -314,7 +314,7 @@ describe('GET /api/swap/yourseat/:your_seat_id/matched/:matched_seat_id', () => 
   });
 });
 
-// api/swap/ (POST with payload of {offered_seat_id and requested_seat_id} returning same ids)
+// api/swap/ (POST with payload of {requester_seat_id and requested_seat_id} returning same ids)
 // api/swap/:id (GET Returns the swap and status (either rejected or approval date or))
 // api/swap/:id/approve
 // api/swap/:id/reject (PATCH for the swap id changing rejected to TRUE, in model: check if swap hasn't already been approv)
