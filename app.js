@@ -30,6 +30,8 @@ const {
   getSwap,
 } = require('./controllers/swaps.controllers');
 
+const {getOffers} = require('./controllers/offers.controllers');
+
 app.get('/api/users/:user_id/flights', getFlightsByUser);
 app.delete(
   '/api/users/:user_id/flights/:flight_id',
@@ -70,6 +72,8 @@ app.post('/api/swap', postSwap);
 app.patch('/api/swap/:swap_id', patchSwap);
 
 app.get('/api/swap/yourseat/:your_seat_id/matched/:matched_seat_id', getSwap);
+
+app.get('/api/user/:user_id/flight/:flight_id/offers', getOffers);
 
 //handle custom errors
 app.use((err, req, res, next) => {

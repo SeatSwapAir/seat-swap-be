@@ -31,7 +31,6 @@ function formatSeatsReturn(seats) {
     };
   });
 }
-
 function getPositionId(positionName) {
   if (positionName === 'window') return 1;
   if (positionName === 'middle') return 2;
@@ -42,7 +41,6 @@ function getLocationId(locationName) {
   if (locationName === 'center') return 2;
   if (locationName === 'back') return 3;
 }
-
 function formatSeatsQuery(seats, user_id, flight_id) {
   return seats.map((seat) => {
     return {
