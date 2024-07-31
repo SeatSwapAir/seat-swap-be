@@ -1,12 +1,6 @@
 const db = require('../db/connection.js');
 const pgformat = require('pg-format');
 const {
-  formatSeatsQuery,
-  formatSeatsReturn,
-  getLocationName,
-  getPositionName,
-} = require('../helpers/seatsArrayTranformer.js');
-const {
   doesUserExist,
   doesFlightExist,
   isSeatDuplicate,
@@ -59,10 +53,7 @@ const selectFlightsByUser = async (user_id) => {
         journey_prefs.user_id = $1 AND seat.current_user_id = $1;`,
       [user_id]
     );
-    // console.log(
-    //   '🚀 ~ selectFlightsByUser ~ userFlightResult:',
-    //   userFlightResult.rows
-    // );
+
 
     if (userFlightResult.rows.length === 0) {
       return Promise.reject({
@@ -100,19 +91,6 @@ const selectFlightsByUser = async (user_id) => {
       }
 
       if (row.seat_id) {
-        // const isSwapped = await seatSwapChecker(row.seat_id);
-
-        // if (isSwapped) {
-        //   const swappedSeatFormatted = {
-        //     id: isSwapped.id,
-        //     seat_letter: isSwapped.seat_letter,
-        //     seat_row: isSwapped.seat_row,
-        //     extraLegroom: isSwapped.legroom,
-        //     location: getLocationName(isSwapped.seat_location_id),
-        //     position: getPositionName(isSwapped.seat_position_id),
-        //   };
-        //   flights[row.flight_id].seats.push(swappedSeatFormatted);
-        // } else {
         flights[row.flight_id].seats.push({
           id: row.seat_id,
           current_user_id: row.seat_current_user_id,
@@ -132,31 +110,6 @@ const selectFlightsByUser = async (user_id) => {
   } catch (err) {
     throw err;
   }
-  console.log('🚀 ~ selectFlightsByUser ~ doesUserExist:', doesUserExist);
-};
-
-const seatSwapChecker = async (seat_id) => {
-  const isSeatSwapped = await db.query(
-    `SELECT * FROM swap WHERE (offered_seat_id = $1 OR requested_seat_id = $1) AND swap_approval_date IS NOT NULL;`,
-    [seat_id]
-  );
-
-  if (isSeatSwapped.rowCount !== 0) {
-    const offered_seat_id = isSeatSwapped.rows[0].offered_seat_id;
-    const requested_seat_id = isSeatSwapped.rows[0].requested_seat_id;
-    if (offered_seat_id === seat_id) {
-      const swappedSeat = await db.query(`SELECT * FROM seat WHERE id=$1;`, [
-        requested_seat_id,
-      ]);
-      return swappedSeat.rows[0];
-    }
-    const swappedSeat = await db.query(`SELECT * FROM seat WHERE id=$1;`, [
-      offered_seat_id,
-    ]);
-    return swappedSeat.rows[0];
-  }
-
-  return false;
 };
 
 const deleteFlightByUserIdAndFlightId = async (user_id, flight_id) => {
@@ -295,14 +248,6 @@ const updateFlightByUserIdAndFlightId = async (user_id, flight_id, journey) => {
     // console.error('Database query error:', err);
     throw err;
   }
-  console.log(
-    '🚀 ~ updateFlightByUserIdAndFlightId ~ doesUserExist:',
-    doesUserExist
-  );
-  console.log(
-    '🚀 ~ updateFlightByUserIdAndFlightId ~ doesUserExist:',
-    doesUserExist
-  );
 };
 
 const insertFlightByUserIdAndFlightId = async (user_id, flight_id, journey) => {
@@ -367,7 +312,6 @@ module.exports = {
   deleteFlightByUserIdAndFlightId,
   updateFlightByUserIdAndFlightId,
   insertFlightByUserIdAndFlightId,
-  seatSwapChecker,
 };
 
 //post model for adding new journey pref and seats
