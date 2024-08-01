@@ -2,6 +2,7 @@ const {
   selectSideBySideMatches,
   selectSameRowMatches,
   selectNeighbourhingRowsMatches,
+  selectAllMatches,
 } = require('../models/matches.models');
 
 const getSideBySideMatches = async (req, res, next) => {
@@ -40,8 +41,21 @@ const getNeighbouringRowsMatches = async (req, res, next) => {
     });
 };
 
+const getAllMatches = async (req, res, next) => {
+  const { user_id, flight_id } = req.params;
+
+  selectAllMatches(user_id, flight_id)
+    .then((all_matches) => {
+      res.status(200).send({ all_matches });
+    })
+    .catch((error) => {
+      next(error);
+    });
+};
+
 module.exports = {
   getSideBySideMatches,
   getSameRowMatches,
   getNeighbouringRowsMatches,
+  getAllMatches,
 };

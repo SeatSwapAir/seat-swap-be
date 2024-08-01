@@ -501,3 +501,48 @@ describe('GET /api/matches/neighbouring_rows/user/:user_id/flight/:flight_id', (
       });
   });
 });
+
+describe('GET /api/matches/all/user/:user_id/flight/:flight_id', () => {
+  test('200: Responds with an array of all seat matches for a user id and flight id', () => {
+    return request(app)
+      .get('/api/matches/all/user/2/flight/8')
+      .expect(200)
+      .then(({ body }) => {
+        expect(body.all_matches[0].offer_seats.length).toEqual(193);
+      });
+  });
+  test('404: Responds with an error message for a non-existent user id', () => {
+    return request(app)
+      .get('/api/matches/all/user/3456435/flight/2')
+      .expect(404)
+      .then(({ body }) => {
+        expect(body.msg).toBe('User not found');
+      });
+  });
+
+  test('404: Responds with an error message for a non-existent flight id', () => {
+    return request(app)
+      .get('/api/matches/all/user/2/flight/3456435')
+      .expect(404)
+      .then(({ body }) => {
+        expect(body.msg).toBe('Flight not found');
+      });
+  });
+
+  test('400: Responds with a bad request error for an invalid user id', () => {
+    return request(app)
+      .get('/api/matches/all/user/invalid-id/flight/2')
+      .expect(400)
+      .then(({ body }) => {
+        expect(body.msg).toBe('Bad request');
+      });
+  });
+  test('400: Responds with a bad request error for an invalid flight_id', () => {
+    return request(app)
+      .get('/api/matches/all/user/2/flight/invalid-id')
+      .expect(400)
+      .then(({ body }) => {
+        expect(body.msg).toBe('Bad request');
+      });
+  });
+});
