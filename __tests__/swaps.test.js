@@ -245,7 +245,7 @@ describe('GET /api/swap/yourseat/:your_seat_id/matched/:matched_seat_id', () => 
       .get('/api/swap/yourseat/424/matched/425')
       .expect(200)
       .then(({ body }) => {
-        expect(body).toMatchObject(result);
+        expect(body).toEqual(result);
       });
   });
   test('200: Responds with request action if swap found and voided and user requested', () => {
@@ -257,7 +257,7 @@ describe('GET /api/swap/yourseat/:your_seat_id/matched/:matched_seat_id', () => 
       .get('/api/swap/yourseat/360/matched/361')
       .expect(200)
       .then(({ body }) => {
-        expect(body).toMatchObject(result);
+        expect(body).toEqual(result);
       });
   });
   test('200: Responds with request action if swap found and voided and user got request', () => {
@@ -269,7 +269,7 @@ describe('GET /api/swap/yourseat/:your_seat_id/matched/:matched_seat_id', () => 
       .get('/api/swap/yourseat/361/matched/360')
       .expect(200)
       .then(({ body }) => {
-        expect(body).toMatchObject(result);
+        expect(body).toEqual(result);
       });
   });
   test('200: Responds with rejected action if swap found and rejected and user did the request', () => {
@@ -281,7 +281,7 @@ describe('GET /api/swap/yourseat/:your_seat_id/matched/:matched_seat_id', () => 
       .get('/api/swap/yourseat/462/matched/463')
       .expect(200)
       .then(({ body }) => {
-        expect(body).toMatchObject(result);
+        expect(body).toEqual(result);
       });
   });
   test('200: Responds with request action if swap found and rejected by the user who received the request', () => {
@@ -293,7 +293,7 @@ describe('GET /api/swap/yourseat/:your_seat_id/matched/:matched_seat_id', () => 
       .get('/api/swap/yourseat/463/matched/462')
       .expect(200)
       .then(({ body }) => {
-        expect(body).toMatchObject(result);
+        expect(body).toEqual(result);
       });
   });
   test('400: Responds with a bad request for a non-existent your_seat_id', () => {

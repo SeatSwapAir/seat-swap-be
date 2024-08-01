@@ -1,9 +1,6 @@
 const db = require('../db/connection.js');
 const pgformat = require('pg-format');
-const {
-  doesUserExist,
-  doesFlightExist,
-} = require('../helpers/errorChecks');
+const { doesUserExist, doesFlightExist } = require('../helpers/errorChecks');
 
 const selectOffers = async (user_id, flight_id) => {
   try {
@@ -34,7 +31,7 @@ const selectOffers = async (user_id, flight_id) => {
     const usersOffers = await db.query(usersOffersSql);
 
     const offeredSwaps = usersOffers.rows.filter((offer) => {
-      return offer.respondent_id === +user_id;
+      return offer.respondent_id === +user_id && offer.status === 'requested';
     });
 
     const requestedSwaps = usersOffers.rows.filter((offer) => {
@@ -45,8 +42,7 @@ const selectOffers = async (user_id, flight_id) => {
       return offer.requester_id === +user_id && offer.status === 'voided';
     });
 
-const seatSql = 
-  `SELECT 
+    const seatSql = `SELECT 
     seat.id, 
     seat_row, 
     seat_letter, 
@@ -56,55 +52,58 @@ const seatSql =
   FROM seat 
   INNER JOIN seat_position ON seat.seat_position_id = seat_position.id 
   INNER JOIN seat_location ON seat.seat_location_id = seat_location.id
-  WHERE seat.id = $1;`
+  WHERE seat.id = $1;`;
 
-    const offeredSeats = usersSeatsIds.map(async(seat_id) => {
-      const {rows} = await db.query(seatSql,[seat_id]);  
+    const offeredSeats = usersSeatsIds.map(async (seat_id) => {
+      const { rows } = await db.query(seatSql, [seat_id]);
       const current_seats = rows[0];
-      const offer_seats = offeredSwaps.filter(
-        (offer) => offer.respondent_seat_id === seat_id
-      ).map(offer => offer.requester_seat_id).map(async (seat_id) => {
-        const {rows} = await db.query(seatSql,[seat_id]);  
-        return rows[0];
-      }) 
+      const offer_seats = offeredSwaps
+        .filter((offer) => offer.respondent_seat_id === seat_id)
+        .map((offer) => offer.requester_seat_id)
+        .map(async (seat_id) => {
+          const { rows } = await db.query(seatSql, [seat_id]);
+          return rows[0];
+        });
       return {
         current_seats,
-        offer_seats: await Promise.all(offer_seats)
+        offer_seats: await Promise.all(offer_seats),
       };
     });
-    const requestedSeats = usersSeatsIds.map(async(seat_id) => {
-      const {rows} = await db.query(seatSql,[seat_id]);  
+    const requestedSeats = usersSeatsIds.map(async (seat_id) => {
+      const { rows } = await db.query(seatSql, [seat_id]);
       const current_seats = rows[0];
-      const offer_seats = requestedSwaps.filter(
-        (offer) => offer.requester_seat_id === seat_id 
-      ).map(offer => offer.respondent_seat_id).map(async (seat_id) => {
-        const {rows} = await db.query(seatSql,[seat_id]);  
-        return rows[0];
-      }) 
+      const offer_seats = requestedSwaps
+        .filter((offer) => offer.requester_seat_id === seat_id)
+        .map((offer) => offer.respondent_seat_id)
+        .map(async (seat_id) => {
+          const { rows } = await db.query(seatSql, [seat_id]);
+          return rows[0];
+        });
       return {
         current_seats,
-        offer_seats: await Promise.all(offer_seats)
+        offer_seats: await Promise.all(offer_seats),
       };
     });
-    const voidedSeats = usersSeatsIds.map(async(seat_id) => {
-      const {rows} = await db.query(seatSql,[seat_id]);  
+    const voidedSeats = usersSeatsIds.map(async (seat_id) => {
+      const { rows } = await db.query(seatSql, [seat_id]);
       const current_seats = rows[0];
-      const offer_seats = voidedSwaps.filter(
-        (offer) => offer.requester_seat_id === seat_id 
-      ).map(offer => offer.respondent_seat_id).map(async (seat_id) => {
-        const {rows} = await db.query(seatSql,[seat_id]);  
-        return rows[0];
-      }) 
+      const offer_seats = voidedSwaps
+        .filter((offer) => offer.requester_seat_id === seat_id)
+        .map((offer) => offer.respondent_seat_id)
+        .map(async (seat_id) => {
+          const { rows } = await db.query(seatSql, [seat_id]);
+          return rows[0];
+        });
       return {
         current_seats,
-        offer_seats: await Promise.all(offer_seats)
+        offer_seats: await Promise.all(offer_seats),
       };
     });
 
-    const result = { 
+    const result = {
       offers: await Promise.all(offeredSeats),
       requested: await Promise.all(requestedSeats),
-      voided: await Promise.all(voidedSeats)
+      voided: await Promise.all(voidedSeats),
     };
     return result;
   } catch (err) {

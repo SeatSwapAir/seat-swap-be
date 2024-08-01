@@ -26,12 +26,26 @@ const insertSwap = async (requester_seat_id, respondent_seat_id) => {
         msg: 'Swap already exists',
       });
     }
+    const requester_id = await db.query(
+      'SELECT current_user_id FROM seat WHERE id=$1;',
+      [requester_seat_id]
+    );
+
+    const respondent_id = await db.query(
+      'SELECT current_user_id FROM seat WHERE id=$1;',
+      [respondent_seat_id]
+    );
 
     const insertSwapQueryStr = pgformat(
-      `INSERT INTO swap (requester_seat_id, respondent_seat_id) VALUES (%L) RETURNING *;`,
-      [requester_seat_id, respondent_seat_id]
+      `INSERT INTO swap (requester_seat_id, respondent_seat_id, status, requester_id, respondent_id) VALUES (%L) RETURNING *;`,
+      [
+        requester_seat_id,
+        respondent_seat_id,
+        'requested',
+        requester_id.rows[0].current_user_id,
+        respondent_id.rows[0].current_user_id,
+      ]
     );
-    // console.log('🚀 ~ insertSwap ~ insertSwapQueryStr:', insertSwapQueryStr);
 
     const swap = await db.query(insertSwapQueryStr);
 
@@ -153,25 +167,19 @@ const selectSwap = async (your_seat_id, matched_seat_id) => {
       'SELECT * FROM swap WHERE requester_seat_id IN ($1, $2) AND respondent_seat_id IN ($1, $2) AND (requester_id = $3 OR respondent_id = $3);',
       [your_seat_id, matched_seat_id, user_id]
     );
-    
-    if (swapExistQuery.rowCount === 0) return {actions: ['request']};
-    
+
+    if (swapExistQuery.rowCount === 0) return { actions: ['request'] };
+
     const { requester_id, status, id } = swapExistQuery.rows[0];
     const gotAccepted = status === 'accepted';
     const gotRejected = status === 'rejected' && requester_id === user_id;
     const gotRequest = status === 'requested' && requester_id !== user_id;
     const userRequested = status === 'requested' && requester_id === user_id;
-
-    if (userRequested)
-      return { actions: ['cancel'], swap_id: id };
-    if (gotAccepted)
-      return { actions: ['accepted'], swap_id: id };
-    if (gotRejected)
-      return { actions: ['rejected'], swap_id: id };
-    if (gotRequest)
-      return { actions: ['accept', 'reject'], swap_id: id };
+    if (userRequested) return { actions: ['cancel'], swap_id: id };
+    if (gotAccepted) return { actions: ['accepted'], swap_id: id };
+    if (gotRejected) return { actions: ['rejected'], swap_id: id };
+    if (gotRequest) return { actions: ['accept', 'reject'], swap_id: id };
     return { actions: ['request'], swap_id: id };
-    
   } catch (err) {
     // console.error('Database query error:', err);
     throw err;
