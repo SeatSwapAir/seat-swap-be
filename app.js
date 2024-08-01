@@ -22,6 +22,7 @@ const {
   getSideBySideMatches,
   getSameRowMatches,
   getNeighbouringRowsMatches,
+  getAllMatches,
 } = require('./controllers/matches.controllers');
 
 const {
@@ -30,7 +31,7 @@ const {
   getSwap,
 } = require('./controllers/swaps.controllers');
 
-const {getOffers} = require('./controllers/offers.controllers');
+const { getOffers } = require('./controllers/offers.controllers');
 
 app.get('/api/users/:user_id/flights', getFlightsByUser);
 app.delete(
@@ -66,6 +67,8 @@ app.get(
   '/api/matches/neighbouring_rows/user/:user_id/flight/:flight_id',
   getNeighbouringRowsMatches
 );
+
+app.get('/api/matches/all/user/:user_id/flight/:flight_id', getAllMatches);
 
 app.post('/api/swap', postSwap);
 
