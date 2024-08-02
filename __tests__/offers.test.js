@@ -15,222 +15,222 @@ describe('GET /api/user/:user_id/flight/:flight_id/offers', () => {
           current_seats: {
             id: 405,
             seat_row: 15,
-            seat_letter: "D",
+            seat_letter: 'D',
             extraLegroom: false,
-            position: "aisle",
-            location: "center"
+            position: 'aisle',
+            location: 'center',
           },
           offer_seats: [
             {
               id: 404,
               seat_row: 15,
-              seat_letter: "C",
+              seat_letter: 'C',
               extraLegroom: false,
-              position: "aisle",
-              location: "center"
+              position: 'aisle',
+              location: 'center',
             },
             {
               id: 442,
               seat_row: 21,
-              seat_letter: "E",
+              seat_letter: 'E',
               extraLegroom: false,
-              position: "middle",
-              location: "center"
+              position: 'middle',
+              location: 'center',
             },
             {
               id: 447,
               seat_row: 22,
-              seat_letter: "D",
+              seat_letter: 'D',
               extraLegroom: false,
-              position: "aisle",
-              location: "center"
-            }
-          ]
+              position: 'aisle',
+              location: 'center',
+            },
+          ],
         },
         {
           current_seats: {
             id: 432,
             seat_row: 20,
-            seat_letter: "A",
+            seat_letter: 'A',
             extraLegroom: false,
-            position: "window",
-            location: "center"
+            position: 'window',
+            location: 'center',
           },
           offer_seats: [
             {
               id: 449,
               seat_row: 22,
-              seat_letter: "F",
+              seat_letter: 'F',
               extraLegroom: false,
-              position: "window",
-              location: "center"
+              position: 'window',
+              location: 'center',
             },
             {
               id: 451,
               seat_row: 23,
-              seat_letter: "B",
+              seat_letter: 'B',
               extraLegroom: false,
-              position: "middle",
-              location: "back"
+              position: 'middle',
+              location: 'back',
             },
             {
               id: 459,
               seat_row: 24,
-              seat_letter: "D",
+              seat_letter: 'D',
               extraLegroom: false,
-              position: "aisle",
-              location: "back"
-            }
-          ]
-        }
+              position: 'aisle',
+              location: 'back',
+            },
+          ],
+        },
       ],
       requested: [
         {
           current_seats: {
             id: 405,
             seat_row: 15,
-            seat_letter: "D",
+            seat_letter: 'D',
             extraLegroom: false,
-            position: "aisle",
-            location: "center"
+            position: 'aisle',
+            location: 'center',
           },
           offer_seats: [
             {
               id: 465,
               seat_row: 25,
-              seat_letter: "D",
+              seat_letter: 'D',
               extraLegroom: false,
-              position: "aisle",
-              location: "back"
+              position: 'aisle',
+              location: 'back',
             },
             {
               id: 469,
               seat_row: 26,
-              seat_letter: "B",
+              seat_letter: 'B',
               extraLegroom: false,
-              position: "middle",
-              location: "back"
-            }
-          ]
+              position: 'middle',
+              location: 'back',
+            },
+          ],
         },
         {
           current_seats: {
             id: 432,
             seat_row: 20,
-            seat_letter: "A",
+            seat_letter: 'A',
             extraLegroom: false,
-            position: "window",
-            location: "center"
+            position: 'window',
+            location: 'center',
           },
           offer_seats: [
             {
               id: 433,
               seat_row: 20,
-              seat_letter: "B",
+              seat_letter: 'B',
               extraLegroom: false,
-              position: "middle",
-              location: "center"
+              position: 'middle',
+              location: 'center',
             },
             {
               id: 457,
               seat_row: 24,
-              seat_letter: "B",
+              seat_letter: 'B',
               extraLegroom: false,
-              position: "middle",
-              location: "back"
+              position: 'middle',
+              location: 'back',
             },
             {
               id: 462,
               seat_row: 25,
-              seat_letter: "A",
+              seat_letter: 'A',
               extraLegroom: false,
-              position: "window",
-              location: "back"
+              position: 'window',
+              location: 'back',
             },
             {
               id: 467,
               seat_row: 25,
-              seat_letter: "F",
+              seat_letter: 'F',
               extraLegroom: false,
-              position: "window",
-              location: "back"
-            }
-          ]
-        }
+              position: 'window',
+              location: 'back',
+            },
+          ],
+        },
       ],
       voided: [
         {
           current_seats: {
             id: 405,
             seat_row: 15,
-            seat_letter: "D",
+            seat_letter: 'D',
             extraLegroom: false,
-            position: "aisle",
-            location: "center"
+            position: 'aisle',
+            location: 'center',
           },
           offer_seats: [
             {
               id: 312,
               seat_row: 15,
-              seat_letter: "A",
+              seat_letter: 'A',
               extraLegroom: true,
-              position: "middle",
-              location: "front"
+              position: 'middle',
+              location: 'front',
             },
             {
               id: 86,
               seat_row: 7,
-              seat_letter: "D",
+              seat_letter: 'D',
               extraLegroom: true,
-              position: "window",
-              location: "front"
+              position: 'window',
+              location: 'front',
             },
             {
               id: 124,
               seat_row: 23,
-              seat_letter: "C",
+              seat_letter: 'C',
               extraLegroom: true,
-              position: "window",
-              location: "front"
-            }
-          ]
+              position: 'window',
+              location: 'front',
+            },
+          ],
         },
         {
           current_seats: {
             id: 432,
             seat_row: 20,
-            seat_letter: "A",
+            seat_letter: 'A',
             extraLegroom: false,
-            position: "window",
-            location: "center"
+            position: 'window',
+            location: 'center',
           },
           offer_seats: [
             {
               id: 155,
               seat_row: 28,
-              seat_letter: "E",
+              seat_letter: 'E',
               extraLegroom: true,
-              position: "middle",
-              location: "front"
+              position: 'middle',
+              location: 'front',
             },
             {
               id: 76,
               seat_row: 20,
-              seat_letter: "C",
+              seat_letter: 'C',
               extraLegroom: true,
-              position: "middle",
-              location: "center"
+              position: 'middle',
+              location: 'center',
             },
             {
               id: 126,
               seat_row: 11,
-              seat_letter: "F",
+              seat_letter: 'F',
               extraLegroom: true,
-              position: "middle",
-              location: "center"
-            }
-          ]
-        }
+              position: 'middle',
+              location: 'center',
+            },
+          ],
+        },
       ],
     };
     return request(app)

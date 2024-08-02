@@ -57,6 +57,7 @@ const isSeatTaken = async (seats, user_id, flight_id) => {
           seat.seat_letter
         );
         const isSeatTaken = await db.query(sql);
+
         if (isSeatTaken.rowCount === 0) {
           return false;
         }
@@ -128,6 +129,28 @@ const doesSeatIdExist = async (seat_id) => {
   }
 };
 
+const hasBeenSwapped = async (seats) => {
+  const seatIds = seats.map((seat) => seat.id);
+  const seatsSwappedSql = pgformat(
+    `SELECT seat_row, seat_letter FROM seat WHERE previous_user_id IS NOT NULL AND id IN (%L);`,
+    seatIds
+  );
+
+  const seatsSwapped = await db.query(seatsSwappedSql);
+
+  if (seatsSwapped.rowCount !== 0) {
+    const seatsSwappedFormatted = seatsSwapped.rows.map(
+      (seat) => seat.seat_row + seat.seat_letter
+    );
+    return Promise.reject({
+      status: 400,
+      msg: `Seat(s) ${seatsSwappedFormatted.join(
+        ', '
+      )} already swapped, cannot change`,
+    });
+  }
+};
+
 module.exports = {
   doesUserExist,
   doesFlightExist,
@@ -135,4 +158,5 @@ module.exports = {
   isSeatTaken,
   seatsInsertedFormatted,
   doesSeatIdExist,
+  hasBeenSwapped,
 };
