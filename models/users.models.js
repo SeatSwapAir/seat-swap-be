@@ -1,11 +1,18 @@
 const db = require('../db/connection.js');
 const pgformat = require('pg-format');
 const {
+  formatSeatsQuery,
+  formatSeatsReturn,
+  getLocationName,
+  getPositionName,
+} = require('../helpers/seatsArrayTranformer.js');
+const {
   doesUserExist,
   doesFlightExist,
   isSeatDuplicate,
   isSeatTaken,
   seatsInsertedFormatted,
+  hasBeenSwapped,
 } = require('../helpers/errorChecks');
 
 const selectFlightsByUser = async (user_id) => {
@@ -53,7 +60,10 @@ const selectFlightsByUser = async (user_id) => {
         journey_prefs.user_id = $1 AND seat.current_user_id = $1;`,
       [user_id]
     );
-
+    // console.log(
+    //   '🚀 ~ selectFlightsByUser ~ userFlightResult:',
+    //   userFlightResult.rows
+    // );
 
     if (userFlightResult.rows.length === 0) {
       return Promise.reject({
@@ -91,11 +101,25 @@ const selectFlightsByUser = async (user_id) => {
       }
 
       if (row.seat_id) {
+        const prevUserName = async (user_id) => {
+          if (row.seat_previous_user_id !== null) {
+            const prevUserName = await db.query(
+              'SELECT firstname FROM "user" WHERE id=$1',
+              [user_id]
+            );
+            return prevUserName.rows[0].firstname;
+          }
+          return null;
+        };
+        // const r = await prevUserName(24);
+        // console.log('🚀 ~ selectFlightsByUser ~ r:', r);
+
         flights[row.flight_id].seats.push({
           id: row.seat_id,
           current_user_id: row.seat_current_user_id,
           original_user_id: row.seat_original_user_id,
           previous_user_id: row.seat_previous_user_id,
+          previous_user_name: await prevUserName(row.seat_previous_user_id),
           seat_letter: row.seat_letter,
           seat_row: row.seat_row,
           extraLegroom: row.seat_legroom,
@@ -105,11 +129,36 @@ const selectFlightsByUser = async (user_id) => {
         // }
       }
     }
-
+    // console.log(JSON.stringify(Object.values(flights), null, 2));
     return Object.values(flights);
   } catch (err) {
     throw err;
   }
+  console.log('🚀 ~ selectFlightsByUser ~ doesUserExist:', doesUserExist);
+};
+
+const seatSwapChecker = async (seat_id) => {
+  const isSeatSwapped = await db.query(
+    `SELECT * FROM swap WHERE (offered_seat_id = $1 OR requested_seat_id = $1) AND swap_approval_date IS NOT NULL;`,
+    [seat_id]
+  );
+
+  if (isSeatSwapped.rowCount !== 0) {
+    const offered_seat_id = isSeatSwapped.rows[0].offered_seat_id;
+    const requested_seat_id = isSeatSwapped.rows[0].requested_seat_id;
+    if (offered_seat_id === seat_id) {
+      const swappedSeat = await db.query(`SELECT * FROM seat WHERE id=$1;`, [
+        requested_seat_id,
+      ]);
+      return swappedSeat.rows[0];
+    }
+    const swappedSeat = await db.query(`SELECT * FROM seat WHERE id=$1;`, [
+      offered_seat_id,
+    ]);
+    return swappedSeat.rows[0];
+  }
+
+  return false;
 };
 
 const deleteFlightByUserIdAndFlightId = async (user_id, flight_id) => {
@@ -163,6 +212,7 @@ const updateFlightByUserIdAndFlightId = async (user_id, flight_id, journey) => {
     seats,
     preferences,
   } = journey;
+  // console.log('🚀 ~ updateFlightByUserIdAndFlightId ~ seats:', seats);
 
   try {
     const seatNumbers = seats.map((seat) => seat.seat_row + seat.seat_letter);
@@ -174,6 +224,7 @@ const updateFlightByUserIdAndFlightId = async (user_id, flight_id, journey) => {
     await doesFlightExist(flight_id);
 
     await isSeatTaken(seats, user_id, flight_id);
+    await hasBeenSwapped(seats);
 
     await db.query(
       `DELETE FROM "seat" WHERE current_user_id = $1 AND flight_id= $2`,
@@ -242,12 +293,20 @@ const updateFlightByUserIdAndFlightId = async (user_id, flight_id, journey) => {
       seats: seatsFormatted,
       preferences: newPrefs.rows[0],
     };
-
+    // console.log(journey.seats);
     return journey;
   } catch (err) {
     // console.error('Database query error:', err);
     throw err;
   }
+  console.log(
+    '🚀 ~ updateFlightByUserIdAndFlightId ~ doesUserExist:',
+    doesUserExist
+  );
+  console.log(
+    '🚀 ~ updateFlightByUserIdAndFlightId ~ doesUserExist:',
+    doesUserExist
+  );
 };
 
 const insertFlightByUserIdAndFlightId = async (user_id, flight_id, journey) => {
@@ -312,6 +371,7 @@ module.exports = {
   deleteFlightByUserIdAndFlightId,
   updateFlightByUserIdAndFlightId,
   insertFlightByUserIdAndFlightId,
+  seatSwapChecker,
 };
 
 //post model for adding new journey pref and seats

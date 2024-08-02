@@ -3,6 +3,8 @@ const request = require('supertest');
 const db = require('../db/connection');
 const seed = require('../db/seeds/seed');
 const data = require('../db/data/test-data/index.js');
+const { toBeOneOf } = require('jest-extended');
+expect.extend({ toBeOneOf });
 
 beforeEach(() => seed(data));
 afterAll(() => db.end());
@@ -42,7 +44,8 @@ describe('GET /api/users/:user_id/flights', () => {
             expect(seat).toEqual({
               current_user_id: expect.any(Number),
               original_user_id: expect.any(Number),
-              previous_user_id: null,
+              previous_user_id: expect.toBeOneOf([expect.any(Number), null]),
+              previous_user_name: expect.toBeOneOf([expect.any(String), null]),
               seat_letter: expect.any(String),
               seat_row: expect.any(Number),
               location: expect.any(String),
@@ -72,6 +75,7 @@ describe('GET /api/users/:user_id/flights', () => {
             current_user_id: 2,
             original_user_id: 2,
             previous_user_id: null,
+            previous_user_name: null,
             location: 'front',
             seat_letter: 'F',
             seat_row: 8,
@@ -106,6 +110,7 @@ describe('GET /api/users/:user_id/flights', () => {
             current_user_id: 2,
             original_user_id: 2,
             previous_user_id: null,
+            previous_user_name: null,
             location: 'front',
             seat_letter: 'F',
             seat_row: 8,
@@ -140,6 +145,7 @@ describe('GET /api/users/:user_id/flights', () => {
             current_user_id: 2,
             original_user_id: 2,
             previous_user_id: null,
+            previous_user_name: null,
             location: 'front',
             seat_letter: 'F',
             seat_row: 8,
@@ -174,6 +180,7 @@ describe('GET /api/users/:user_id/flights', () => {
             current_user_id: 2,
             original_user_id: 2,
             previous_user_id: null,
+            previous_user_name: null,
             location: 'front',
             seat_letter: 'F',
             seat_row: 8,
@@ -208,6 +215,7 @@ describe('GET /api/users/:user_id/flights', () => {
             current_user_id: 2,
             original_user_id: 2,
             previous_user_id: null,
+            previous_user_name: null,
             location: 'front',
             seat_letter: 'F',
             seat_row: 8,
@@ -242,6 +250,7 @@ describe('GET /api/users/:user_id/flights', () => {
             current_user_id: 2,
             original_user_id: 2,
             previous_user_id: null,
+            previous_user_name: null,
             location: 'back',
             seat_letter: 'D',
             seat_row: 28,
@@ -253,6 +262,7 @@ describe('GET /api/users/:user_id/flights', () => {
             current_user_id: 2,
             original_user_id: 2,
             previous_user_id: null,
+            previous_user_name: null,
             location: 'center',
             seat_letter: 'E',
             seat_row: 18,
@@ -299,6 +309,7 @@ describe('GET /api/users/:user_id/flights', () => {
             current_user_id: 24,
             original_user_id: 24,
             previous_user_id: null,
+            previous_user_name: null,
             seat_letter: 'E',
             seat_row: 7,
             extraLegroom: true,
@@ -333,6 +344,7 @@ describe('GET /api/users/:user_id/flights', () => {
             current_user_id: 24,
             original_user_id: 24,
             previous_user_id: null,
+            previous_user_name: null,
             seat_letter: 'E',
             seat_row: 7,
             extraLegroom: true,
@@ -367,6 +379,7 @@ describe('GET /api/users/:user_id/flights', () => {
             current_user_id: 24,
             original_user_id: 24,
             previous_user_id: null,
+            previous_user_name: null,
             seat_letter: 'B',
             seat_row: 27,
             extraLegroom: true,
@@ -378,6 +391,7 @@ describe('GET /api/users/:user_id/flights', () => {
             current_user_id: 24,
             original_user_id: 24,
             previous_user_id: null,
+            previous_user_name: null,
             seat_letter: 'A',
             seat_row: 17,
             extraLegroom: true,
@@ -389,6 +403,7 @@ describe('GET /api/users/:user_id/flights', () => {
             current_user_id: 24,
             original_user_id: 24,
             previous_user_id: null,
+            previous_user_name: null,
             seat_letter: 'C',
             seat_row: 8,
             extraLegroom: true,
@@ -400,6 +415,7 @@ describe('GET /api/users/:user_id/flights', () => {
             current_user_id: 24,
             original_user_id: 24,
             previous_user_id: null,
+            previous_user_name: null,
             seat_letter: 'A',
             seat_row: 28,
             extraLegroom: true,
@@ -434,6 +450,7 @@ describe('GET /api/users/:user_id/flights', () => {
             current_user_id: 24,
             original_user_id: 19,
             previous_user_id: 19,
+            previous_user_name: 'Quinn',
             seat_letter: 'A',
             seat_row: 22,
             extraLegroom: false,
@@ -445,6 +462,7 @@ describe('GET /api/users/:user_id/flights', () => {
             current_user_id: 24,
             original_user_id: 24,
             previous_user_id: null,
+            previous_user_name: null,
             seat_letter: 'C',
             seat_row: 10,
             extraLegroom: false,
@@ -566,6 +584,8 @@ describe('PATCH /api/users/:user_id/flights/:flight_id', () => {
         extraLegroom: false,
         location: 'back',
         position: 'aisle',
+        previous_user_id: null,
+        previous_user_name: null,
       },
       {
         id: 81,
@@ -575,6 +595,8 @@ describe('PATCH /api/users/:user_id/flights/:flight_id', () => {
         extraLegroom: false,
         location: 'back',
         position: 'aisle',
+        previous_user_id: null,
+        previous_user_name: null,
       },
       {
         id: 82,
@@ -584,6 +606,8 @@ describe('PATCH /api/users/:user_id/flights/:flight_id', () => {
         extraLegroom: true,
         location: 'front',
         position: 'window',
+        previous_user_id: null,
+        previous_user_name: null,
       },
     ],
     preferences: {
@@ -599,7 +623,7 @@ describe('PATCH /api/users/:user_id/flights/:flight_id', () => {
       same_row_pref: false,
     },
   };
-  test('200: Updates the user seats and preferences and responds with the updated flight object', () => {
+  test('200: Updates the user seats and preferences with and responds with the updated flight object', () => {
     const result = {
       id: 1,
       flightnumber: 'AA101',
@@ -673,6 +697,201 @@ describe('PATCH /api/users/:user_id/flights/:flight_id', () => {
         expect(body).toEqual(result);
       });
   });
+  test('200: Updates the user seats and preferences, new seats entered by user, and responds with the updated flight object', () => {
+    const payload = {
+      id: 1,
+      flightnumber: 'AA101',
+      departureairport: 'JFK',
+      arrivalairport: 'LAX',
+      departuretime: '2023-06-01T06:00:00.000Z',
+      arrivaltime: '2023-06-01T09:00:00.000Z',
+      airline: 'American Airlines',
+      seats: [
+        {
+          id: 32524,
+          number: '25F',
+          seat_letter: 'F',
+          seat_row: 25,
+          extraLegroom: false,
+          location: 'back',
+          position: 'window',
+          previous_user_id: null,
+          previous_user_name: null,
+        },
+        {
+          id: 45654,
+          number: '25E',
+          seat_letter: 'E',
+          seat_row: 25,
+          extraLegroom: false,
+          location: 'back',
+          position: 'middle',
+          previous_user_id: null,
+          previous_user_name: null,
+        },
+        {
+          id: 82,
+          number: '13D',
+          seat_letter: 'D',
+          seat_row: 13,
+          extraLegroom: true,
+          location: 'front',
+          position: 'window',
+          previous_user_id: null,
+          previous_user_name: null,
+        },
+      ],
+      preferences: {
+        legroom_pref: false,
+        window_pref: true,
+        middle_pref: true,
+        aisle_pref: false,
+        front_pref: true,
+        center_pref: true,
+        back_pref: false,
+        side_by_side_pref: false,
+        neighbouring_row_pref: true,
+        same_row_pref: false,
+      },
+    };
+    const result = {
+      id: 1,
+      flightnumber: 'AA101',
+      departureairport: 'JFK',
+      arrivalairport: 'LAX',
+      departuretime: '2023-06-01T06:00:00.000Z',
+      arrivaltime: '2023-06-01T09:00:00.000Z',
+      airline: 'American Airlines',
+      seats: [
+        {
+          id: expect.any(Number),
+          flight_id: 1,
+          seat_column: 6,
+          current_user_id: 77,
+          original_user_id: 77,
+          previous_user_id: null,
+          seat_letter: 'F',
+          seat_row: 25,
+          extraLegroom: false,
+          location: 'back',
+          position: 'window',
+        },
+        {
+          id: expect.any(Number),
+          flight_id: 1,
+          seat_column: 5,
+          current_user_id: 77,
+          original_user_id: 77,
+          previous_user_id: null,
+          seat_letter: 'E',
+          seat_row: 25,
+          extraLegroom: false,
+          location: 'back',
+          position: 'middle',
+        },
+        {
+          id: expect.any(Number),
+          flight_id: 1,
+          seat_column: 4,
+          current_user_id: 77,
+          original_user_id: 77,
+          previous_user_id: null,
+          seat_letter: 'D',
+          seat_row: 13,
+          extraLegroom: true,
+          location: 'front',
+          position: 'window',
+        },
+      ],
+      preferences: {
+        flight_id: 1,
+        id: expect.any(Number),
+        user_id: 77,
+        legroom_pref: false,
+        window_pref: true,
+        middle_pref: true,
+        aisle_pref: false,
+        front_pref: true,
+        center_pref: true,
+        back_pref: false,
+        side_by_side_pref: false,
+        neighbouring_row_pref: true,
+        same_row_pref: false,
+      },
+    };
+    return request(app)
+      .patch('/api/users/77/flights/1')
+      .send(payload)
+      .expect(200)
+      .then(({ body }) => {
+        expect(body).toEqual(result);
+      });
+  });
+
+  test('400: Responds with a bad request error for a seat with a swap', () => {
+    const payload = {
+      id: 8,
+      flightnumber: 'FR9336',
+      departureairport: 'BRS',
+      arrivalairport: 'GRO',
+      departuretime: '2024-08-25T21:40+01:00',
+      arrivaltime: '2024-08-26T00:40+02:00',
+      airline: 'RYANAIR',
+      seats: [
+        {
+          id: 440,
+          current_user_id: 27,
+          original_user_id: 27,
+          previous_user_id: null,
+          flight_id: 8,
+          seat_row: 21,
+          seat_letter: 'C',
+          seat_column: 3,
+          legroom: false,
+          seat_position_id: 3,
+          seat_location_id: 2,
+        },
+
+        {
+          id: 421,
+          current_user_id: 27,
+          original_user_id: 17,
+          previous_user_id: 17,
+          flight_id: 8,
+          seat_row: 19,
+          seat_letter: 'J',
+          seat_column: 2,
+          legroom: false,
+          seat_position_id: 2,
+          seat_location_id: 2,
+        },
+      ],
+      preferences: [
+        {
+          id: 194,
+          user_id: 27,
+          flight_id: 8,
+          legroom_pref: false,
+          window_pref: false,
+          middle_pref: false,
+          aisle_pref: false,
+          front_pref: false,
+          center_pref: false,
+          back_pref: false,
+          side_by_side_pref: false,
+          neighbouring_row_pref: false,
+          same_row_pref: false,
+        },
+      ],
+    };
+    return request(app)
+      .patch('/api/users/27/flights/8')
+      .send(payload)
+      .expect(400)
+      .then(({ body }) => {
+        expect(body.msg).toBe('Seat(s) 18B already swapped, cannot change');
+      });
+  });
 
   test('400: Responds with a bad request error for an invalid user id', () => {
     return request(app)
@@ -723,6 +942,8 @@ describe('PATCH /api/users/:user_id/flights/:flight_id', () => {
       extraLegroom: true,
       location: 'back',
       position: 'aisle',
+      previous_user_id: null,
+      previous_user_name: null,
     };
     const newPayload = { ...payload, seats: [...payload.seats, extraSeat] };
     return request(app)

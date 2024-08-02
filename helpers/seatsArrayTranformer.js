@@ -42,11 +42,13 @@ function getLocationId(locationName) {
   if (locationName === 'back') return 3;
 }
 function formatSeatsQuery(seats, user_id, flight_id) {
+  // console.log('🚀 ~ formatSeatsQuery ~ seats:', seats);
+
   return seats.map((seat) => {
     return {
       current_user_id: Number(user_id),
       original_user_id: Number(user_id),
-      previous_user_id: null,
+      previous_user_id: seat.previous_user_id,
       flight_id: Number(flight_id),
       number: seat.number,
       seat_row: seat.seat_row,
