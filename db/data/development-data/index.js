@@ -5,5 +5,6 @@ exports.seatData = require('./seatData.js');
 exports.journeyPrefsData = require('./journeyPrefsData.js');
 exports.seatLocationData = require('./seatLocationData.js');
 exports.seatPositionData = require('./seatPositionData.js');
-exports.airlineData = require('./airlineData.js');
 exports.swapData = require('./swapData.js');
+exports.airlineData = require('./airlineData.js');
+exports.airportData = require('./airportData.js');

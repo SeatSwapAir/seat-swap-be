@@ -10,6 +10,7 @@ const seed = async ({
   seatPositionData,
   airlineData,
   swapData,
+  airportData,
 }) => {
   try {
     await db.query('DROP TABLE IF EXISTS review CASCADE;');
@@ -22,6 +23,7 @@ const seed = async ({
     await db.query('DROP TABLE IF EXISTS default_prefs CASCADE;');
     await db.query('DROP TABLE IF EXISTS "user" CASCADE;');
     await db.query('DROP TABLE IF EXISTS airline CASCADE;');
+    await db.query('DROP TABLE IF EXISTS airport CASCADE;');
 
     await db.query(`
       CREATE TABLE "user" (
@@ -131,6 +133,21 @@ const seed = async ({
       country VARCHAR(255)
     );
     `);
+
+    await db.query(`
+      CREATE TABLE airport (
+        id SERIAL PRIMARY KEY,
+        iata VARCHAR(255),
+        name VARCHAR(255),
+        city VARCHAR(255),
+        subd VARCHAR(255),
+        country VARCHAR(255),
+        lat DECIMAL,
+        lon DECIMAL,
+        tz VARCHAR(255)
+      );
+      `);
+  
 
     const insertSeatLocationQueryStr = format(
       'INSERT INTO seat_location (location_name) VALUES %L RETURNING *;',
@@ -288,6 +305,23 @@ const seed = async ({
     );
 
     await db.query(insertSwapQueryStr);
+
+    const insertAirportQueryStr = format(
+      'INSERT INTO airport (iata, name, city, subd, country, lat, lon, tz) VALUES %L RETURNING *;',
+      airportData.map(({ iata, name, city, subd, country, lat, lon, tz }) => [
+        iata,
+        name,
+        city,
+        subd,
+        country,
+        lat,
+        lon,
+        tz,
+      ])
+    );
+
+    await db.query(insertAirportQueryStr);
+
   } catch (error) {
     console.error('Error creating tables:', error);
     throw error;
