@@ -1208,12 +1208,20 @@ describe('GET /api/users/:user_id/flights/:flight_id/seats/:seat_letter/:seat_nu
         expect(body.msg).toBe('Invalid seat number');
       });
   });
-  test('400: Responds with a Invalid seat number error for an number grater than 99', () => {
+  test('400: Responds with a Invalid seat number error for a number grater than 99', () => {
     return request(app)
       .get('/api/users/2/flights/1/seats/A/100')
       .expect(400)
       .then(({ body }) => {
         expect(body.msg).toBe('Invalid seat number');
+      });
+  });
+  test('400: Responds with a Invalid seat letter error for a string not being letters A-J', () => {
+    return request(app)
+      .get('/api/users/2/flights/1/seats/m/100')
+      .expect(400)
+      .then(({ body }) => {
+        expect(body.msg).toBe('Invalid seat letter');
       });
   });
 });

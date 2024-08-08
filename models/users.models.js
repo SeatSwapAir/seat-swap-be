@@ -368,7 +368,7 @@ const selectSeatByUserIdAndFlightIdAndSeatLetterAndSeatNumber = async (
     await doesUserExist(user_id);
     await doesFlightExist(flight_id);
     
-    if (seat_letter.length !== 1) {
+    if ( !/^[A-J]$/.test(seat_letter)) {
       return Promise.reject({
         status: 400,
         msg: 'Invalid seat letter',
