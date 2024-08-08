@@ -1119,3 +1119,89 @@ describe('POST /api/users/:user_id/flights/:flight_id', () => {
       });
   });
 });
+
+describe('GET /api/users/:user_id/flights/:flight_id/seats/:seat_letter/:seat_number', () => {
+  test('200: Responds with seat details if the user has the seat', () => {
+    return request(app)
+      .get('/api/users/2/flights/1/seats/F/8')
+      .expect(200)
+      .then(({ body }) => {
+        expect(body).toEqual({
+          id: 2,
+          current_user_id: 2,
+          original_user_id: 2,
+          previous_user_id: null,
+          previous_user_name: null,
+          seat_letter: 'F',
+          seat_row: 8,
+          extraLegroom: false,
+          location: 'front',
+          position: 'window',
+        });
+      });
+  });
+
+  test('403: Responds with an error message if the seat is taken by another user', () => {
+    return request(app)
+      .get('/api/users/2/flights/1/seats/F/9')
+      .expect(403)
+      .then(({ body }) => {
+        expect(body.msg).toBe('Seat already taken by another user');
+      });
+  });
+
+  test('200: Responds with information that the seat is free if it is not found on the flight', () => {
+    return request(app)
+      .get('/api/users/2/flights/1/seats/A/1')
+      .expect(200)
+      .then(({ body }) => {
+        expect(body.msg).toBe('Seat is free');
+      });
+  });
+
+  test('404: Responds with an error message if the user does not exist', () => {
+    return request(app)
+      .get('/api/users/2147483647/flights/1/seats/F/8')
+      .expect(404)
+      .then(({ body }) => {
+        expect(body.msg).toBe('User not found');
+      });
+  });
+
+  test('404: Responds with an error message if the flight does not exist', () => {
+    return request(app)
+      .get('/api/users/2/flights/2147483647/seats/F/8')
+      .expect(404)
+      .then(({ body }) => {
+        expect(body.msg).toBe('Flight not found');
+      });
+  });
+
+  test('400: Responds with a bad request error for an invalid user id', () => {
+    return request(app)
+      .get('/api/users/invalid-id/flights/1/seats/F/8')
+      .expect(400)
+      .then(({ body }) => {
+        expect(body.msg).toBe('Bad request');
+      });
+  });
+
+  test('400: Responds with a bad request error for an invalid flight id', () => {
+    return request(app)
+      .get('/api/users/2/flights/invalid-id/seats/F/8')
+      .expect(400)
+      .then(({ body }) => {
+        expect(body.msg).toBe('Bad request');
+      });
+  });
+
+  test('400: Responds with a bad request error for an invalid seat letter or number', () => {
+    return request(app)
+      .get('/api/users/2/flights/1/seats/invalid-seat/invalid-number')
+      .expect(400)
+      .then(({ body }) => {
+        expect(body.msg).toBe('Bad request');
+      });
+  });
+});
+
