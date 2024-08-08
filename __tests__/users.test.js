@@ -288,7 +288,6 @@ describe('GET /api/users/:user_id/flights', () => {
       .expect(200)
       .then(({ body }) => {
         const { flights } = body;
-        // flights.map((flight) => { console.log(flight.seats)})
         expect(flights).toStrictEqual(expected);
       });
   });
@@ -489,9 +488,6 @@ describe('GET /api/users/:user_id/flights', () => {
       .expect(200)
       .then(({ body }) => {
         const { flights } = body;
-        // flights.map((flight) => {
-        //   console.log(flight.seats);
-        // });
         expect(flights).toStrictEqual(expected);
       });
   });
@@ -1134,6 +1130,7 @@ describe('GET /api/users/:user_id/flights/:flight_id/seats/:seat_letter/:seat_nu
           previous_user_name: null,
           seat_letter: 'F',
           seat_row: 8,
+          flight_id: 1,
           extraLegroom: false,
           location: 'front',
           position: 'window',
@@ -1152,7 +1149,7 @@ describe('GET /api/users/:user_id/flights/:flight_id/seats/:seat_letter/:seat_nu
 
   test('200: Responds with information that the seat is free if it is not found on the flight', () => {
     return request(app)
-      .get('/api/users/2/flights/1/seats/A/1')
+      .get('/api/users/12/flights/1/seats/A/1')
       .expect(200)
       .then(({ body }) => {
         expect(body.msg).toBe('Seat is free');
@@ -1195,12 +1192,28 @@ describe('GET /api/users/:user_id/flights/:flight_id/seats/:seat_letter/:seat_nu
       });
   });
 
-  test('400: Responds with a bad request error for an invalid seat letter or number', () => {
+  test('400: Responds with a Invalid seat letter error for an invalid seat letter', () => {
     return request(app)
-      .get('/api/users/2/flights/1/seats/invalid-seat/invalid-number')
+      .get('/api/users/2/flights/1/seats/invalid-seat/1')
       .expect(400)
       .then(({ body }) => {
-        expect(body.msg).toBe('Bad request');
+        expect(body.msg).toBe('Invalid seat letter');
+      });
+  });
+  test('400: Responds with a Invalid seat number error for an invalid seat number', () => {
+    return request(app)
+      .get('/api/users/2/flights/1/seats/A/invalid-number')
+      .expect(400)
+      .then(({ body }) => {
+        expect(body.msg).toBe('Invalid seat number');
+      });
+  });
+  test('400: Responds with a Invalid seat number error for an number grater than 99', () => {
+    return request(app)
+      .get('/api/users/2/flights/1/seats/A/100')
+      .expect(400)
+      .then(({ body }) => {
+        expect(body.msg).toBe('Invalid seat number');
       });
   });
 });
