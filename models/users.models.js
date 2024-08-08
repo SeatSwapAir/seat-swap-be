@@ -299,14 +299,6 @@ const updateFlightByUserIdAndFlightId = async (user_id, flight_id, journey) => {
     // console.error('Database query error:', err);
     throw err;
   }
-  console.log(
-    '🚀 ~ updateFlightByUserIdAndFlightId ~ doesUserExist:',
-    doesUserExist
-  );
-  console.log(
-    '🚀 ~ updateFlightByUserIdAndFlightId ~ doesUserExist:',
-    doesUserExist
-  );
 };
 
 const insertFlightByUserIdAndFlightId = async (user_id, flight_id, journey) => {
@@ -366,12 +358,71 @@ const insertFlightByUserIdAndFlightId = async (user_id, flight_id, journey) => {
   }
 };
 
+const selectSeatByUserIdAndFlightIdAndSeatLetterAndSeatNumber = async (
+  user_id,
+  flight_id,
+  seat_letter,
+  seat_number
+) => {
+  try {
+    await doesUserExist(user_id);
+    await doesFlightExist(flight_id);
+    
+    if (seat_letter.length !== 1) {
+      return Promise.reject({
+        status: 400,
+        msg: 'Invalid seat letter',
+      });
+    }
+    
+    if (Number.isNaN(+seat_number) || +seat_number > 99) {
+      return Promise.reject({
+        status: 400,
+        msg: 'Invalid seat number',
+      });
+    }
+    
+    const seat = await db.query(
+      `SELECT 
+      seat.id, 
+      seat.current_user_id,
+      seat.original_user_id,
+      seat.previous_user_id,
+      "user".firstname AS previous_user_name,
+      seat.seat_letter,
+      seat.seat_row,
+      seat.flight_id,
+      seat.legroom AS "extraLegroom",
+      seat_location.location_name AS location,
+      seat_position.position_name AS position
+      FROM seat 
+      JOIN seat_location ON seat.seat_location_id = seat_location.id
+      JOIN seat_position ON seat.seat_position_id = seat_position.id
+      LEFT JOIN "user" ON seat.previous_user_id = "user".id
+      WHERE flight_id = $1 AND seat_letter = $2 AND seat_row = $3;`,
+      [flight_id, seat_letter, seat_number]
+    );
+
+    if (seat.rowCount === 0) return {msg: "Seat is free"}
+   
+    if (seat.rows[0].current_user_id !== +user_id) {
+      return Promise.reject({
+        status: 403,
+        msg: 'Seat already taken by another user',
+      });
+    }
+
+    return seat.rows[0];
+  } catch (err) {
+    throw err;
+  }}
 module.exports = {
   selectFlightsByUser,
   deleteFlightByUserIdAndFlightId,
   updateFlightByUserIdAndFlightId,
   insertFlightByUserIdAndFlightId,
   seatSwapChecker,
+  selectSeatByUserIdAndFlightIdAndSeatLetterAndSeatNumber,
 };
 
 //post model for adding new journey pref and seats

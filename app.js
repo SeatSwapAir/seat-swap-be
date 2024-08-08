@@ -12,6 +12,7 @@ const {
   removeJourneyByUserIdAndFlightId,
   patchJourneyByUserIdAndFlightId,
   postJourneyByUserIdAndFlightId,
+  getSeat,
 } = require('./controllers/users.controllers.js');
 
 const {
@@ -77,6 +78,8 @@ app.patch('/api/swap/:swap_id', patchSwap);
 app.get('/api/swap/yourseat/:your_seat_id/matched/:matched_seat_id', getSwap);
 
 app.get('/api/user/:user_id/flight/:flight_id/offers', getOffers);
+
+app.get('/api/users/:user_id/flights/:flight_id/seats/:seat_letter/:seat_number', getSeat);
 
 //handle custom errors
 app.use((err, req, res, next) => {
