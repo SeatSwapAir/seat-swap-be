@@ -843,18 +843,6 @@ describe('POST /api/users/:user_id/flights/:flight_id', () => {
         position: 'aisle',
       },
     ],
-    preferences: {
-      legroom_pref: false,
-      window_pref: true,
-      middle_pref: true,
-      aisle_pref: false,
-      front_pref: true,
-      center_pref: true,
-      back_pref: false,
-      side_by_side_pref: false,
-      neighbouring_row_pref: true,
-      same_row_pref: false,
-    },
   };
   test('200: Creates a new journey and responds with the created journey object', () => {
     const result = {
@@ -893,21 +881,6 @@ describe('POST /api/users/:user_id/flights/:flight_id', () => {
           position: 'aisle',
         },
       ],
-      preferences: {
-        flight_id: 2,
-        user_id: 77,
-        id: expect.any(Number),
-        legroom_pref: false,
-        window_pref: true,
-        middle_pref: true,
-        aisle_pref: false,
-        front_pref: true,
-        center_pref: true,
-        back_pref: false,
-        side_by_side_pref: false,
-        neighbouring_row_pref: true,
-        same_row_pref: false,
-      },
     };
     return request(app)
       .post('/api/users/77/flights/2')

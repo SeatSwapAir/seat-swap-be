@@ -262,7 +262,6 @@ const insertFlightByUserIdAndFlightId = async (user_id, flight_id, journey) => {
     arrivaltime,
     airline,
     seats,
-    preferences,
   } = journey;
   try {
     const seatNumbers = seats.map((seat) => seat.seat_row + seat.seat_letter);
@@ -284,10 +283,9 @@ const insertFlightByUserIdAndFlightId = async (user_id, flight_id, journey) => {
     const preferencesArray = [
       flight_id,
       user_id,
-      ...Object.values(preferences),
     ];
     const insertPrefsQueryStr = pgformat(
-      `INSERT INTO journey_prefs (flight_id, user_id, legroom_pref, window_pref, middle_pref, aisle_pref, front_pref, center_pref, back_pref, side_by_side_pref, neighbouring_row_pref, same_row_pref) VALUES (%L) RETURNING *;`,
+      `INSERT INTO journey_prefs (flight_id, user_id) VALUES (%L) RETURNING *;`,
       preferencesArray
     );
 
@@ -301,7 +299,6 @@ const insertFlightByUserIdAndFlightId = async (user_id, flight_id, journey) => {
       arrivaltime: arrivaltime,
       airline: airline,
       seats: seatsFormatted,
-      preferences: newPrefs.rows[0],
     };
     return journey;
   } catch (err) {
