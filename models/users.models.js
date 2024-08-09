@@ -285,11 +285,10 @@ const insertFlightByUserIdAndFlightId = async (user_id, flight_id, journey) => {
       user_id,
     ];
     const insertPrefsQueryStr = pgformat(
-      `INSERT INTO journey_prefs (flight_id, user_id) VALUES (%L) RETURNING *;`,
+      `INSERT INTO journey_prefs (flight_id, user_id) VALUES (%L);`,
       preferencesArray
     );
 
-    const newPrefs = await db.query(insertPrefsQueryStr);
     const journey = {
       id: Number(flight_id),
       flightnumber: flightnumber,
