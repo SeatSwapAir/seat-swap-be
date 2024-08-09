@@ -288,7 +288,7 @@ const insertFlightByUserIdAndFlightId = async (user_id, flight_id, journey) => {
       `INSERT INTO journey_prefs (flight_id, user_id) VALUES (%L);`,
       preferencesArray
     );
-
+    await db.query(insertPrefsQueryStr);
     const journey = {
       id: Number(flight_id),
       flightnumber: flightnumber,
