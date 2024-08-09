@@ -1,11 +1,6 @@
 const db = require('../db/connection.js');
 const pgformat = require('pg-format');
-const {
-  formatSeatsQuery,
-  formatSeatsReturn,
-  getLocationName,
-  getPositionName,
-} = require('../helpers/seatsArrayTranformer.js');
+
 const {
   doesUserExist,
   doesFlightExist,
@@ -18,123 +13,128 @@ const {
 const selectFlightsByUser = async (user_id) => {
   try {
     await doesUserExist(user_id);
-    const userFlightResult = await db.query(
-      `SELECT 
-        flight.id AS flight_id,
-        flight.flightNumber,
-        flight.departureAirport,
-        flight.arrivalAirport,
-        flight.departureTime,
-        flight.arrivalTime,
-        flight.airline,
-        seat.id AS seat_id,
-        seat.current_user_id AS seat_current_user_id,
-        seat.original_user_id AS seat_original_user_id,
-        seat.previous_user_id AS seat_previous_user_id,
-        seat.seat_letter AS seat_letter,
-        seat.seat_row AS seat_row,
-        seat.legroom AS seat_legroom,
-        seat_location.location_name AS seat_location_name,
-        seat_position.position_name AS seat_position_name,
-        journey_prefs.legroom_pref,
-        journey_prefs.window_pref,
-        journey_prefs.middle_pref,
-        journey_prefs.aisle_pref,
-        journey_prefs.front_pref,
-        journey_prefs.center_pref,
-        journey_prefs.back_pref,
-        journey_prefs.side_by_side_pref,
-        journey_prefs.neighbouring_row_pref,
-        journey_prefs.same_row_pref
+    const journeysSql = `SELECT
+        flight.id AS id,
+        flight.flightNumber AS flightnumber,
+        flight.departureAirport AS departureairport,
+        flight.arrivalAirport AS arrivalairport,
+        flight.departureTime AS departuretime,
+        flight.arrivalTime AS arrivaltime,
+        flight.airline AS airline,
+        arr_airport.name AS arrivalairportname,
+        arr_airport.city AS arrivalairportcity,
+        dep_airport.name AS departureairportname,
+        dep_airport.city AS departureairportcity
       FROM 
         flight
       JOIN 
         journey_prefs ON journey_prefs.flight_id = flight.id
-      LEFT JOIN 
-        seat ON seat.flight_id = flight.id
-      LEFT JOIN 
-        seat_location ON seat.seat_location_id = seat_location.id
-      LEFT JOIN 
-        seat_position ON seat.seat_position_id = seat_position.id
-      WHERE 
-        journey_prefs.user_id = $1 AND seat.current_user_id = $1;`,
-      [user_id]
-    );
-    // console.log(
-    //   '🚀 ~ selectFlightsByUser ~ userFlightResult:',
-    //   userFlightResult.rows
-    // );
+      JOIN 
+        airport AS arr_airport ON flight.arrivalAirport = arr_airport.iata
+      JOIN 
+        airport AS dep_airport ON flight.departureAirport = dep_airport.iata
+      WHERE
+        journey_prefs.user_id = $1;`;
+    const journeyResult = await db.query(journeysSql, [user_id]);
 
-    if (userFlightResult.rows.length === 0) {
+    if (journeyResult.rows.length === 0) {
       return Promise.reject({
         status: 404,
         msg: 'No flights found for user',
       });
     }
+    const flightsIds = journeyResult.rows.map((row) => row.id);
 
-    const flights = {};
+    const seatsSql = pgformat(
+      `SELECT
+        seat.id AS id,
+        seat.current_user_id AS current_user_id,
+        seat.original_user_id AS original_user_id,
+        seat.previous_user_id AS previous_user_id,
+        "user".firstname AS previous_user_name,
+        seat.seat_letter AS seat_letter,
+        seat.seat_row AS seat_row,
+        seat.flight_id AS flight_id,
+        seat.legroom AS "extraLegroom",
+        seat_location.location_name AS location,
+        seat_position.position_name AS position
+      FROM seat 
+      JOIN seat_location ON seat.seat_location_id = seat_location.id
+      JOIN seat_position ON seat.seat_position_id = seat_position.id
+      LEFT JOIN "user" ON seat.previous_user_id = "user".id
+      WHERE
+        seat.current_user_id = %s AND seat.flight_id IN (%L);`,
+      user_id,
+      flightsIds
+    );
 
-    for (const row of userFlightResult.rows) {
-      if (!flights[row.flight_id]) {
-        flights[row.flight_id] = {
-          id: row.flight_id,
-          flightnumber: row.flightnumber,
-          departureairport: row.departureairport,
-          arrivalairport: row.arrivalairport,
-          departuretime: row.departuretime,
-          arrivaltime: row.arrivaltime,
-          airline: row.airline,
-          seats: [],
-          preferences: {
-            legroom_pref: row.legroom_pref,
-            window_pref: row.window_pref,
-            middle_pref: row.middle_pref,
-            aisle_pref: row.aisle_pref,
-            front_pref: row.front_pref,
-            center_pref: row.center_pref,
-            back_pref: row.back_pref,
-            neighbouring_row_pref: row.neighbouring_row_pref,
-            same_row_pref: row.same_row_pref,
-            side_by_side_pref: row.side_by_side_pref,
-          },
-        };
-      }
+    const seatsResult = await db.query(seatsSql);
+    const journeys = journeyResult.rows.map((journey) => {
+      const seats = seatsResult.rows.filter(
+        (seat) => seat.flight_id === journey.id
+      );
+      return { ...journey, seats };
+    });
 
-      if (row.seat_id) {
-        const prevUserName = async (user_id) => {
-          if (row.seat_previous_user_id !== null) {
-            const prevUserName = await db.query(
-              'SELECT firstname FROM "user" WHERE id=$1',
-              [user_id]
-            );
-            return prevUserName.rows[0].firstname;
-          }
-          return null;
-        };
-        // const r = await prevUserName(24);
-        // console.log('🚀 ~ selectFlightsByUser ~ r:', r);
+    return journeys;
+    // const flights = {};
 
-        flights[row.flight_id].seats.push({
-          id: row.seat_id,
-          current_user_id: row.seat_current_user_id,
-          original_user_id: row.seat_original_user_id,
-          previous_user_id: row.seat_previous_user_id,
-          previous_user_name: await prevUserName(row.seat_previous_user_id),
-          seat_letter: row.seat_letter,
-          seat_row: row.seat_row,
-          extraLegroom: row.seat_legroom,
-          location: row.seat_location_name,
-          position: row.seat_position_name,
-        });
-        // }
-      }
-    }
-    // console.log(JSON.stringify(Object.values(flights), null, 2));
-    return Object.values(flights);
+    // for (const row of userFlightResult.rows) {
+    //   if (!flights[row.flight_id]) {
+    //     flights[row.flight_id] = {
+    //       id: row.flight_id,
+    //       flightnumber: row.flightnumber,
+    //       departureairport: row.departureairport,
+    //       arrivalairport: row.arrivalairport,
+    //       departuretime: row.departuretime,
+    //       arrivaltime: row.arrivaltime,
+    //       airline: row.airline,
+    //       seats: [],
+    //       preferences: {
+    //         legroom_pref: row.legroom_pref,
+    //         window_pref: row.window_pref,
+    //         middle_pref: row.middle_pref,
+    //         aisle_pref: row.aisle_pref,
+    //         front_pref: row.front_pref,
+    //         center_pref: row.center_pref,
+    //         back_pref: row.back_pref,
+    //         neighbouring_row_pref: row.neighbouring_row_pref,
+    //         same_row_pref: row.same_row_pref,
+    //         side_by_side_pref: row.side_by_side_pref,
+    //       },
+    //     };
+    //   }
+
+    //   if (row.seat_id) {
+    //     const prevUserName = async (user_id) => {
+    //       if (row.seat_previous_user_id !== null) {
+    //         const prevUserName = await db.query(
+    //           'SELECT firstname FROM "user" WHERE id=$1',
+    //           [user_id]
+    //         );
+    //         return prevUserName.rows[0].firstname;
+    //       }
+    //       return null;
+    //     };
+
+    //     flights[row.flight_id].seats.push({
+    //       id: row.seat_id,
+    //       current_user_id: row.seat_current_user_id,
+    //       original_user_id: row.seat_original_user_id,
+    //       previous_user_id: row.seat_previous_user_id,
+    //       previous_user_name: await prevUserName(row.seat_previous_user_id),
+    //       seat_letter: row.seat_letter,
+    //       seat_row: row.seat_row,
+    //       extraLegroom: row.seat_legroom,
+    //       location: row.seat_location_name,
+    //       position: row.seat_position_name,
+    //     });
+    //   }
+    // }
+    // return Object.values(flights);
   } catch (err) {
     throw err;
   }
-  console.log('🚀 ~ selectFlightsByUser ~ doesUserExist:', doesUserExist);
 };
 
 const seatSwapChecker = async (seat_id) => {
@@ -212,7 +212,6 @@ const updateFlightByUserIdAndFlightId = async (user_id, flight_id, journey) => {
     seats,
     preferences,
   } = journey;
-  // console.log('🚀 ~ updateFlightByUserIdAndFlightId ~ seats:', seats);
 
   try {
     const seatNumbers = seats.map((seat) => seat.seat_row + seat.seat_letter);
@@ -367,21 +366,21 @@ const selectSeatByUserIdAndFlightIdAndSeatLetterAndSeatNumber = async (
   try {
     await doesUserExist(user_id);
     await doesFlightExist(flight_id);
-    
-    if ( !/^[A-J]$/.test(seat_letter)) {
+
+    if (!/^[A-J]$/.test(seat_letter)) {
       return Promise.reject({
         status: 400,
         msg: 'Invalid seat letter',
       });
     }
-    
+
     if (Number.isNaN(+seat_number) || +seat_number > 99) {
       return Promise.reject({
         status: 400,
         msg: 'Invalid seat number',
       });
     }
-    
+
     const seat = await db.query(
       `SELECT 
       seat.id, 
@@ -403,8 +402,8 @@ const selectSeatByUserIdAndFlightIdAndSeatLetterAndSeatNumber = async (
       [flight_id, seat_letter, seat_number]
     );
 
-    if (seat.rowCount === 0) return {msg: "Seat is free"}
-   
+    if (seat.rowCount === 0) return { msg: 'Seat is free' };
+
     if (seat.rows[0].current_user_id !== +user_id) {
       return Promise.reject({
         status: 403,
@@ -415,7 +414,8 @@ const selectSeatByUserIdAndFlightIdAndSeatLetterAndSeatNumber = async (
     return seat.rows[0];
   } catch (err) {
     throw err;
-  }}
+  }
+};
 module.exports = {
   selectFlightsByUser,
   deleteFlightByUserIdAndFlightId,
