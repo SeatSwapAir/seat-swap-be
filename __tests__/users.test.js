@@ -457,6 +457,17 @@ describe('DELETE /api/users/:user_id/flights/:flight_id', () => {
     return request(app).delete('/api/users/2/flights/1').expect(204);
   });
 
+  test.only('403: Returns error message for a flight deleted which has a seat that has been swapped', () => {
+    return request(app)
+      .delete('/api/users/21/flights/8')
+      .expect(403)
+      .then(({ body }) => {
+        expect(body.msg).toBe(
+          'You swapped a seat on this flight, cannot delete'
+        );
+      });
+  });
+
   test('404: Responds with an error message for a non-existent flight_id', () => {
     return request(app)
       .delete('/api/users/2/flights/2147483647')
@@ -538,7 +549,6 @@ describe('PATCH /api/users/:user_id/flights/:flight_id', () => {
         previous_user_name: null,
       },
     ],
-
   };
   test('200: Updates the user seats and preferences with and responds with the updated flight object', () => {
     const result = {

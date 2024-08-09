@@ -79,7 +79,10 @@ app.get('/api/swap/yourseat/:your_seat_id/matched/:matched_seat_id', getSwap);
 
 app.get('/api/user/:user_id/flight/:flight_id/offers', getOffers);
 
-app.get('/api/users/:user_id/flights/:flight_id/seats/:seat_letter/:seat_number', getSeat);
+app.get(
+  '/api/users/:user_id/flights/:flight_id/seats/:seat_letter/:seat_number',
+  getSeat
+);
 
 //handle custom errors
 app.use((err, req, res, next) => {
@@ -96,6 +99,17 @@ app.use((err, req, res, next) => {
   // console.log('🚀 ~ app.use ~ err:', err);
   if (err.code === '22P02' || err.code === '42703') {
     res.status(400).send({ msg: 'Bad request' });
+  } else {
+    next(err);
+  }
+});
+
+app.use((err, req, res, next) => {
+  // console.log('🚀 ~ app.use ~ err:', err);
+  if (err.code === '23503') {
+    res
+      .status(403)
+      .send({ msg: 'You swapped a seat on this flight, cannot delete' });
   } else {
     next(err);
   }
