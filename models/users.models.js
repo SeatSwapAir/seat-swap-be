@@ -210,7 +210,6 @@ const updateFlightByUserIdAndFlightId = async (user_id, flight_id, journey) => {
     arrivaltime,
     airline,
     seats,
-    preferences,
   } = journey;
 
   try {
@@ -236,51 +235,6 @@ const updateFlightByUserIdAndFlightId = async (user_id, flight_id, journey) => {
       flight_id
     );
 
-    const {
-      legroom_pref,
-      window_pref,
-      middle_pref,
-      aisle_pref,
-      front_pref,
-      center_pref,
-      back_pref,
-      side_by_side_pref,
-      neighbouring_row_pref,
-      same_row_pref,
-    } = preferences;
-
-    const updatePrefsQueryStr = pgformat(
-      `UPDATE journey_prefs SET 
-      legroom_pref = %L,
-      window_pref = %L,
-      middle_pref = %L,
-      aisle_pref = %L,
-      front_pref = %L,
-      center_pref = %L,
-      back_pref = %L,
-      side_by_side_pref = %L,
-      neighbouring_row_pref = %L,
-      same_row_pref = %L
-  WHERE 
-      user_id = %L AND 
-      flight_id = %L 
-  RETURNING *;
-`,
-      legroom_pref,
-      window_pref,
-      middle_pref,
-      aisle_pref,
-      front_pref,
-      center_pref,
-      back_pref,
-      side_by_side_pref,
-      neighbouring_row_pref,
-      same_row_pref,
-      user_id,
-      flight_id
-    );
-
-    const newPrefs = await db.query(updatePrefsQueryStr);
     const journey = {
       id: Number(flight_id),
       flightnumber: flightnumber,
@@ -290,7 +244,6 @@ const updateFlightByUserIdAndFlightId = async (user_id, flight_id, journey) => {
       arrivaltime: arrivaltime,
       airline: airline,
       seats: seatsFormatted,
-      preferences: newPrefs.rows[0],
     };
     // console.log(journey.seats);
     return journey;
