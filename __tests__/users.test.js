@@ -538,18 +538,7 @@ describe('PATCH /api/users/:user_id/flights/:flight_id', () => {
         previous_user_name: null,
       },
     ],
-    preferences: {
-      legroom_pref: false,
-      window_pref: true,
-      middle_pref: true,
-      aisle_pref: false,
-      front_pref: true,
-      center_pref: true,
-      back_pref: false,
-      side_by_side_pref: false,
-      neighbouring_row_pref: true,
-      same_row_pref: false,
-    },
+
   };
   test('200: Updates the user seats and preferences with and responds with the updated flight object', () => {
     const result = {
@@ -601,21 +590,6 @@ describe('PATCH /api/users/:user_id/flights/:flight_id', () => {
           position: 'window',
         },
       ],
-      preferences: {
-        flight_id: 1,
-        id: expect.any(Number),
-        user_id: 77,
-        legroom_pref: false,
-        window_pref: true,
-        middle_pref: true,
-        aisle_pref: false,
-        front_pref: true,
-        center_pref: true,
-        back_pref: false,
-        side_by_side_pref: false,
-        neighbouring_row_pref: true,
-        same_row_pref: false,
-      },
     };
     return request(app)
       .patch('/api/users/77/flights/1')
@@ -669,18 +643,6 @@ describe('PATCH /api/users/:user_id/flights/:flight_id', () => {
           previous_user_name: null,
         },
       ],
-      preferences: {
-        legroom_pref: false,
-        window_pref: true,
-        middle_pref: true,
-        aisle_pref: false,
-        front_pref: true,
-        center_pref: true,
-        back_pref: false,
-        side_by_side_pref: false,
-        neighbouring_row_pref: true,
-        same_row_pref: false,
-      },
     };
     const result = {
       id: 1,
@@ -731,21 +693,6 @@ describe('PATCH /api/users/:user_id/flights/:flight_id', () => {
           position: 'window',
         },
       ],
-      preferences: {
-        flight_id: 1,
-        id: expect.any(Number),
-        user_id: 77,
-        legroom_pref: false,
-        window_pref: true,
-        middle_pref: true,
-        aisle_pref: false,
-        front_pref: true,
-        center_pref: true,
-        back_pref: false,
-        side_by_side_pref: false,
-        neighbouring_row_pref: true,
-        same_row_pref: false,
-      },
     };
     return request(app)
       .patch('/api/users/77/flights/1')
@@ -792,23 +739,6 @@ describe('PATCH /api/users/:user_id/flights/:flight_id', () => {
           legroom: false,
           seat_position_id: 2,
           seat_location_id: 2,
-        },
-      ],
-      preferences: [
-        {
-          id: 194,
-          user_id: 27,
-          flight_id: 8,
-          legroom_pref: false,
-          window_pref: false,
-          middle_pref: false,
-          aisle_pref: false,
-          front_pref: false,
-          center_pref: false,
-          back_pref: false,
-          side_by_side_pref: false,
-          neighbouring_row_pref: false,
-          same_row_pref: false,
         },
       ],
     };
@@ -913,18 +843,6 @@ describe('POST /api/users/:user_id/flights/:flight_id', () => {
         position: 'aisle',
       },
     ],
-    preferences: {
-      legroom_pref: false,
-      window_pref: true,
-      middle_pref: true,
-      aisle_pref: false,
-      front_pref: true,
-      center_pref: true,
-      back_pref: false,
-      side_by_side_pref: false,
-      neighbouring_row_pref: true,
-      same_row_pref: false,
-    },
   };
   test('200: Creates a new journey and responds with the created journey object', () => {
     const result = {
@@ -963,21 +881,6 @@ describe('POST /api/users/:user_id/flights/:flight_id', () => {
           position: 'aisle',
         },
       ],
-      preferences: {
-        flight_id: 2,
-        user_id: 77,
-        id: expect.any(Number),
-        legroom_pref: false,
-        window_pref: true,
-        middle_pref: true,
-        aisle_pref: false,
-        front_pref: true,
-        center_pref: true,
-        back_pref: false,
-        side_by_side_pref: false,
-        neighbouring_row_pref: true,
-        same_row_pref: false,
-      },
     };
     return request(app)
       .post('/api/users/77/flights/2')
