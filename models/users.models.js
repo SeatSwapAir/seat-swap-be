@@ -77,61 +77,6 @@ const selectFlightsByUser = async (user_id) => {
     });
 
     return journeys;
-    // const flights = {};
-
-    // for (const row of userFlightResult.rows) {
-    //   if (!flights[row.flight_id]) {
-    //     flights[row.flight_id] = {
-    //       id: row.flight_id,
-    //       flightnumber: row.flightnumber,
-    //       departureairport: row.departureairport,
-    //       arrivalairport: row.arrivalairport,
-    //       departuretime: row.departuretime,
-    //       arrivaltime: row.arrivaltime,
-    //       airline: row.airline,
-    //       seats: [],
-    //       preferences: {
-    //         legroom_pref: row.legroom_pref,
-    //         window_pref: row.window_pref,
-    //         middle_pref: row.middle_pref,
-    //         aisle_pref: row.aisle_pref,
-    //         front_pref: row.front_pref,
-    //         center_pref: row.center_pref,
-    //         back_pref: row.back_pref,
-    //         neighbouring_row_pref: row.neighbouring_row_pref,
-    //         same_row_pref: row.same_row_pref,
-    //         side_by_side_pref: row.side_by_side_pref,
-    //       },
-    //     };
-    //   }
-
-    //   if (row.seat_id) {
-    //     const prevUserName = async (user_id) => {
-    //       if (row.seat_previous_user_id !== null) {
-    //         const prevUserName = await db.query(
-    //           'SELECT firstname FROM "user" WHERE id=$1',
-    //           [user_id]
-    //         );
-    //         return prevUserName.rows[0].firstname;
-    //       }
-    //       return null;
-    //     };
-
-    //     flights[row.flight_id].seats.push({
-    //       id: row.seat_id,
-    //       current_user_id: row.seat_current_user_id,
-    //       original_user_id: row.seat_original_user_id,
-    //       previous_user_id: row.seat_previous_user_id,
-    //       previous_user_name: await prevUserName(row.seat_previous_user_id),
-    //       seat_letter: row.seat_letter,
-    //       seat_row: row.seat_row,
-    //       extraLegroom: row.seat_legroom,
-    //       location: row.seat_location_name,
-    //       position: row.seat_position_name,
-    //     });
-    //   }
-    // }
-    // return Object.values(flights);
   } catch (err) {
     throw err;
   }
