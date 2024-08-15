@@ -3,6 +3,7 @@ const {
   deleteFlightByUserIdAndFlightId,
   updateFlightByUserIdAndFlightId,
   insertFlightByUserIdAndFlightId,
+  selectJourneyByUserIdAndFlightId,
   selectSeatByUserIdAndFlightIdAndSeatLetterAndSeatNumber,
 } = require('../models/users.models');
 
@@ -69,10 +70,23 @@ const getSeat = async (req, res, next) => {
       next(error);
     });
 };
+
+const getJourneyByUserIdAndFlightId = async (req, res, next) => {
+  const { user_id, flight_id } = req.params;
+
+  selectJourneyByUserIdAndFlightId(user_id, flight_id)
+    .then((journey) => {
+      res.status(200).send(journey);
+    })
+    .catch((error) => {
+      next(error);
+    });
+};
 module.exports = {
   getFlightsByUser,
   removeJourneyByUserIdAndFlightId,
   patchJourneyByUserIdAndFlightId,
   postJourneyByUserIdAndFlightId,
+  getJourneyByUserIdAndFlightId,
   getSeat,
 };

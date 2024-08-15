@@ -13,6 +13,7 @@ const {
   patchJourneyByUserIdAndFlightId,
   postJourneyByUserIdAndFlightId,
   getSeat,
+  getJourneyByUserIdAndFlightId,
 } = require('./controllers/users.controllers.js');
 
 const {
@@ -35,6 +36,11 @@ const {
 const { getOffers } = require('./controllers/offers.controllers');
 
 app.get('/api/users/:user_id/flights', getFlightsByUser);
+
+app.get(
+  '/api/users/:user_id/flights/:flight_id',
+  getJourneyByUserIdAndFlightId
+);
 app.delete(
   '/api/users/:user_id/flights/:flight_id',
   removeJourneyByUserIdAndFlightId
