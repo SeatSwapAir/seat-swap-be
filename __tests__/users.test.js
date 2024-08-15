@@ -457,7 +457,7 @@ describe('DELETE /api/users/:user_id/flights/:flight_id', () => {
     return request(app).delete('/api/users/2/flights/1').expect(204);
   });
 
-  test.only('403: Returns error message for a flight deleted which has a seat that has been swapped', () => {
+  test('403: Returns error message for a flight deleted which has a seat that has been swapped', () => {
     return request(app)
       .delete('/api/users/21/flights/8')
       .expect(403)
@@ -902,7 +902,7 @@ describe('POST /api/users/:user_id/flights/:flight_id', () => {
   });
   test('400: Responds with a bad request error for an invalid user id', () => {
     return request(app)
-      .patch('/api/users/invalid_id/flights/1')
+      .post('/api/users/invalid_id/flights/1')
       .send(payload)
       .expect(400)
       .then(({ body }) => {
@@ -912,7 +912,7 @@ describe('POST /api/users/:user_id/flights/:flight_id', () => {
 
   test('400: Responds with a bad request error for an invalid flight id', () => {
     return request(app)
-      .patch('/api/users/77/flights/invalid_id')
+      .post('/api/users/77/flights/invalid_id')
       .send(payload)
       .expect(400)
       .then(({ body }) => {
@@ -922,7 +922,7 @@ describe('POST /api/users/:user_id/flights/:flight_id', () => {
 
   test('404: Responds with an error message for a non-existent user id', () => {
     return request(app)
-      .patch('/api/users/2147483647/flights/1')
+      .post('/api/users/2147483647/flights/1')
       .send(payload)
       .expect(404)
       .then(({ body }) => {
@@ -932,7 +932,7 @@ describe('POST /api/users/:user_id/flights/:flight_id', () => {
 
   test('404: Responds with an error message for a non-existent flight id', () => {
     return request(app)
-      .patch('/api/users/77/flights/2147483647')
+      .post('/api/users/77/flights/2147483647')
       .send(payload)
       .expect(404)
       .then(({ body }) => {
@@ -940,23 +940,62 @@ describe('POST /api/users/:user_id/flights/:flight_id', () => {
       });
   });
 
-  test('404: Responds with an error message if a seat is already taken', () => {
+  test('404: Responds with an error message if a seat is already taken while adding a new journey', () => {
     const extraSeat = {
       id: 327,
-      number: '24B',
-      seat_row: 24,
-      seat_letter: 'B',
-      extraLegroom: true,
-      location: 'back',
-      position: 'aisle',
+      number: '23F',
+      legroom: 'FALSE',
+      seat_position_id: '1',
+      seat_location_id: '1',
+      seat_row: 23,
+      seat_letter: 'F',
     };
     const newPayload = { ...payload, seats: [...payload.seats, extraSeat] };
     return request(app)
-      .patch('/api/users/77/flights/1')
+      .post('/api/users/77/flights/3')
       .send(newPayload)
       .expect(400)
       .then(({ body }) => {
-        expect(body.msg).toBe('Seat(s) 24B already taken by another passenger');
+        expect(body.msg).toBe('Seat(s) 23F already taken by another passenger');
+      });
+  });
+
+  test('400: Responds with an error message for adding a journey that already exists for a certain user_id and flight_id', () => {
+    const payload = {
+      id: 3,
+      flightnumber: 'AA101',
+      departureairport: 'JFK',
+      arrivalairport: 'LAX',
+      departuretime: '2023-06-08T07:00:00Z',
+      arrivaltime: '2023-06-08T10:00:00Z',
+      airline: 'American Airlines',
+      seats: [
+        {
+          id: 80,
+          number: '12G',
+          seat_letter: 'G',
+          seat_row: 12,
+          extraLegroom: false,
+          location: 'back',
+          position: 'aisle',
+        },
+        {
+          id: 81,
+          number: '20G',
+          seat_letter: 'G',
+          seat_row: 20,
+          extraLegroom: false,
+          location: 'back',
+          position: 'aisle',
+        },
+      ],
+    };
+    return request(app)
+      .post('/api/users/3/flights/2')
+      .send(payload)
+      .expect(400)
+      .then(({ body }) => {
+        expect(body.msg).toBe('This journey already exists');
       });
   });
 });
