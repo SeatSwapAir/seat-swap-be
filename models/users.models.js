@@ -217,6 +217,18 @@ const insertFlightByUserIdAndFlightId = async (user_id, flight_id, journey) => {
 
     await doesFlightExist(flight_id);
 
+    const userJourneyResult = await db.query(
+      `SELECT * FROM journey_prefs WHERE user_id = $1 AND flight_id = $2;`,
+      [user_id, flight_id]
+    );
+
+    if (userJourneyResult.rows.length > 0) {
+      return Promise.reject({
+        status: 400,
+        msg: 'This journey already exists',
+      });
+    }
+
     await isSeatTaken(seats, user_id, flight_id);
 
     const seatsFormatted = await seatsInsertedFormatted(
