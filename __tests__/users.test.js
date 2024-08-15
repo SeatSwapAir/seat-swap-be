@@ -1109,3 +1109,89 @@ describe('GET /api/users/:user_id/flights/:flight_id/seats/:seat_letter/:seat_nu
       });
   });
 });
+
+describe('GET /api/users/:user_id/flights/:flight_id', () => {
+  test('200: Responds with an object with  specific flight info and seats for a given user id and flight id', () => {
+    const expected = {
+      id: 2,
+      flightnumber: 'AA101',
+      departureairport: 'JFK',
+      arrivalairport: 'LAX',
+      departuretime: '2023-06-08T07:00:00Z',
+      arrivaltime: '2023-06-08T10:00:00Z',
+      arrivalairportcity: 'Los Angeles',
+      arrivalairportname: 'Los Angeles International Airport',
+      departureairportcity: 'New York',
+      departureairportname: 'John F Kennedy International Airport',
+      airline: 'American Airlines',
+      seats: [
+        {
+          id: 129,
+          current_user_id: 2,
+          original_user_id: 2,
+          previous_user_id: null,
+          previous_user_name: null,
+          seat_letter: 'F',
+          seat_row: 8,
+          flight_id: 2,
+          extraLegroom: false,
+          location: 'front',
+          position: 'window',
+        },
+      ],
+    };
+    return request(app)
+      .get('/api/users/2/flights/2')
+      .expect(200)
+      .then(({ body }) => {
+        expect(body).toStrictEqual(expected);
+      });
+  });
+
+  test('404: Responds with an error message for a non-existent user id', () => {
+    return request(app)
+      .get('/api/users/2147483647/flights/1')
+      .expect(404)
+      .then(({ body }) => {
+        expect(body.msg).toBe('User not found');
+      });
+  });
+
+  test('404: Responds with an error message for a user with no journey for a specified flight id', () => {
+    return request(app)
+      .get('/api/users/146/flights/1')
+      .expect(404)
+      .then(({ body }) => {
+        expect(body.msg).toBe(
+          'User does not have a journey with this flight id'
+        );
+      });
+  });
+
+  test('400: Responds with a bad request error for an invalid user id', () => {
+    return request(app)
+      .get('/api/users/invalid-id/flights/1')
+      .expect(400)
+      .then(({ body }) => {
+        expect(body.msg).toBe('Bad request');
+      });
+  });
+
+  test('404: Responds with an error message for a non-existent flight_id', () => {
+    return request(app)
+      .delete('/api/users/2/flights/2147483647')
+      .expect(404)
+      .then(({ body }) => {
+        expect(body.msg).toBe('User journey not found');
+      });
+  });
+
+  test('400: Responds with a bad request error for an invalid flight_id', () => {
+    return request(app)
+      .delete('/api/users/2/flights/invalid-id')
+      .expect(400)
+      .then(({ body }) => {
+        expect(body.msg).toBe('Bad request');
+      });
+  });
+});

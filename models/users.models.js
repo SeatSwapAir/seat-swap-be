@@ -319,6 +319,76 @@ const selectSeatByUserIdAndFlightIdAndSeatLetterAndSeatNumber = async (
     throw err;
   }
 };
+
+const selectJourneyByUserIdAndFlightId = async (user_id, flight_id) => {
+  try {
+    await doesUserExist(user_id);
+    await doesFlightExist(flight_id);
+
+    const journeySql = `SELECT
+        flight.id AS id,
+        flight.flightNumber AS flightnumber,
+        flight.departureAirport AS departureairport,
+        flight.arrivalAirport AS arrivalairport,
+        flight.departureTime AS departuretime,
+        flight.arrivalTime AS arrivaltime,
+        flight.airline AS airline,
+        arr_airport.name AS arrivalairportname,
+        arr_airport.city AS arrivalairportcity,
+        dep_airport.name AS departureairportname,
+        dep_airport.city AS departureairportcity
+      FROM 
+        flight
+      JOIN 
+        journey_prefs ON journey_prefs.flight_id = flight.id
+      JOIN 
+        airport AS arr_airport ON flight.arrivalAirport = arr_airport.iata
+      JOIN 
+        airport AS dep_airport ON flight.departureAirport = dep_airport.iata
+      WHERE
+        journey_prefs.user_id = $1 AND journey_prefs.flight_id = $2;`;
+    const journeyResult = await db.query(journeySql, [user_id, flight_id]);
+
+    if (journeyResult.rows.length === 0) {
+      return Promise.reject({
+        status: 404,
+        msg: 'User does not have a journey with this flight id',
+      });
+    }
+
+    const seatsSql = pgformat(
+      `SELECT
+        seat.id AS id,
+        seat.current_user_id AS current_user_id,
+        seat.original_user_id AS original_user_id,
+        seat.previous_user_id AS previous_user_id,
+        "user".firstname AS previous_user_name,
+        seat.seat_letter AS seat_letter,
+        seat.seat_row AS seat_row,
+        seat.flight_id AS flight_id,
+        seat.legroom AS "extraLegroom",
+        seat_location.location_name AS location,
+        seat_position.position_name AS position
+      FROM seat 
+      JOIN seat_location ON seat.seat_location_id = seat_location.id
+      JOIN seat_position ON seat.seat_position_id = seat_position.id
+      LEFT JOIN "user" ON seat.previous_user_id = "user".id
+      WHERE
+        seat.current_user_id = %s AND seat.flight_id IN (%L);`,
+      user_id,
+      flight_id
+    );
+
+    const seatsResult = await db.query(seatsSql);
+
+    const journey = journeyResult.rows[0];
+    journey.seats = seatsResult.rows;
+
+    return journey;
+  } catch (err) {
+    throw err;
+  }
+};
 module.exports = {
   selectFlightsByUser,
   deleteFlightByUserIdAndFlightId,
@@ -326,6 +396,7 @@ module.exports = {
   insertFlightByUserIdAndFlightId,
   seatSwapChecker,
   selectSeatByUserIdAndFlightIdAndSeatLetterAndSeatNumber,
+  selectJourneyByUserIdAndFlightId,
 };
 
 //post model for adding new journey pref and seats
