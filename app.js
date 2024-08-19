@@ -33,6 +33,8 @@ const {
   getSwap,
 } = require('./controllers/swaps.controllers');
 
+const { patchSeat } = require('./controllers/seats.controllers');
+
 const { getOffers } = require('./controllers/offers.controllers');
 
 app.get('/api/users/:user_id/flights', getFlightsByUser);
@@ -89,6 +91,8 @@ app.get(
   '/api/users/:user_id/flights/:flight_id/seats/:seat_letter/:seat_number',
   getSeat
 );
+
+app.patch('/api/seats/:seat_id', patchSeat);
 
 //handle custom errors
 app.use((err, req, res, next) => {

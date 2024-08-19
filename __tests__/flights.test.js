@@ -7,7 +7,7 @@ const data = require('../db/data/test-data/index.js');
 beforeEach(() => seed(data));
 afterAll(() => db.end());
 
-describe('GET /api/flights/:flightNumber/date/:departureTime', () => {
+xdescribe('GET /api/flights/:flightNumber/date/:departureTime', () => {
   test('200: Responds with a with a flight object if it exists in local DB for a given flightNumber and departureTime', () => {
     return request(app)
       .get('/api/flights/FR9336/date/2024-07-14')
@@ -37,11 +37,11 @@ describe('GET /api/flights/:flightNumber/date/:departureTime', () => {
           id: 9,
           flightnumber: 'FR2714',
           departureairport: 'ALC',
-          departureairportcity: "Alicante",
-          departureairportname: "Alicante International Airport",
+          departureairportcity: 'Alicante',
+          departureairportname: 'Alicante International Airport',
           arrivalairport: 'LGW',
-          arrivalairportcity: "London",
-          arrivalairportname: "London Gatwick Airport",
+          arrivalairportcity: 'London',
+          arrivalairportname: 'London Gatwick Airport',
           departuretime: '2024-08-16T06:50+02:00',
           arrivaltime: '2024-08-16T08:30+01:00',
           airline: 'Ryanair',

@@ -121,6 +121,7 @@ const doesSeatIdExist = async (seat_id) => {
   const seatExist = await db.query(`SELECT * FROM seat WHERE id= $1`, [
     seat_id,
   ]);
+
   if (seatExist.rowCount === 0) {
     return Promise.reject({
       status: 400,
@@ -131,6 +132,7 @@ const doesSeatIdExist = async (seat_id) => {
 
 const hasBeenSwapped = async (seats) => {
   const seatIds = seats.map((seat) => seat.id);
+
   const seatsSwappedSql = pgformat(
     `SELECT seat_row, seat_letter FROM seat WHERE previous_user_id IS NOT NULL AND id IN (%L);`,
     seatIds
