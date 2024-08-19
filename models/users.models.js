@@ -120,6 +120,13 @@ const deleteFlightByUserIdAndFlightId = async (user_id, flight_id) => {
       });
     }
 
+    const seats = await db.query(
+      'SELECT * FROM seat WHERE current_user_id = $1 AND flight_id = $2',
+      [user_id, flight_id]
+    );
+
+    await hasBeenSwapped(seats.rows);
+
     const seatsDeleted = await db.query(
       `DELETE FROM "seat" WHERE current_user_id = $1 AND flight_id = $2;`,
       [user_id, flight_id]

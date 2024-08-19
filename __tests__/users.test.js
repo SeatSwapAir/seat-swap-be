@@ -453,18 +453,16 @@ describe('GET /api/users/:user_id/flights', () => {
 });
 
 describe('DELETE /api/users/:user_id/flights/:flight_id', () => {
-  test('204: Successfully deletes a flight by user_flight_id', () => {
+  test('204: Successfully deletes a journey by user_flight_id', () => {
     return request(app).delete('/api/users/2/flights/1').expect(204);
   });
 
-  test('403: Returns error message for a flight deleted which has a seat that has been swapped', () => {
+  test('400: Returns error message for a journey deleted which has a seat that has been swapped', () => {
     return request(app)
-      .delete('/api/users/21/flights/8')
-      .expect(403)
+      .delete('/api/users/17/flights/8')
+      .expect(400)
       .then(({ body }) => {
-        expect(body.msg).toBe(
-          'You swapped a seat on this flight, cannot delete'
-        );
+        expect(body.msg).toBe('Seat(s) 18A already swapped, cannot change');
       });
   });
 

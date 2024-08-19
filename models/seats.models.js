@@ -8,18 +8,6 @@ const updateSeat = async (seat_id, seat) => {
   try {
     await doesSeatIdExist(seat_id);
     await hasBeenSwapped([seat]);
-    // const seatsSwappedSql = await db.query(
-    //   `SELECT seat_row, seat_letter FROM seat WHERE previous_user_id IS NOT NULL AND id=$1;`,
-    //   [seat_id]
-    // );
-    // if (seatsSwapped.rowCount !== 0) {
-    //     const seatsSwappedFormatted =  seat.seat_row + seat.seat_letter
-    //     return Promise.reject({
-    //       status: 400,
-    //       msg: `Seat ${seatsSwappedFormatted} already swapped, cannot change`,
-    //     });
-    //   }
-    // console.log('🚀 ~ updateSeat ~ seatsSwappedSql:', seatsSwappedSql.rows);
 
     const updatedSeat = await db.query(
       `UPDATE seat SET 
@@ -48,6 +36,33 @@ const updateSeat = async (seat_id, seat) => {
   }
 };
 
+const deleteSeat = async (seat_id) => {
+  try {
+    await doesSeatIdExist(seat_id);
+    await hasBeenSwapped([{ id: seat_id }]);
+
+    const result = await db.query(
+      `
+        WITH updated_swaps AS (
+          UPDATE swap
+          SET status = 'voided', updated_at = CURRENT_TIMESTAMP
+          WHERE (requester_seat_id = $1 OR respondent_seat_id = $1)
+          RETURNING *
+        )
+        DELETE FROM seat
+        WHERE id = $1
+        RETURNING *;
+        `,
+      [seat_id]
+    );
+    return 'Deleted';
+  } catch (err) {
+    // console.error('Database query error:', err);
+    throw err;
+  }
+};
+
 module.exports = {
   updateSeat,
+  deleteSeat,
 };
