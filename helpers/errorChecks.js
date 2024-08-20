@@ -37,6 +37,7 @@ const isSeatDuplicate = async (seatNumbers) => {
   const findDuplicates = seatNumbers.filter(
     (seat, index) => seatNumbers.indexOf(seat) !== index
   );
+
   if (findDuplicates.length > 0) {
     return Promise.reject({
       status: 400,
@@ -78,6 +79,9 @@ const isSeatTaken = async (seats, user_id, flight_id) => {
 
 const seatsInsertedFormatted = async (seats, user_id, flight_id) => {
   const seatsForQuery = formatSeatsQuery(seats, user_id, flight_id);
+  if (seats.length === 0) {
+    return [];
+  }
   // console.log('🚀 ~ seatsInsertedFormatted ~ seatsForQuery:', seatsForQuery);
 
   const insertSeatQueryStr = pgformat(

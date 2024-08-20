@@ -218,7 +218,7 @@ const insertFlightByUserIdAndFlightId = async (user_id, flight_id, journey) => {
   try {
     const seatNumbers = seats.map((seat) => seat.seat_row + seat.seat_letter);
 
-    isSeatDuplicate(seatNumbers);
+    const duplicates = await isSeatDuplicate(seatNumbers);
 
     await doesUserExist(user_id);
 
@@ -243,7 +243,6 @@ const insertFlightByUserIdAndFlightId = async (user_id, flight_id, journey) => {
       user_id,
       flight_id
     );
-
     const preferencesArray = [flight_id, user_id];
     const insertPrefsQueryStr = pgformat(
       `INSERT INTO journey_prefs (flight_id, user_id) VALUES (%L);`,

@@ -898,6 +898,35 @@ describe('POST /api/users/:user_id/flights/:flight_id', () => {
         expect(body).toEqual(result);
       });
   });
+  test.only('200: Creates a new journey with no seats and responds with the created journey object', () => {
+    const payload = {
+      id: 2,
+      flightnumber: 'AA101',
+      departureairport: 'JFK',
+      arrivalairport: 'LAX',
+      departuretime: '2023-06-08T07:00:00Z',
+      arrivaltime: '2023-06-08T10:00:00Z',
+      airline: 'American Airlines',
+      seats: [],
+    };
+    const result = {
+      id: 2,
+      flightnumber: 'AA101',
+      departureairport: 'JFK',
+      arrivalairport: 'LAX',
+      departuretime: '2023-06-08T07:00:00Z',
+      arrivaltime: '2023-06-08T10:00:00Z',
+      airline: 'American Airlines',
+      seats: [],
+    };
+    return request(app)
+      .post('/api/users/77/flights/2')
+      .send(payload)
+      .expect(200)
+      .then(({ body }) => {
+        expect(body).toEqual(result);
+      });
+  });
   test('400: Responds with a bad request error for an invalid user id', () => {
     return request(app)
       .post('/api/users/invalid_id/flights/1')
