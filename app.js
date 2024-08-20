@@ -33,7 +33,11 @@ const {
   getSwap,
 } = require('./controllers/swaps.controllers');
 
-const { patchSeat, removeSeat } = require('./controllers/seats.controllers');
+const {
+  patchSeat,
+  removeSeat,
+  postSeat,
+} = require('./controllers/seats.controllers');
 
 const { getOffers } = require('./controllers/offers.controllers');
 
@@ -95,6 +99,8 @@ app.get(
 app.patch('/api/seats/:seat_id', patchSeat);
 
 app.delete('/api/seats/:seat_id', removeSeat);
+
+app.post('/api/seats', postSeat);
 
 //handle custom errors
 app.use((err, req, res, next) => {

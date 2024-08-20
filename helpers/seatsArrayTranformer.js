@@ -50,7 +50,6 @@ function formatSeatsQuery(seats, user_id, flight_id) {
       original_user_id: Number(user_id),
       previous_user_id: seat.previous_user_id,
       flight_id: Number(flight_id),
-      number: seat.number,
       seat_row: seat.seat_row,
       seat_letter: seat.seat_letter,
       seat_column: getSeatColumn(seat.seat_letter),

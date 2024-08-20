@@ -1,8 +1,14 @@
 const db = require('../db/connection.js');
 const pgformat = require('pg-format');
 
-const { doesSeatIdExist } = require('../helpers/errorChecks');
-const { hasBeenSwapped } = require('../helpers/errorChecks');
+const {
+  doesSeatIdExist,
+  hasBeenSwapped,
+  seatsInsertedFormatted,
+  doesUserExist,
+  doesFlightExist,
+  isSeatTaken,
+} = require('../helpers/errorChecks');
 
 const updateSeat = async (seat_id, seat) => {
   try {
@@ -62,7 +68,27 @@ const deleteSeat = async (seat_id) => {
   }
 };
 
+const insertSeat = async (seat) => {
+  try {
+    await doesUserExist(seat.current_user_id);
+    await doesFlightExist(seat.flight_id);
+
+    await isSeatTaken([seat], seat.current_user_id, seat.flight_id);
+
+    const seatsFormatted = await seatsInsertedFormatted(
+      [seat],
+      seat.current_user_id,
+      seat.flight_id
+    );
+    return seatsFormatted[0];
+  } catch (err) {
+    // console.error('Database query error:', err);
+    throw err;
+  }
+};
+
 module.exports = {
   updateSeat,
   deleteSeat,
+  insertSeat,
 };

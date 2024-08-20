@@ -30,7 +30,7 @@ xdescribe('GET /api/flights/:flightNumber/date/:departureTime', () => {
   });
   test('200: Responds with a flightId if it does not exist in local DB but has created flight with Amadeus API response', () => {
     return request(app)
-      .get('/api/flights/FR2714/date/2024-08-16')
+      .get('/api/flights/FR2714/date/2024-09-17')
       .expect(200)
       .then(({ body }) => {
         expect(body).toEqual({
@@ -58,7 +58,7 @@ xdescribe('GET /api/flights/:flightNumber/date/:departureTime', () => {
   });
   test('400: Responds with an error message for a flight with a date from the past', () => {
     return request(app)
-      .get('/api/flights/Z0701/date/2023-07-19')
+      .get('/api/flights/Z0701/date/2023-09-19')
       .expect(400)
       .then(({ body }) => {
         expect(body.msg).toBe(
@@ -68,7 +68,7 @@ xdescribe('GET /api/flights/:flightNumber/date/:departureTime', () => {
   });
   test('400: Responds with an error message for an invalid flight number', () => {
     return request(app)
-      .get('/api/flights/HUSDFD/date/2024-07-19')
+      .get('/api/flights/HUSDFD/date/2024-09-19')
       .expect(400)
       .then(({ body }) => {
         expect(body.msg).toBe('Invalid flight number');

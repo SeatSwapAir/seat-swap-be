@@ -49,6 +49,8 @@ const getFlightDetails = async (flightNumber, departureTime) => {
         headers: headers,
       }
     );
+    console.log('🚀 ~ getFlightDetails ~ response:', response);
+
     const data = await response.json();
     if (data.data?.length === 0) {
       return Promise.reject({

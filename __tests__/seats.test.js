@@ -113,3 +113,56 @@ describe('DELETE /api/seats/:seat_id', () => {
       });
   });
 });
+
+describe('POST /api/seats', () => {
+  test('200: Responds with the seat added to the journey with the flight and user in the seat object', () => {
+    const payload = {
+      current_user_id: 21,
+      extraLegroom: true,
+      flight_id: 1,
+      location: 'back',
+      position: 'middle',
+      seat_letter: 'E',
+      seat_row: 30,
+    };
+    const result = {
+      current_user_id: 21,
+      extraLegroom: true,
+      flight_id: 1,
+      id: 516,
+      location: 'back',
+      original_user_id: 21,
+      position: 'middle',
+      previous_user_id: null,
+      seat_column: 5,
+      seat_letter: 'E',
+      seat_row: 30,
+    };
+    return request(app)
+      .post('/api/seats')
+      .send(payload)
+      .expect(200)
+      .then(({ body }) => {
+        expect(body).toEqual(result);
+      });
+  });
+
+  test('400: Responds with error if seat passed is already taken on flight_id', () => {
+    const payload = {
+      current_user_id: 21,
+      extraLegroom: true,
+      flight_id: 8,
+      location: 'back',
+      position: 'middle',
+      seat_letter: 'E',
+      seat_row: 30,
+    };
+    return request(app)
+      .post('/api/seats')
+      .send(payload)
+      .expect(400)
+      .then(({ body }) => {
+        expect(body.msg).toBe('Seat(s) 30E already taken by another passenger');
+      });
+  });
+});
