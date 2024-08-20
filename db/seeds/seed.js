@@ -102,8 +102,8 @@ const seed = async ({
         id SERIAL PRIMARY KEY,
         requester_id INTEGER REFERENCES "user"(id),
         respondent_id INTEGER REFERENCES "user"(id),
-        requester_seat_id INTEGER REFERENCES seat(id),
-        respondent_seat_id INTEGER REFERENCES seat(id),
+        requester_seat_id INTEGER,
+        respondent_seat_id INTEGER,
         status VARCHAR(255),
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         updated_at TIMESTAMP DEFAULT NULL
@@ -147,7 +147,6 @@ const seed = async ({
         tz VARCHAR(255)
       );
       `);
-  
 
     const insertSeatLocationQueryStr = format(
       'INSERT INTO seat_location (location_name) VALUES %L RETURNING *;',
@@ -321,7 +320,6 @@ const seed = async ({
     );
 
     await db.query(insertAirportQueryStr);
-
   } catch (error) {
     console.error('Error creating tables:', error);
     throw error;
