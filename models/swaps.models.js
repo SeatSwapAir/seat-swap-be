@@ -13,13 +13,6 @@ const insertSwap = async (requester_seat_id, respondent_seat_id) => {
       [requester_seat_id, respondent_seat_id]
     );
 
-    // if (
-    //   doesSwapExist.rowCount !== 0 &&
-    //   doesSwapExist.rows[0].cancelled === true
-    // ) {
-    //   return await updateSwap('request', doesSwapExist.rows[0].id);
-    // }
-
     if (doesSwapExist.rowCount !== 0) {
       return Promise.reject({
         status: 400,
@@ -141,6 +134,13 @@ const updateSwap = async (action, swap_id) => {
     if (action === 'cancel') {
       const updatedSwap = await db.query(
         `UPDATE swap SET updated_at = CURRENT_TIMESTAMP, status = 'cancelled' WHERE id=$1 RETURNING requester_seat_id, respondent_seat_id, status;`,
+        [swap_id]
+      );
+      return updatedSwap.rows[0];
+    }
+    if (action === 'request') {
+      const updatedSwap = await db.query(
+        `UPDATE swap SET updated_at = CURRENT_TIMESTAMP, status = 'requested' WHERE id=$1 RETURNING requester_seat_id, respondent_seat_id, status;`,
         [swap_id]
       );
       return updatedSwap.rows[0];
