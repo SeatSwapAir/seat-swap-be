@@ -207,7 +207,7 @@ const selectAllMatches = async (user_id, flight_id) => {
         };
 
         const sql = pgformat(
-          'SELECT * FROM seat WHERE flight_id = %s AND current_user_id != %s;',
+          'SELECT * FROM seat WHERE flight_id = %s AND current_user_id != %s ORDER BY seat_row, seat_letter ASC;',
           flight_id,
           user_id
         );
