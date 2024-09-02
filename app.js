@@ -1,11 +1,22 @@
 const express = require('express');
 const cors = require('cors');
 const app = express();
+const { auth } = require('express-oauth2-jwt-bearer');
+
+const jwtCheck = auth({
+  audience: 'https://seatswap.api',
+  issuerBaseURL: 'https://mzhoffman.uk.auth0.com/',
+  tokenSigningAlg: 'RS256'
+});
+
 
 require('dotenv').config({ path: '.env.amadeus' });
 
+console.log('boom')
+
 app.use(cors());
 app.use(express.json());
+app.use(jwtCheck);
 
 const {
   getFlightsByUser,
