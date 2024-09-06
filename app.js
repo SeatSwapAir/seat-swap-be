@@ -4,19 +4,31 @@ const app = express();
 const { auth } = require('express-oauth2-jwt-bearer');
 
 const jwtCheck = auth({
-  audience: 'https://seatswap.api',
-  issuerBaseURL: 'https://mzhoffman.uk.auth0.com/',
-  tokenSigningAlg: 'RS256'
+  audience: 'https://seat-swap-be',
+  issuerBaseURL: 'https://dev-s6rz1nzy2l6lo4zf.us.auth0.com',
+  tokenSigningAlg: 'RS256',
 });
-
 
 require('dotenv').config({ path: '.env.amadeus' });
 
-console.log('boom')
+// console.log('boom');
 
-app.use(cors());
+const corsOptions = {
+  origin: 'http://localhost:5173', // Replace with your client origin
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  allowedHeaders: 'Authorization,Content-Type', // Allow Authorization header
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(jwtCheck);
+app.use((err, req, res, next) => {
+  if (err.name === 'UnauthorizedError') {
+    console.error('Unauthorized request:', err);
+    return res.status(401).send({ msg: 'Invalid token' });
+  }
+  next(err);
+});
 
 const {
   getFlightsByUser,
@@ -145,7 +157,7 @@ app.use((err, req, res, next) => {
 });
 
 app.use((err, req, res, next) => {
-  // console.log(err);
+  console.error('Unhandled error:', err); // Log the full error stack
   res.status(500).send({ msg: 'server error getting API' });
 });
 
