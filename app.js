@@ -12,12 +12,14 @@ const jwtCheck = auth({
 const corsOptions = {
   origin: 'https://seatswap.netlify.app', // Replace with your client origin
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  allowedHeaders: 'Authorization,Content-Type', // Allow Authorization header
+  allowedHeaders: ['Authorization,Content-Type'], // Allow Authorization header
 };
 
 require('dotenv').config({ path: '.env.amadeus' });
 
 app.use(cors(corsOptions));
+
+app.options('*', cors(corsOptions));
 app.use(jwtCheck);
 
 app.use(express.json());
