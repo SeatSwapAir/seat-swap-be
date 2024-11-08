@@ -20,7 +20,7 @@ require('dotenv').config({ path: '.env.amadeus' });
 app.use(cors(corsOptions));
 
 app.options('*', cors(corsOptions));
-app.use(jwtCheck);
+// app.use(jwtCheck);
 
 app.use(express.json());
 
@@ -57,6 +57,8 @@ const {
 } = require('./controllers/seats.controllers');
 
 const { getOffers } = require('./controllers/offers.controllers');
+
+const { getSeed } = require('./controllers/seed.controllers');
 
 app.get('/api/users/:user_id/flights', getFlightsByUser);
 
@@ -118,6 +120,8 @@ app.patch('/api/seats/:seat_id', patchSeat);
 app.delete('/api/seats/:seat_id', removeSeat);
 
 app.post('/api/seats', postSeat);
+
+app.get('/api/seed', getSeed);
 
 //handle custom errors
 app.use((err, req, res, next) => {
