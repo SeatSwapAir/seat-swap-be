@@ -20,7 +20,7 @@ require('dotenv').config({ path: '.env.amadeus' });
 app.use(cors(corsOptions));
 
 app.options('*', cors(corsOptions));
-// app.use(jwtCheck);
+app.use(jwtCheck);
 
 app.use(express.json());
 
