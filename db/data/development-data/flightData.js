@@ -71,5 +71,13 @@ module.exports = [
     arrivalTime: '2024-08-26T00:40+02:00',
     airline: 'RYANAIR',
   },
+  {
+    id: 9,
+    flightNumber: 'FR2715',
+    departureAirport: 'LGW',
+    arrivalAirport: 'ALC',
+    departureTime: '2025-09-29T17:30+01:00',
+    arrivalTime: '2025-09-29T21:00+02:00',
+    airline: 'RYANAIR',
+  },
 ];
-

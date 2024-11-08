@@ -10,7 +10,7 @@ const jwtCheck = auth({
 });
 
 const corsOptions = {
-  origin: 'https://seatswap.netlify.app', // Replace with your client origin
+  origin: ['https://seatswap.netlify.app', 'http://localhost:5173'],
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   allowedHeaders: ['Authorization,Content-Type'], // Allow Authorization header
 };
