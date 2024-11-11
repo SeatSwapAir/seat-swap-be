@@ -6743,7 +6743,7 @@ module.exports = [
   {
     current_user_id: 1,
     original_user_id: 1,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '23F',
     legroom: 'FALSE',
@@ -6756,7 +6756,7 @@ module.exports = [
   {
     current_user_id: 2,
     original_user_id: 2,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '8F',
     legroom: 'FALSE',
@@ -6769,7 +6769,7 @@ module.exports = [
   {
     current_user_id: 3,
     original_user_id: 3,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '15A',
     legroom: 'TRUE',
@@ -6782,7 +6782,7 @@ module.exports = [
   {
     current_user_id: 4,
     original_user_id: 4,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '2A',
     legroom: 'TRUE',
@@ -6795,7 +6795,7 @@ module.exports = [
   {
     current_user_id: 5,
     original_user_id: 5,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '19A',
     legroom: 'FALSE',
@@ -6808,7 +6808,7 @@ module.exports = [
   {
     current_user_id: 6,
     original_user_id: 6,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '19D',
     legroom: 'FALSE',
@@ -6821,7 +6821,7 @@ module.exports = [
   {
     current_user_id: 7,
     original_user_id: 7,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '16B',
     legroom: 'TRUE',
@@ -6834,7 +6834,7 @@ module.exports = [
   {
     current_user_id: 8,
     original_user_id: 8,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '12D',
     legroom: 'TRUE',
@@ -6847,7 +6847,7 @@ module.exports = [
   {
     current_user_id: 9,
     original_user_id: 9,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '8B',
     legroom: 'FALSE',
@@ -6860,7 +6860,7 @@ module.exports = [
   {
     current_user_id: 10,
     original_user_id: 10,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '26B',
     legroom: 'FALSE',
@@ -6873,7 +6873,7 @@ module.exports = [
   {
     current_user_id: 11,
     original_user_id: 11,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '14D',
     legroom: 'FALSE',
@@ -6886,7 +6886,7 @@ module.exports = [
   {
     current_user_id: 12,
     original_user_id: 12,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '6A',
     legroom: 'FALSE',
@@ -6899,7 +6899,7 @@ module.exports = [
   {
     current_user_id: 13,
     original_user_id: 13,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '14E',
     legroom: 'TRUE',
@@ -6912,7 +6912,7 @@ module.exports = [
   {
     current_user_id: 14,
     original_user_id: 14,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '2D',
     legroom: 'TRUE',
@@ -6925,7 +6925,7 @@ module.exports = [
   {
     current_user_id: 15,
     original_user_id: 15,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '24A',
     legroom: 'FALSE',
@@ -6938,7 +6938,7 @@ module.exports = [
   {
     current_user_id: 16,
     original_user_id: 16,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '3A',
     legroom: 'FALSE',
@@ -6951,7 +6951,7 @@ module.exports = [
   {
     current_user_id: 17,
     original_user_id: 17,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '2B',
     legroom: 'FALSE',
@@ -6964,7 +6964,7 @@ module.exports = [
   {
     current_user_id: 18,
     original_user_id: 18,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '26C',
     legroom: 'FALSE',
@@ -6977,7 +6977,7 @@ module.exports = [
   {
     current_user_id: 19,
     original_user_id: 19,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '17C',
     legroom: 'TRUE',
@@ -6990,7 +6990,7 @@ module.exports = [
   {
     current_user_id: 20,
     original_user_id: 20,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '5E',
     legroom: 'TRUE',
@@ -7003,7 +7003,7 @@ module.exports = [
   {
     current_user_id: 22,
     original_user_id: 22,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '21A',
     legroom: 'FALSE',
@@ -7016,7 +7016,7 @@ module.exports = [
   {
     current_user_id: 23,
     original_user_id: 23,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '28F',
     legroom: 'TRUE',
@@ -7029,7 +7029,7 @@ module.exports = [
   {
     current_user_id: 24,
     original_user_id: 24,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '7E',
     legroom: 'TRUE',
@@ -7042,7 +7042,7 @@ module.exports = [
   {
     current_user_id: 25,
     original_user_id: 25,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '7C',
     legroom: 'FALSE',
@@ -7055,7 +7055,7 @@ module.exports = [
   {
     current_user_id: 26,
     original_user_id: 26,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '12E',
     legroom: 'FALSE',
@@ -7068,7 +7068,7 @@ module.exports = [
   {
     current_user_id: 27,
     original_user_id: 27,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '25A',
     legroom: 'TRUE',
@@ -7081,7 +7081,7 @@ module.exports = [
   {
     current_user_id: 28,
     original_user_id: 28,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '28E',
     legroom: 'TRUE',
@@ -7094,7 +7094,7 @@ module.exports = [
   {
     current_user_id: 29,
     original_user_id: 29,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '5F',
     legroom: 'FALSE',
@@ -7107,7 +7107,7 @@ module.exports = [
   {
     current_user_id: 30,
     original_user_id: 30,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '4D',
     legroom: 'FALSE',
@@ -7120,7 +7120,7 @@ module.exports = [
   {
     current_user_id: 31,
     original_user_id: 31,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '29D',
     legroom: 'FALSE',
@@ -7133,7 +7133,7 @@ module.exports = [
   {
     current_user_id: 32,
     original_user_id: 32,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '21E',
     legroom: 'FALSE',
@@ -7146,7 +7146,7 @@ module.exports = [
   {
     current_user_id: 33,
     original_user_id: 33,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '24E',
     legroom: 'TRUE',
@@ -7159,7 +7159,7 @@ module.exports = [
   {
     current_user_id: 34,
     original_user_id: 34,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '24D',
     legroom: 'TRUE',
@@ -7172,7 +7172,7 @@ module.exports = [
   {
     current_user_id: 35,
     original_user_id: 35,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '17D',
     legroom: 'FALSE',
@@ -7185,7 +7185,7 @@ module.exports = [
   {
     current_user_id: 36,
     original_user_id: 36,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '2E',
     legroom: 'FALSE',
@@ -7198,7 +7198,7 @@ module.exports = [
   {
     current_user_id: 37,
     original_user_id: 37,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '10F',
     legroom: 'FALSE',
@@ -7211,7 +7211,7 @@ module.exports = [
   {
     current_user_id: 38,
     original_user_id: 38,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '12B',
     legroom: 'FALSE',
@@ -7224,7 +7224,7 @@ module.exports = [
   {
     current_user_id: 39,
     original_user_id: 39,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '19F',
     legroom: 'TRUE',
@@ -7237,7 +7237,7 @@ module.exports = [
   {
     current_user_id: 40,
     original_user_id: 40,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '9B',
     legroom: 'TRUE',
@@ -7250,7 +7250,7 @@ module.exports = [
   {
     current_user_id: 41,
     original_user_id: 41,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '25C',
     legroom: 'FALSE',
@@ -7263,7 +7263,7 @@ module.exports = [
   {
     current_user_id: 42,
     original_user_id: 42,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '6B',
     legroom: 'FALSE',
@@ -7276,7 +7276,7 @@ module.exports = [
   {
     current_user_id: 43,
     original_user_id: 43,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '6D',
     legroom: 'TRUE',
@@ -7289,7 +7289,7 @@ module.exports = [
   {
     current_user_id: 44,
     original_user_id: 44,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '15C',
     legroom: 'TRUE',
@@ -7302,7 +7302,7 @@ module.exports = [
   {
     current_user_id: 45,
     original_user_id: 45,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '24C',
     legroom: 'FALSE',
@@ -7315,7 +7315,7 @@ module.exports = [
   {
     current_user_id: 46,
     original_user_id: 46,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '9D',
     legroom: 'FALSE',
@@ -7328,7 +7328,7 @@ module.exports = [
   {
     current_user_id: 47,
     original_user_id: 47,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '18F',
     legroom: 'TRUE',
@@ -7341,7 +7341,7 @@ module.exports = [
   {
     current_user_id: 48,
     original_user_id: 48,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '21F',
     legroom: 'TRUE',
@@ -7354,7 +7354,7 @@ module.exports = [
   {
     current_user_id: 49,
     original_user_id: 49,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '28A',
     legroom: 'FALSE',
@@ -7367,7 +7367,7 @@ module.exports = [
   {
     current_user_id: 50,
     original_user_id: 50,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '8C',
     legroom: 'FALSE',
@@ -7380,7 +7380,7 @@ module.exports = [
   {
     current_user_id: 51,
     original_user_id: 51,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '17A',
     legroom: 'TRUE',
@@ -7393,7 +7393,7 @@ module.exports = [
   {
     current_user_id: 51,
     original_user_id: 51,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '27B',
     legroom: 'TRUE',
@@ -7406,7 +7406,7 @@ module.exports = [
   {
     current_user_id: 52,
     original_user_id: 52,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '6E',
     legroom: 'TRUE',
@@ -7419,7 +7419,7 @@ module.exports = [
   {
     current_user_id: 52,
     original_user_id: 52,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '1B',
     legroom: 'TRUE',
@@ -7432,7 +7432,7 @@ module.exports = [
   {
     current_user_id: 53,
     original_user_id: 53,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '25D',
     legroom: 'TRUE',
@@ -7445,7 +7445,7 @@ module.exports = [
   {
     current_user_id: 53,
     original_user_id: 53,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '16A',
     legroom: 'TRUE',
@@ -7458,7 +7458,7 @@ module.exports = [
   {
     current_user_id: 54,
     original_user_id: 54,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '26F',
     legroom: 'TRUE',
@@ -7471,7 +7471,7 @@ module.exports = [
   {
     current_user_id: 54,
     original_user_id: 54,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '13F',
     legroom: 'TRUE',
@@ -7484,7 +7484,7 @@ module.exports = [
   {
     current_user_id: 55,
     original_user_id: 55,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '16C',
     legroom: 'TRUE',
@@ -7497,7 +7497,7 @@ module.exports = [
   {
     current_user_id: 55,
     original_user_id: 55,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '10B',
     legroom: 'TRUE',
@@ -7510,7 +7510,7 @@ module.exports = [
   {
     current_user_id: 56,
     original_user_id: 56,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '27D',
     legroom: 'TRUE',
@@ -7523,7 +7523,7 @@ module.exports = [
   {
     current_user_id: 56,
     original_user_id: 56,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '10E',
     legroom: 'TRUE',
@@ -7536,7 +7536,7 @@ module.exports = [
   {
     current_user_id: 57,
     original_user_id: 57,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '11E',
     legroom: 'TRUE',
@@ -7549,7 +7549,7 @@ module.exports = [
   {
     current_user_id: 57,
     original_user_id: 57,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '21C',
     legroom: 'TRUE',
@@ -7562,7 +7562,7 @@ module.exports = [
   {
     current_user_id: 58,
     original_user_id: 58,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '7F',
     legroom: 'TRUE',
@@ -7575,7 +7575,7 @@ module.exports = [
   {
     current_user_id: 58,
     original_user_id: 58,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '20F',
     legroom: 'TRUE',
@@ -7588,7 +7588,7 @@ module.exports = [
   {
     current_user_id: 59,
     original_user_id: 59,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '15F',
     legroom: 'TRUE',
@@ -7601,7 +7601,7 @@ module.exports = [
   {
     current_user_id: 59,
     original_user_id: 59,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '18B',
     legroom: 'TRUE',
@@ -7614,7 +7614,7 @@ module.exports = [
   {
     current_user_id: 60,
     original_user_id: 60,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '15D',
     legroom: 'TRUE',
@@ -7627,7 +7627,7 @@ module.exports = [
   {
     current_user_id: 60,
     original_user_id: 60,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '18A',
     legroom: 'TRUE',
@@ -7640,7 +7640,7 @@ module.exports = [
   {
     current_user_id: 61,
     original_user_id: 61,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '13B',
     legroom: 'TRUE',
@@ -7653,7 +7653,7 @@ module.exports = [
   {
     current_user_id: 61,
     original_user_id: 61,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '9C',
     legroom: 'TRUE',
@@ -7666,7 +7666,7 @@ module.exports = [
   {
     current_user_id: 62,
     original_user_id: 62,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '20A',
     legroom: 'TRUE',
@@ -7679,7 +7679,7 @@ module.exports = [
   {
     current_user_id: 62,
     original_user_id: 62,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '28C',
     legroom: 'TRUE',
@@ -7692,7 +7692,7 @@ module.exports = [
   {
     current_user_id: 63,
     original_user_id: 63,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '14C',
     legroom: 'TRUE',
@@ -7705,7 +7705,7 @@ module.exports = [
   {
     current_user_id: 63,
     original_user_id: 63,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '20C',
     legroom: 'TRUE',
@@ -7718,7 +7718,7 @@ module.exports = [
   {
     current_user_id: 76,
     original_user_id: 76,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '14B',
     legroom: 'TRUE',
@@ -7731,7 +7731,7 @@ module.exports = [
   {
     current_user_id: 76,
     original_user_id: 76,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '24F',
     legroom: 'TRUE',
@@ -7744,7 +7744,7 @@ module.exports = [
   {
     current_user_id: 76,
     original_user_id: 76,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '29F',
     legroom: 'TRUE',
@@ -7757,7 +7757,7 @@ module.exports = [
   {
     current_user_id: 77,
     original_user_id: 77,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '12F',
     legroom: 'TRUE',
@@ -7770,7 +7770,7 @@ module.exports = [
   {
     current_user_id: 77,
     original_user_id: 77,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '20E',
     legroom: 'TRUE',
@@ -7783,7 +7783,7 @@ module.exports = [
   {
     current_user_id: 77,
     original_user_id: 77,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '13D',
     legroom: 'TRUE',
@@ -7796,7 +7796,7 @@ module.exports = [
   {
     current_user_id: 78,
     original_user_id: 78,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '4E',
     legroom: 'TRUE',
@@ -7809,7 +7809,7 @@ module.exports = [
   {
     current_user_id: 78,
     original_user_id: 78,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '10D',
     legroom: 'TRUE',
@@ -7822,7 +7822,7 @@ module.exports = [
   {
     current_user_id: 78,
     original_user_id: 78,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '9E',
     legroom: 'TRUE',
@@ -7835,7 +7835,7 @@ module.exports = [
   {
     current_user_id: 79,
     original_user_id: 79,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '7D',
     legroom: 'TRUE',
@@ -7848,7 +7848,7 @@ module.exports = [
   {
     current_user_id: 79,
     original_user_id: 79,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '29E',
     legroom: 'TRUE',
@@ -7861,7 +7861,7 @@ module.exports = [
   {
     current_user_id: 79,
     original_user_id: 79,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '14F',
     legroom: 'TRUE',
@@ -7874,7 +7874,7 @@ module.exports = [
   {
     current_user_id: 80,
     original_user_id: 80,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '22E',
     legroom: 'TRUE',
@@ -7887,7 +7887,7 @@ module.exports = [
   {
     current_user_id: 80,
     original_user_id: 80,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '1F',
     legroom: 'TRUE',
@@ -7900,7 +7900,7 @@ module.exports = [
   {
     current_user_id: 80,
     original_user_id: 80,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '23E',
     legroom: 'TRUE',
@@ -7913,7 +7913,7 @@ module.exports = [
   {
     current_user_id: 91,
     original_user_id: 91,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '16E',
     legroom: 'TRUE',
@@ -7926,7 +7926,7 @@ module.exports = [
   {
     current_user_id: 91,
     original_user_id: 91,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '17F',
     legroom: 'TRUE',
@@ -7939,7 +7939,7 @@ module.exports = [
   {
     current_user_id: 91,
     original_user_id: 91,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '25B',
     legroom: 'TRUE',
@@ -7952,7 +7952,7 @@ module.exports = [
   {
     current_user_id: 91,
     original_user_id: 91,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '21D',
     legroom: 'TRUE',
@@ -7965,7 +7965,7 @@ module.exports = [
   {
     current_user_id: 92,
     original_user_id: 92,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '9F',
     legroom: 'TRUE',
@@ -7978,7 +7978,7 @@ module.exports = [
   {
     current_user_id: 92,
     original_user_id: 92,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '5A',
     legroom: 'TRUE',
@@ -7991,7 +7991,7 @@ module.exports = [
   {
     current_user_id: 92,
     original_user_id: 92,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '16D',
     legroom: 'TRUE',
@@ -8004,7 +8004,7 @@ module.exports = [
   {
     current_user_id: 92,
     original_user_id: 92,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '13E',
     legroom: 'TRUE',
@@ -8017,7 +8017,7 @@ module.exports = [
   {
     current_user_id: 93,
     original_user_id: 93,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '23D',
     legroom: 'TRUE',
@@ -8030,7 +8030,7 @@ module.exports = [
   {
     current_user_id: 93,
     original_user_id: 93,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '30C',
     legroom: 'TRUE',
@@ -8043,7 +8043,7 @@ module.exports = [
   {
     current_user_id: 93,
     original_user_id: 93,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '20B',
     legroom: 'TRUE',
@@ -8056,7 +8056,7 @@ module.exports = [
   {
     current_user_id: 93,
     original_user_id: 93,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '24B',
     legroom: 'TRUE',
@@ -8069,7 +8069,7 @@ module.exports = [
   {
     current_user_id: 94,
     original_user_id: 94,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '5D',
     legroom: 'TRUE',
@@ -8082,7 +8082,7 @@ module.exports = [
   {
     current_user_id: 94,
     original_user_id: 94,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '6F',
     legroom: 'TRUE',
@@ -8095,7 +8095,7 @@ module.exports = [
   {
     current_user_id: 94,
     original_user_id: 94,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '30B',
     legroom: 'TRUE',
@@ -8108,7 +8108,7 @@ module.exports = [
   {
     current_user_id: 94,
     original_user_id: 94,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '30D',
     legroom: 'TRUE',
@@ -8121,7 +8121,7 @@ module.exports = [
   {
     current_user_id: 95,
     original_user_id: 95,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '27C',
     legroom: 'TRUE',
@@ -8134,7 +8134,7 @@ module.exports = [
   {
     current_user_id: 95,
     original_user_id: 95,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '19C',
     legroom: 'TRUE',
@@ -8147,7 +8147,7 @@ module.exports = [
   {
     current_user_id: 95,
     original_user_id: 95,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '29A',
     legroom: 'TRUE',
@@ -8160,7 +8160,7 @@ module.exports = [
   {
     current_user_id: 95,
     original_user_id: 95,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '10C',
     legroom: 'TRUE',
@@ -8173,7 +8173,7 @@ module.exports = [
   {
     current_user_id: 96,
     original_user_id: 96,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '12A',
     legroom: 'TRUE',
@@ -8186,7 +8186,7 @@ module.exports = [
   {
     current_user_id: 96,
     original_user_id: 96,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '26A',
     legroom: 'TRUE',
@@ -8199,7 +8199,7 @@ module.exports = [
   {
     current_user_id: 96,
     original_user_id: 96,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '15E',
     legroom: 'TRUE',
@@ -8212,7 +8212,7 @@ module.exports = [
   {
     current_user_id: 96,
     original_user_id: 96,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '22A',
     legroom: 'TRUE',
@@ -8225,7 +8225,7 @@ module.exports = [
   {
     current_user_id: 97,
     original_user_id: 97,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '26D',
     legroom: 'TRUE',
@@ -8238,7 +8238,7 @@ module.exports = [
   {
     current_user_id: 97,
     original_user_id: 97,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '3B',
     legroom: 'TRUE',
@@ -8251,7 +8251,7 @@ module.exports = [
   {
     current_user_id: 97,
     original_user_id: 97,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '5B',
     legroom: 'TRUE',
@@ -8264,7 +8264,7 @@ module.exports = [
   {
     current_user_id: 97,
     original_user_id: 97,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '7A',
     legroom: 'TRUE',
@@ -8277,7 +8277,7 @@ module.exports = [
   {
     current_user_id: 98,
     original_user_id: 98,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '15B',
     legroom: 'TRUE',
@@ -8290,7 +8290,7 @@ module.exports = [
   {
     current_user_id: 98,
     original_user_id: 98,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '22D',
     legroom: 'TRUE',
@@ -8303,7 +8303,7 @@ module.exports = [
   {
     current_user_id: 98,
     original_user_id: 98,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '29C',
     legroom: 'TRUE',
@@ -8316,7 +8316,7 @@ module.exports = [
   {
     current_user_id: 98,
     original_user_id: 98,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '27E',
     legroom: 'TRUE',
@@ -8329,7 +8329,7 @@ module.exports = [
   {
     current_user_id: 99,
     original_user_id: 99,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '23C',
     legroom: 'TRUE',
@@ -8342,7 +8342,7 @@ module.exports = [
   {
     current_user_id: 99,
     original_user_id: 99,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '2F',
     legroom: 'TRUE',
@@ -8355,7 +8355,7 @@ module.exports = [
   {
     current_user_id: 99,
     original_user_id: 99,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '11F',
     legroom: 'TRUE',
@@ -8368,7 +8368,7 @@ module.exports = [
   {
     current_user_id: 99,
     original_user_id: 99,
-    previous_user_id: '',
+    previous_user_id: null,
     flight_id: 9,
     number: '27A',
     legroom: 'TRUE',
